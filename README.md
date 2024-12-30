@@ -9,5 +9,6 @@ Dentro de este contexto, se ha creado una herramienta que simula los datos gener
 
 Haz clic en la imagen para ver el video de demostración:  
 
-[![TFG - Bruno García Escudero](https://img.youtube.com/vi/byk7npR5nE/0.jpg)](https://www.youtube.com/watch?v=byk7npR5nE)
+[![TFG - Bruno García Escudero](https://img.youtube.com/vi/-byk7npR5nE/0.jpg)](https://www.youtube.com/watch?v=-byk7npR5nE)
+
 
