@@ -1,9 +1,10 @@
 # ARte
 [ABPGC23] Proyecto de Contenidos del grupo WithU de ABP 2023/24
 
-Este trabajo se sitúa en el marco del proyecto **Smart University** de la **Universidad de Alicante**, cuyo objetivo es mejorar la calidad de vida en los campus universitarios mediante tecnologías avanzadas como el Internet de las Cosas (IoT) y el concepto de Smart Cities. En este contexto, se emplean sensores para recoger datos de la temperatura, calidad del aire y concentración de CO2, con el fin de optimizar la gestión de los recursos en los campus.
+ARte es un proyecto desarrollado por el grupo withU durante el cuarto año del grado en Ingeniería Multimedia en la Universidad de Alicante (UA), utilizando la metodología de Aprendizaje Basado en Proyectos (ABP). Este proyecto se sitúa en el último tramo de la carrera, donde los estudiantes aplican los conocimientos adquiridos a lo largo de sus estudios para desarrollar soluciones innovadoras.
 
-Dentro de este contexto, se ha creado una herramienta que simula los datos generados por estos sensores. La herramienta produce datos artificiales en tiempo real, como temperatura, humedad y niveles de CO2, que podrán ser enviados a **Kunna**, la plataforma centralizada para la visualización y análisis de datos. Esta herramienta se integrará en el ecosistema de Kunna bajo el nombre de **Kunna Genesis**, permitiendo la simulación de datos en situaciones hipotéticas y facilitando las pruebas y validaciones sin depender exclusivamente de datos reales.
+El objetivo principal de ARte fue explorar el uso de realidad aumentada para transformar la experiencia cultural en museos, permitiendo una interacción más inmersiva y educativa con las obras de arte. A través de este proyecto, se buscó mejorar la forma en que los usuarios interactúan con el arte y la historia, ofreciendo una experiencia dinámica y enriquecedora.
+
 
 ## 📽️ Demo del proyecto  
 
