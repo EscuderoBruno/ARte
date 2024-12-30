@@ -2,7 +2,7 @@
 
 [ABPGC23] Proyecto de Contenidos del grupo WithU de ABP 2023/24
 
-**ARte** utiliza tecnología innovadora para digitalizar y enriquecer la experiencia en los museos. Desde reconstrucciones 3D interactivas hasta asistentes virtuales educativos, este proyecto demuestra cómo la tecnología puede conectar a las personas con la historia.
+Descubre museos como nunca antes. ARte, la nueva era de la experiencia cultural. **ARte** utiliza tecnología innovadora para digitalizar y enriquecer la experiencia en los museos. Desde reconstrucciones 3D interactivas hasta asistentes virtuales educativos, este proyecto demuestra cómo la tecnología puede conectar a las personas con la historia.
 
 Este proyecto, realizado en colaboración con el **Museo de la Universidad de Alicante (MUA)**, fue desarrollado durante el cuarto año del grado en **Ingeniería Multimedia** de la **Universidad de Alicante (UA)** como parte de la metodología de **Aprendizaje Basado en Proyectos (ABP)**.
 
