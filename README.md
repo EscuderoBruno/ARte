@@ -2,10 +2,30 @@
 
 [ABPGC23] Proyecto de Contenidos del grupo WithU de ABP 2023/24
 
-**ARte** se sitúa en el cuarto año del grado en **Ingeniería Multimedia** de la **Universidad de Alicante (UA)**, y ha sido desarrollado por el grupo **withU** utilizando la metodología de **Aprendizaje Basado en Proyectos (ABP)**. 
+**ARte** utiliza tecnología innovadora para digitalizar y enriquecer la experiencia en los museos. Desde reconstrucciones 3D interactivas hasta asistentes virtuales educativos, este proyecto demuestra cómo la tecnología puede conectar a las personas con la historia.
 
-Este proyecto, realizado en colaboracion con el MUA (Museo de la Universidad de Alicante) proporciona a los museos herramientas interactivas que transforman la manera en que los visitantes experimentan la historia.
+Este proyecto, realizado en colaboración con el **Museo de la Universidad de Alicante (MUA)**, fue desarrollado durante el cuarto año del grado en **Ingeniería Multimedia** de la **Universidad de Alicante (UA)** como parte de la metodología de **Aprendizaje Basado en Proyectos (ABP)**.
 
+---
+
+## 📋 Funcionalidades Implementadas
+
+### Visitantes del Museo
+- **Exploración 3D Interactiva**: Escaneo de códigos QR para acceder a reconstrucciones detalladas de piezas arqueológicas.
+- **Acceso a Información Completa**: Textos y audios en varios idiomas, con opciones avanzadas como ajustes de velocidad y descargas.
+- **Compatibilidad Inclusiva**: Implementación de pictogramas para mejorar la comprensión de personas con dificultades lectoras.
+
+### Administradores
+- **Gestión de Contenidos**: CRUD para exposiciones, salas y piezas del museo.
+- **Estadísticas en Tiempo Real**: Análisis de datos sobre visitas y escaneos.
+- **Persistencia de Datos**: Mantén accesibles exposiciones temporales incluso después de su retiro físico.
+
+### Público Infantil
+- **Asistente Virtual "Alcudio"**:
+  - Juegos interactivos como la búsqueda del tesoro.
+  - Actividades educativas con integración en redes sociales para compartir logros.
+ 
+---
 
 ## 🛠️ Tecnologías y Herramientas Utilizadas
 
@@ -24,6 +44,7 @@ Este proyecto, realizado en colaboracion con el MUA (Museo de la Universidad de 
 - **Git y GitHub**: Control de versiones y colaboración en equipo.
 - **SEO y Accesibilidad**: Estrategias para optimizar el alcance y la inclusión, incluyendo compatibilidad con pictogramas.
 
+---
 
 ## 🎯 ¿Qué Aprendí?
 
@@ -32,30 +53,16 @@ Este proyecto, realizado en colaboracion con el MUA (Museo de la Universidad de 
 3. **Gestión de Proyectos Complejos**: Dividir tareas en etapas funcionales, documentar el progreso y cumplir con plazos establecidos.
 4. **Trabajo en Equipo Multidisciplinario**: Colaborar con colegas para lograr un producto funcional y atractivo que satisficiera las necesidades de usuarios reales.
 
-
-## 📋 Funcionalidades Implementadas
-
-### Visitantes del Museo
-- **Exploración 3D Interactiva**: Escaneo de códigos QR para acceder a reconstrucciones detalladas de piezas arqueológicas.
-- **Acceso a Información Completa**: Textos y audios en varios idiomas, con opciones avanzadas como ajustes de velocidad y descargas.
-- **Compatibilidad Inclusiva**: Implementación de pictogramas para mejorar la comprensión de personas con dificultades lectoras.
-
-### Administradores
-- **Gestión de Contenidos**: CRUD para exposiciones, salas y piezas del museo.
-- **Estadísticas en Tiempo Real**: Análisis de datos sobre visitas y escaneos.
-- **Persistencia de Datos**: Mantén accesibles exposiciones temporales incluso después de su retiro físico.
-
-### Público Infantil
-- **Asistente Virtual "Alcudio"**:
-  - Juegos interactivos como la búsqueda del tesoro.
-  - Actividades educativas con integración en redes sociales para compartir logros.
-
+---
 
 ## 📽️ Demo del proyecto  
 
-Haz clic en la imagen para ver el video de demostración:  
+¡Descubre cómo funciona ARte!  
+Haz clic en la imagen para ver el video de presentación:  
 
 [![ARte - Bruno García Escudero](https://img.youtube.com/vi/-byk7npR5nE/0.jpg)](https://www.youtube.com/watch?v=-byk7npR5nE)
+
+---
 
 ## 📧 Contacto
 
@@ -66,8 +73,8 @@ Haz clic en la imagen para ver el video de demostración:
 - Alejandro Zaragoza Elías  
 - Elena Sánchez Marín  
 
-**Página**: [arte.ovh](https://arte.ovh)  
-**Instagram**: [@arte_abp_ua](https://instagram.com/arte_abp_ua)
+**Página Web**: [arte.ovh](https://arte.ovh)  
+**Instagram**: [@arte_abp_ua](https://instagram.com/arte_abp_ua)  
 
 
   
