@@ -46,7 +46,7 @@ Este proyecto, realizado en colaboración con el **Museo de la Universidad de Al
 
 ---
 
-## 🎯 ¿Qué Aprendí?
+## 🎯 Aprendizajes y Logros
 
 1. **Creación de Motores Gráficos desde Cero**: Diseñar e implementar un motor gráfico personalizado para visualizar modelos 3D con alta eficiencia y control de interacción.
 2. **Optimización de Experiencias Interactivas**: Mejorar la accesibilidad y usabilidad para visitantes de museos, administradores y público infantil.
