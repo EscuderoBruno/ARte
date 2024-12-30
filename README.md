@@ -59,12 +59,17 @@ Haz clic en la imagen para ver el video de demostración:
 
 ## 📧 Contacto
 
-Este proyecto ha sido desarrollado por el grupo **WithU**:
+**Desarrolladores:**
+- Elías Alfonso Carrasco Guerrero  
+- Alejandro Sieczkowski Herrero  
+- Bruno García Escudero  
+- Alejandro Zaragoza Elías  
+- Elena Sánchez Marín  
 
-- Elías Alfonso Carrasco Guerrero
-- Alejandro Sieczkowski Herrero
-- Bruno García Escudero
-- Alejandro Zaragoza Elías
-- Elena Sánchez Marín
+**Página del Proyecto**: [arte.ovh](https://arte.ovh)  
+**Instagram**: [@arte_abp_ua](https://instagram.com/arte_abp_ua)
+
+
+  
 
 
