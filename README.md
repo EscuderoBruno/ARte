@@ -66,7 +66,7 @@ Haz clic en la imagen para ver el video de demostración:
 - Alejandro Zaragoza Elías  
 - Elena Sánchez Marín  
 
-**Página del Proyecto**: [arte.ovh](https://arte.ovh)  
+**Página**: [arte.ovh](https://arte.ovh)  
 **Instagram**: [@arte_abp_ua](https://instagram.com/arte_abp_ua)
 
 
