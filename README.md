@@ -6,7 +6,6 @@
 
 Este proyecto, realizado en colaboracion con el MUA (Museo de la Universidad de Alicante) proporciona a los museos herramientas interactivas que transforman la manera en que los visitantes experimentan la historia.
 
----
 
 ## 🛠️ Tecnologías y Herramientas Utilizadas
 
@@ -25,7 +24,6 @@ Este proyecto, realizado en colaboracion con el MUA (Museo de la Universidad de 
 - **Git y GitHub**: Control de versiones y colaboración en equipo.
 - **SEO y Accesibilidad**: Estrategias para optimizar el alcance y la inclusión, incluyendo compatibilidad con pictogramas.
 
----
 
 ## 🎯 ¿Qué Aprendí?
 
@@ -34,7 +32,6 @@ Este proyecto, realizado en colaboracion con el MUA (Museo de la Universidad de 
 3. **Gestión de Proyectos Complejos**: Dividir tareas en etapas funcionales, documentar el progreso y cumplir con plazos establecidos.
 4. **Trabajo en Equipo Multidisciplinario**: Colaborar con colegas para lograr un producto funcional y atractivo que satisficiera las necesidades de usuarios reales.
 
----
 
 ## 📋 Funcionalidades Implementadas
 
@@ -53,7 +50,6 @@ Este proyecto, realizado en colaboracion con el MUA (Museo de la Universidad de 
   - Juegos interactivos como la búsqueda del tesoro.
   - Actividades educativas con integración en redes sociales para compartir logros.
 
----
 
 ## 📽️ Demo del proyecto  
 
