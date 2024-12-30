@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,700&display=swap');
+/* START OF HEADER STYLES */
+header {
+    padding: 16px 22px;
+    background-color: #1F262D;
+  }
+  
+  header .wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  header h1 span {
+    margin-right: 10px;
+  }
+  
+  header h1 a {
+    color: #333;
+  }
+  
+  header nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+  
+  header nav > * {
+    margin-left: 20px;
+  }
+  
+  /* END OF HEADER STYLES */
+
+
+/* Add application styles & imports to this file! */
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Fira Sans", sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+a,
+input,
+button {
+  font: inherit;
+  color: inherit;
+  margin: -2px;
+}
+
+a {
+  color: grey;
+  text-decoration: none;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 600px;
+  padding: 0 0px;
+  margin: 0 auto;
+}
+
+.logo-text {
+  color: white;
+}

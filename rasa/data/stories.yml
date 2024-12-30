@@ -1,0 +1,15 @@
+# version: "3.1"
+
+ stories:
+  - story: iniciar juego
+    steps:
+    - intent: juego.iniciar
+    - action: utter_juego.iniciar
+    - intent: juego.nombre
+    - action: action_juego.cargarPreguntas
+    - intent: juego.respuesta
+    - action: action_juego.comprobar
+    - intent: juego.masinfo
+    - action: action_juego.informacion
+    - intent: juego.siguientePregunta
+    - action: action_juego.siguientePregunta

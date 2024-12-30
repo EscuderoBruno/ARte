@@ -1,0 +1,235 @@
+
+<div class="card vision-general">
+    <div class="row estadisticas">
+        <div class="col-md-2" style="padding-left: 50px;"> 
+            <h5 class="card-title">Visión general</h5>
+        </div>
+        <!-- Primera columna (ocupa dos filas) -->
+        <div class="col-md-10">
+            <div class="row estadisticas">
+                <div class="col-md-3">
+                    <div class="row info-general">
+                        <div class="col-md-4 p-0">
+                            <div class="card p-3" style="background-color: #E97E3B;">
+                                <div class="m-t-0 text-center">
+                                    <i class="mdi mdi-image-multiple"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 pr-0 pl-4">
+                            <h4>1231 <span style="font-size: 12px; color: #28B779;"> +10%</span></h4>
+                            <span class="text-muted">Piezas</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Segunda columna (ocupa una fila) -->
+                <div class="col-md-3">
+                    <div class="row info-general">
+                        <div class="col-md-4 p-0">
+                            <div class="card p-3" style="background-color: #CF4F29;">
+                                <div class="m-t-0 text-center">
+                                    <i class="mdi mdi-account-multiple"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 pr-0 pl-4">
+                            <h4>2331 <span style="font-size: 12px; color: #28B779;"> +10%</span></h4>
+                            <span class="text-muted">Visitantes</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tercera columna (ocupa una fila) -->
+                <div class="col-md-3">
+                    <div class="row info-general">
+                        <div class="col-md-4 p-0">
+                            <div class="card p-3" style="background-color: #FDEA6F;">
+                                <div class="m-t-0 text-center">
+                                    <i class="mdi mdi-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 pr-0 pl-4">
+                            <h4>89% <span style="font-size: 12px; color: #28B779;"> +10%</span></h4>
+                            <span class="text-muted">Valoración</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cuarta columna (ocupa una fila) -->
+                <div class="col-md-3">
+                    <div class="row info-general">
+                        <div class="col-md-4 p-0">
+                            <div class="card p-3" style="background-color: #F3B355;">
+                                <div class="m-t-0 text-center">
+                                    <i class="mdi mdi-image-multiple"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 pr-0 pl-4">
+                            <h4>2560 <span style="font-size: 12px; color: #28B779;"> +10%</span></h4>
+                            <span class="text-muted">Registros</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><br>
+
+<div class="row">
+    <div class="col-md-4">  
+        <div class="card p-4">
+            <div>
+                <h5 class="card-title m-b-0">Gráfico de barras</h5>
+            </div>
+            <app-bar-chart></app-bar-chart>
+        </div>
+    </div>
+    <div class="col-md-4">  
+        <div class="card p-4">
+            <div>
+                <h5 class="card-title m-b-0">Gráfico Pie</h5>
+            </div>
+            <app-pie-chart></app-pie-chart>
+        </div>
+    </div>
+    <div class="col-md-4">  
+        <div class="card p-4">
+            <div>
+                <h5 class="card-title m-b-0">Gráfico de lineas</h5>
+            </div>
+            <app-line-chart></app-line-chart>
+        </div>
+    </div>
+</div><br>
+
+<!-- row -->
+<div class="row">
+    <div class="col-md-3">
+        <div class="card p-3">
+            <div class="card-body">
+                <h5 class="card-title m-b-0">Piezas más escaneadas</h5>
+            </div>
+            <table class="table" style="min-height: 325px;">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Nº Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let piece of pieces">
+                        <td>{{ piece.nombre }}</td>
+                        <td>8850</td>
+                    </tr>
+              </tbody>
+            </table>
+            <div class="text-right">
+                <a href="https://arte.ovh/withu">Ver lista completa<i class="mdi mdi-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-3">
+            <div class="card-body">
+                <h5 class="card-title m-b-0">Salas más visitadas</h5>
+            </div>
+            <table class="table" style="min-height: 325px;">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Nº Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let sala of salas.slice(0, 5)"> <!-- Utiliza slice para tomar solo los primeros 5 elementos -->
+                        <td>{{ sala.nombre }}</td>
+                        <td>1240</td>
+                    </tr>
+              </tbody>
+            </table>
+            <div class="text-right">
+                <a href="https://arte.ovh/withu">Ver lista completa<i class="mdi mdi-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-3">
+            <div class="card-body">
+                <h5 class="card-title m-b-0">Visited Pages</h5>
+            </div>
+            <table class="table" style="min-height: 325px;">
+                <thead>
+                    <tr>
+                        <th scope="col">Page</th>
+                        <th scope="col">Visits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#" class="link">Freebies</a></td>
+                        <td>1240</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" class="link">Blog</a></td>
+                        <td>1200</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" class="link">Work</a></td>
+                        <td>1542</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" class="link">Site Template</a></td>
+                        <td>1230</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" class="link">All categories</a></td>
+                        <td>1542</td>
+                    </tr>
+              </tbody>
+            </table>
+            <div class="text-right">
+                <a href="https://arte.ovh/withu">Ver lista completa<i class="mdi mdi-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-3">
+            <div class="card-body">
+                <h5 class="card-title m-b-0">Visited Pages</h5>
+            </div>
+            <table class="table" style="min-height: 325px;">
+                <thead>
+                    <tr>
+                        <th scope="col">Page</th>
+                        <th scope="col">Visits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#" class="link">Freebies</a></td>
+                        <td>1240</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" class="link">Blog</a></td>
+                        <td>1200</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" class="link">Work</a></td>
+                        <td>1542</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" class="link">Site Template</a></td>
+                        <td>1230</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" class="link">All categories</a></td>
+                        <td>1542</td>
+                    </tr>
+              </tbody>
+            </table>
+            <div class="text-right">
+                <a href="https://arte.ovh/withu">Ver lista completa<i class="mdi mdi-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div><br>

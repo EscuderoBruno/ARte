@@ -1,0 +1,166 @@
+
+
+/* You can add global styles to this file, and also import other style files */
+.page-item.active .page-link {
+    background-color: #23272B; /* Código de color para el marrón */
+    border-color: white; /* Puedes ajustar esto según tus preferencias */
+    color: #fff; /* Cambia el color del texto para que sea legible en el fondo marrón */
+}
+
+.page-item .page-link {
+    color: #2C3136; /* Cambia el color del texto para que sea legible en el fondo marrón */
+}
+
+a {
+     cursor: pointer;
+}
+
+.btn {
+    margin: 1px;
+    border-radius: 1.5rem;
+}
+
+.card-header {
+    background-color: #d7d7d7;
+}
+
+.card-title {
+    color: #3E5569;
+}
+
+/* Puedes ajustar estilos según tus necesidades */
+.pagination {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+}
+
+.pagination .page-item {
+    margin: 0 2px;
+    color: #2C3136; /* Cambia el color del texto para que sea legible en el fondo marrón */
+}
+
+.pagination .page-item a {
+    text-decoration: none;
+}
+
+.pagination .page-item.disabled a {
+    pointer-events: none;
+    color: #6c757d;
+}
+
+.pagination .page-item.active a {
+    font-weight: bold;
+    color: white;
+}
+
+.last-column {
+    width: 120px;
+}
+
+.info {
+    font-size: 15px;
+    padding-right: 40px;
+}
+
+.table td {
+    max-width: 350px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card {
+    border-radius: 0.75rem;
+    box-shadow: 0 0.25rem 0.4rem rgba(0, 0, 0, 0.1); /* Add shadow effect */
+}
+
+.btn-dark {
+    padding: 8px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.boton-arriba {
+    position: absolute; top: 35px; right: 50px;
+}
+
+.boton-arriba2 {
+    position: absolute; top: 35px; right: 150px;
+}
+
+/* Botones */
+
+.btn-danger {
+    background-color: #C82333;
+    border-color: #C82333;
+}
+
+.btn-danger:hover {
+    background-color: #c83a48;
+    border-color: #C82333;
+}
+
+.btn-outline-danger {
+    color: #C82333;
+    border-color: #C82333;
+}
+
+.btn-outline-danger:hover {
+    background-color: #C82333;
+    border-color: #C82333;
+}
+
+.btn-outline-warning {
+    color: #FFC107;
+    border-color: #FFC107;
+}
+
+.btn-outline-warning:hover {
+    background-color: #FFC107;
+}
+
+.btn-link {
+    color: #454545;
+}
+
+.btn-link:hover {
+    background-color: #d7d7d7;
+    color: #454545;
+}
+
+
+/* Pills */
+
+.badge-pill {
+    margin-right: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    max-width: 120px;
+    height: 22px; /* Altura del contenedor */
+    display: flex; /* Utiliza flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    
+}
+
+.badge-Light {
+    background-color: #f0f0f0;
+}
+
+.badge-dark {
+    background-color: #4b4c4d;
+}
+
+.badge-danger {
+    background-color: #C82333;
+}
+
+.badge-warning {
+    background-color: #FFC107;
+}
+
+.badge-primary {
+    background-color: #17A2B8;
+}
+

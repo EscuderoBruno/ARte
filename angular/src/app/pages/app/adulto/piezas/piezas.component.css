@@ -1,0 +1,153 @@
+.main-container {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url('../../../../../assets/images/background/patron_fondo.png');
+    background-size: cover; 
+    background-clip: padding-box;
+    background-repeat: no-repeat;
+    font-family: lato, sans-serif;
+    height: calc(100vh - 71.38px - 80px);
+}
+
+
+.card {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra */
+}
+
+.content-container {
+    padding: 10px;
+}
+
+.center-horizontal {
+    justify-content: center;
+}
+
+.paginacion {
+    padding: 15px;
+    padding-top: 6px;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: normal;
+    line-height: 22px;
+    text-transform: uppercase;
+    color: #454545;
+}
+
+.contenedor-motor {
+    height: 35vh;
+    /*border-top: 1px solid #3E5569;*/
+  
+    textarea {
+      font-size: 16px;
+    }
+}
+
+.contenedor-descripcion {
+    height: calc(100vh - 71.38px - 35vh - 255px);
+    border-top: 1px solid #3E5569;
+    margin-top: 8px;
+    padding-top: 8px;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: 22px;
+    text-transform: none;
+    color: #454545;
+}
+
+.contenedor-musica {
+    display: none;
+    border-top: 1px solid #3E5569;
+    margin-top: 8px;
+    padding-top: 8px;
+}
+
+.titulo-pagina {
+    margin-bottom: 0px;
+    font-size: 18px;
+    letter-spacing: normal;
+    text-transform: uppercase;
+    color: #454545;
+}
+
+.info-pieza {
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: normal;
+    line-height: 22px;
+    text-transform: uppercase;
+    color: #454545;
+}
+
+.contenedor-juego {
+    padding-top: 10px;
+    padding: 22px;
+}
+
+.mdi-botones {
+    font-size: 28px;
+}
+
+.btn-pag {
+    margin: -1px;
+    font-size: 18px;
+    background-color: white;
+    color: #3A3A3A;
+    border-color: #3A3A3A;
+    margin-top: 2px;
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 0 10 0px rgba(0, 0, 0, 0.3); /* Sombra */
+}
+
+#boton_musica {
+    
+}
+
+#opciones_accesibilidad {
+    margin-left: -2px;
+}
+
+a {
+    color: grey;
+    text-decoration: none;
+}
+
+.engine-wrapper {
+    position: relative; /* Asegura que los botones se posicionen relativos a este contenedor */
+    height: 35vh; /* Ajusta según tus necesidades */
+    overflow: hidden; /* Evita que el contenido se desborde */
+    border-radius: 20px;
+    background-color: black;
+}
+
+/* Toggle css */
+
+.toggle-container {
+  display: flex;
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-label {
+  cursor: pointer;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.toggle-input:checked + .toggle-label {
+  background-color: #454545;
+  color: white;
+}
+
+  
+
+
+
+
+  

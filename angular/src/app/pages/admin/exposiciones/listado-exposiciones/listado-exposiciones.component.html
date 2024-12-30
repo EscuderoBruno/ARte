@@ -1,0 +1,157 @@
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- Botón crear sala -->
+<div class="boton-arriba">
+    <button class="btn btn-dark btn-md" type="button" (click)="goToCreateExp()" style="border-radius: 1.5rem;">
+        <span class="mdi mdi-plus"> CREAR NUEVA</span>
+    </button>
+</div>
+
+<!-- Mensaje exposición creada -->
+<div *ngIf="showAlert" style="position:fixed; bottom: 50px; right: 50px; z-index: 9999;"  class="alert alert-success" role="alert">
+    <span>La exposición ha sido registrada con éxito.</span>
+    <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<!-- Mensaje exposición borrada -->
+<div *ngIf="showAlert2" style="position:fixed; bottom: 50px; right: 50px; z-index: 9999;" class="alert alert-danger" role="alert">
+    <span>La exposición ha sido borrada con éxito.</span>
+    <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalBorrarExposicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Borrar exposición</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    ¿Seguro de que quiere eliminar esta exposición?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="deleteExp()" data-dismiss="modal">Borrar exposición</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Listado -->
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="zero_config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                <div class="row" style="padding-bottom: 20px; padding-top: 10px; padding-left: 20px;">
+                <!-- Show 10 entries -->
+                    <div>
+                        <label>Mostrar</label>
+                    </div>
+                    <div class="pl-2 pr-2">
+                        <select name="zero_config_length" aria-controls="zero_config"
+                            class="form-control form-control-sm" (change)="filtroEntradas($event)" [value]="cantidadPorPagina">
+                            <option value="4">4</option>
+                            <option value="8">8</option>
+                            <option value="25">20</option>
+                            <option value="50">40</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>entradas</label>
+                    </div>                                                                            
+                    <!-- Formulario para el buscador -->
+                    <form id="zero_config_filter" class="dataTables_filter ml-auto" (submit)="buscarExposicion(busqueda.value)" style="margin-right: 10px;">
+                        <div class="input-group">
+                            <input #busqueda type="text" class="form-control" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2" (click)="buscarExposicion(busqueda.value)">
+                                    <span class="mdi mdi-magnify"></span> <!-- Ícono de búsqueda -->
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!---------------------------------------------------------------- Tabla ---------------------------------------------------------->
+                <div class="container-fluid">
+                    <div class="row el-element-overlay">
+                        <div class="col-lg-3 col-md-6" *ngFor="let exposicion of exposiciones">
+                            <div class="card">
+                                <div class="el-card-item position-relative">
+                                    <div class="el-card-avatar el-overlay-1" style="border-top-right-radius: 0.75rem; border-top-left-radius: 0.75rem;"> 
+                                        <img [src]="(exposicion.imagen) ? baseAPI + '/uploads/' + exposicion.imagen : '../../../../../assets/images/exposiciones/alcudia2.jpg'" alt="user" class="expo-img"/>
+                                        <div style="opacity: 0.8;">
+                                            <ul class="list-style-none el-info">
+                                                <button class="btn btn-outline-warning btn-lg" type="button" (click)="goToEditExp(exposicion.id)">
+                                                    <span class="mdi mdi-pencil"></span>
+                                                </button>
+                                                <button class="btn btn-outline-danger btn-lg" type="button" data-toggle="modal" (click)="this.idToDelete = exposicion.id" data-target="#modalBorrarExposicion">
+                                                    <span class="mdi mdi-delete"></span>
+                                                </button> 
+                                            </ul>
+                                        </div>
+                                        <div class="el-overlay">
+                                            <ul class="list-style-none el-info">
+                                                <button class="btn btn-outline-warning btn-lg" type="button" (click)="goToEditExp(exposicion.id)">
+                                                    <span class="mdi mdi-pencil"></span>
+                                                </button>
+                                                <button class="btn btn-outline-danger btn-lg" type="button" data-toggle="modal" (click)="this.idToDelete = exposicion.id" data-target="#modalBorrarExposicion">
+                                                    <span class="mdi mdi-delete"></span>
+                                                </button> 
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div style="position: absolute; top: 6px; left: -6px;">
+                                        <span class="badge badge-pill badge-Light badge-top-left">{{ exposicion.estado_id | uppercase }}</span>
+                                    </div>
+                                    <div class="el-card-content" style="font-family: 'Nunito Sans';">
+                                        <h4>{{ exposicion.nombre }}</h4>
+                                        <p class="text-muted">{{ exposicion.descripcion }}</p>
+                                        <span class="text-muted">{{ exposicion.fecha_inicio }} / </span>
+                                        <span class="text-muted">{{ exposicion.fecha_fin }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <div class="row"style="padding-top: 10px">
+                    <div style="padding-left: 20px;" >
+                        <div class="dataTables_info" id="zero_config_info" role="status" aria-live="polite">
+                            Mostrando <b>{{ calcularRango().primerResultado }} - {{ calcularRango().ultimoResultado }}</b> de <b>{{ totalExposiciones }}</b> resultados
+                        </div>   
+                    </div>
+                    <div class="ml-auto" style="margin-right: 12px;">
+                        <div class="ml-auto" style="margin-right: 12px;">
+                            <div class="dataTables_paginate paging_simple_numbers" id="zero_config_paginate">
+                                <ul class="pagination">
+                                    <li class="paginate_button page-item previous" [class.disabled]="numPagina === 1" id="zero_config_previous">
+                                        <a aria-controls="zero_config" class="page-link" (click)="numPagina > 1 && guardarPagina(numPagina - 1)">Anterior</a>
+                                    </li>
+                                    <!-- Generar las páginas de forma dinámica -->
+                                    <ng-container *ngFor="let pagina of calcularPaginas()">
+                                        <li class="paginate_button page-item" [class.active]="numPagina === pagina">
+                                            <a aria-controls="zero_config" class="page-link" (click)="guardarPagina(pagina)">{{ pagina }}</a>
+                                        </li>
+                                    </ng-container>
+                                    <li class="paginate_button page-item next" [class.disabled]="numPagina === calcularPaginas().length" id="zero_config_next">
+                                        <a aria-controls="zero_config" class="page-link" (click)="numPagina < calcularPaginas().length && guardarPagina(numPagina + 1)">Siguiente</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>   
+                    </div>                   
+                </div>              
+            </div>
+        </div>
+    </div>   
+</div>

@@ -1,0 +1,74 @@
+<header>
+    <div class="wrapper">
+      <span class="logo-text">
+        <!-- dark Logo text -->
+        <img src="../../assets/images/logos/logo_arte.png" width="70px" alt="homepage" class="light-logo" />
+      </span>
+      <span class="logo-text">
+        <!-- dark Logo text -->
+        <h5> &nbsp; MUA</h5>
+      </span>
+      <nav class="d-flex align-items-center">
+        <!-- Menú desplegable de idiomas -->
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLanguage" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 6px;">
+            <span>
+              <img id="selectedLanguage" src="../../assets/images/paises/{{ currentLanguage }}" alt="user" width="20" style="padding-bottom: 2px;">
+              &nbsp;
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownLanguage" style="padding-top: 6px;">
+            <a class="dropdown-item" (click)="changeLanguage('flag_1.jpg')" style="font-size: 13px;">CASTELLANO</a>
+            <a class="dropdown-item" (click)="changeLanguage('flag_2.jpg')" style="font-size: 13px;">VALENCIÀ</a>
+            <a class="dropdown-item" (click)="changeLanguage('flag_3.jpg')" style="font-size: 13px;">ENGLISH</a>
+          </div>
+        </div>
+        <!-- Menú desplegable accesibilidad -->
+        <!--
+        <div class="dropdown ml-2">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccesibilidad" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 6px;">
+            <i class="mdi mdi-format-title" style="margin-right: 5px; font-size: 16px; color: white;"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAdditional" style="padding-top: 8px;">
+            <a class="dropdown-item" style="font-size: 13px;"><i class="mdi mdi-format-align-center" style="margin-right: 5px;"></i>COMPLETO</a>
+            <a class="dropdown-item" style="font-size: 13px;"><i class="mdi mdi-unfold-less" style="margin-right: 5px;"></i>CORTO</a>
+            <a class="dropdown-item" style="font-size: 13px;"><i class="mdi mdi-brightness-2" style="margin-right: 5px;"></i>CONTRASTE</a>
+            <a class="dropdown-item" style="font-size: 13px;"><i class="mdi mdi-file-image" style="margin-right: 5px;"></i>PICTOGRAMA</a>
+          </div>
+        </div>-->
+        <!-- Modal de información -->
+        <!-- Icono de información con enlace al modal -->
+        <div>
+          <a href="#informacionModal" data-toggle="modal">
+            <i class="mdi mdi-information-outline" style="margin-right: 6px; font-size: 18px; color: white;"></i>
+          </a>
+        </div>
+        <div class="modal fade" id="informacionModal" tabindex="-1" role="dialog" aria-labelledby="informacionModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="informacionModalLabel">Información Adicional</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- Contenido del mensaje modal con indicaciones visuales -->
+                <p><i class="mdi mdi-arrow-right-bold"></i> El logotipo representa la marca principal.</p>
+                <p><i class="mdi mdi-arrow-right-bold"></i> MUA es el nombre de la aplicación.</p>
+                <p><i class="mdi mdi-arrow-right-bold"></i> El menú de idiomas te permite seleccionar tu idioma preferido.</p>
+                <p><i class="mdi mdi-arrow-right-bold"></i> El menú de accesibilidad proporciona opciones de accesibilidad.</p>
+                <p><i class="mdi mdi-arrow-right-bold"></i> Haz clic en el icono de información para obtener detalles adicionales.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color: white;">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </nav>
+    </div>
+  
+  </header>
+  

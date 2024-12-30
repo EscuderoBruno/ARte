@@ -1,0 +1,35 @@
+.cp:hover {
+    cursor: pointer;
+}
+
+.flex-space{
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+.input-group-text:hover {
+    cursor: pointer;
+}
+
+.btn-outline-secondary, .btn-outline-warning, .btn-outline-danger {
+    color: white;
+    border-color: white;
+    margin: 1px;
+}
+
+.btn-outline-secondary:hover {
+    border-color: #6C757D;
+}
+
+.btn-outline-warning:hover {
+    border-color: #FFCD3A;
+}
+
+.btn-outline-danger:hover {
+    border-color: #C82333;
+}
+
+.expo-img{
+    aspect-ratio: 1.4;
+    object-fit: cover;
+}

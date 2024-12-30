@@ -1,0 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+#pie-chart-container {
+  height: 42vh;
+  overflow: hidden;
+}
+  
+  

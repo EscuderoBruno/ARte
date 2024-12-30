@@ -1,0 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  #line-chart-container {
+    height: 42vh;
+    overflow: hidden;
+  }
+  

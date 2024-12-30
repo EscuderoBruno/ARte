@@ -1,0 +1,14 @@
+.card-title {
+    padding-bottom: 10px;
+}
+
+.btn-outline-light {
+    border-radius: 0%; 
+    border-color: #EEEEEE;
+    color: #4F5467;
+}
+
+.btn-outline-light:hover {
+    background-color: #EEEEEE;
+    color: #3A3A3A;
+}

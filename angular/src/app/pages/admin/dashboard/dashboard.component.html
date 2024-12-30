@@ -1,0 +1,217 @@
+<!-- <td class="align-middle"><span class="badge badge-pill badge-Light" style="text-transform: uppercase;">visible</span></td>
+<td class="align-middle"><span class="badge badge-pill badge-dark" style="text-transform: uppercase;">invisible</span></td>
+<td class="align-middle"><span class="badge badge-pill badge-warning" style="text-transform: uppercase;">en edición</span></td>
+<td class="align-middle"><span class="badge badge-pill badge-primary" style="text-transform: uppercase;">en prestamo</span></td>
+<td class="align-middle"><span class="badge badge-pill badge-danger" style="text-transform: uppercase;">en restauración</span></td> -->
+
+<div style="display: flex; align-items: center; padding-top: 20px;">
+    <h3 style="margin-right: 20px;">Bienvenido de nuevo, <span style="color: #8B412B;">{{ editor?.nombre }}</span></h3>
+    <span class="text-muted" style="margin-right: 20px; padding-bottom: 2px;">Último acceso: {{ ultima_sesion }}</span>
+</div><br>
+
+
+<div class="card vision-general">
+    <div class="row estadisticas">
+        <div class="col-md-2" style="padding-left: 50px;"> 
+            <h5 class="card-title">Visión general</h5>
+        </div>
+        <!-- Primera columna (ocupa dos filas) -->
+        <div class="col-md-10">
+            <div class="row estadisticas">
+                <div class="col-md-3">
+                    <div class="row info-general">
+                        <div class="col-md-4 p-0">
+                            <div class="card p-3" style="background-color: #E97E3B;">
+                                <div class="m-t-0 text-center">
+                                    <i class="mdi mdi-image-multiple"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 pr-0 pl-4">
+                            <h4>{{ totalPiezas }} <span style="font-size: 12px; color: #28B779;"> +10%</span></h4>
+                            <span class="text-muted">Piezas</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Segunda columna (ocupa una fila) -->
+                <div class="col-md-3">
+                    <div class="row info-general">
+                        <div class="col-md-4 p-0">
+                            <div class="card p-3" style="background-color: #CF4F29;">
+                                <div class="m-t-0 text-center">
+                                    <i class="mdi mdi-qrcode"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 pr-0 pl-4">
+                            <h4>{{ totalEscaneos }} <span style="font-size: 12px; color: #28B779;">+{{ diferenciaEscaneos }}%</span></h4>
+                            <span class="text-muted">Escaneos</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tercera columna (ocupa una fila) -->
+                <div class="col-md-3">
+                    <div class="row info-general">
+                        <div class="col-md-4 p-0">
+                            <div class="card p-3" style="background-color: #FDEA6F;">
+                                <div class="m-t-0 text-center">
+                                    <i class="mdi mdi-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 pr-0 pl-4">
+                            <h4>89% <span style="font-size: 12px; color: #28B779;"> +10%</span></h4>
+                            <span class="text-muted">Valoración</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cuarta columna (ocupa una fila) -->
+                <div class="col-md-3">
+                    <div class="row info-general">
+                        <div class="col-md-4 p-0">
+                            <div class="card p-3" style="background-color: #F3B355;">
+                                <div class="m-t-0 text-center">
+                                    <i class="mdi mdi-image-multiple"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 pr-0 pl-4">
+                            <h4>2560 <span style="font-size: 12px; color: #28B779;"> +10%</span></h4>
+                            <span class="text-muted">Registros</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><br>
+
+<!-- row -->
+<div class="row align-items-stretch">
+    <div class="col-md-6">
+        <div class="card p-3 altura-minima">
+            <div class="pl-2 align-items-center">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="d-flex align-items-center">
+                            <h5 class="card-title m-b-0 mr-2">Escaneos</h5>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle bg-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Gráfico de barras</a>
+                                    <a class="dropdown-item" href="#">Gráfico de líneas</a>
+                                    <a class="dropdown-item" href="#">Gráfico circular</a>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="col-md-5 d-flex justify-content-end pr-4">
+                        <div class="d-flex  align-items-center" id="opciones_accesibilidad" style="font-size: 12px; color: #454545;">
+                            <div class="toggle-container">
+                                <input type="radio" id="option1" name="toggle" value="D" class="toggle-input" (change)="onToggleChange($event)">
+                                <label for="option1" class="toggle-label">
+                                    <span>D</span>
+                                </label>
+                            </div>
+                            
+                            <div class="toggle-container">
+                                <input type="radio" id="option2" name="toggle" value="S" class="toggle-input" (change)="onToggleChange($event)">
+                                <label for="option2" class="toggle-label">
+                                    <span>S</span>
+                                </label>
+                            </div>
+                    
+                            <div class="toggle-container">
+                                <input type="radio" id="option3" name="toggle" value="M" class="toggle-input" checked (change)="onToggleChange($event)">
+                                <label for="option3" class="toggle-label">
+                                    <span>M</span>
+                                </label>
+                            </div>
+                    
+                            <div class="toggle-container">
+                                <input type="radio" id="option4" name="toggle" value="A" class="toggle-input" (change)="onToggleChange($event)">
+                                <label for="option4" class="toggle-label">
+                                    <span>A</span>
+                                </label>
+                            </div>
+                        </div>  
+                    </div>                                     
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1 d-flex align-items-center justify-content-center pl-4">
+                    <!-- Botón de flecha derecha -->
+                    <button class="btn btn-link" (click)="paginacion(0)">
+                        <i class="mdi mdi-chevron-left"></i>
+                    </button>
+                </div>                
+                <div class="col-md-10">
+                    <app-bar-chart [barChartDataValues]="barChartDataValues" [barChartDataNames]="barChartDataNames" [barChartTitle]="barChartTitle"></app-bar-chart>
+                </div>
+                <div class="col-md-1 d-flex align-items-center justify-content-center pr-4">
+                    <!-- Botón de flecha derecha -->
+                    <button class="btn btn-link btn-bg-danger" (click)="paginacion(1)">
+                        <i class="mdi mdi-chevron-right"></i>
+                    </button>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-3 altura-minima">
+            <div class="pl-2 d-flex align-items-center">
+                <h5 class="card-title m-b-0">Piezas más escaneadas</h5>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle bg-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Gráfico de barras</a>
+                        <a class="dropdown-item" href="#">Gráfico de líneas</a>
+                        <a class="dropdown-item" href="#">Gráfico circular</a>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive"> <!-- Agregar clase table-responsive aquí -->
+                <table class="table p-2">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Nº Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let piece of sortedPieces">
+                            <td>{{ piece.nombre }}</td>
+                            <td>{{ piece.totalEscaneos }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-right mt-1">
+                <a href="https://arte.ovh/withu">Ver lista completa<i class="mdi mdi-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card p-3 altura-minima2 mb-3">
+                    <h5 class="card-title m-b-2">Últimos QR generados</h5>
+                    <!-- Contenido de la tabla -->
+                </div>                                        
+                <div class="card altura-minima3 p-3">
+                    <h5 class="card-title m-b-2">Tiempo medio de sesión</h5>
+                    <!-- Contenido de la segunda tarjeta -->
+                </div>
+            </div>
+        </div>        
+    </div>
+    
+</div><br>
+
+
+
+
+
+
+
+

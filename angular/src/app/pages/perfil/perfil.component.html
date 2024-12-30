@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <form (submit)="editarPerfil($event)" [formGroup]="nuevoPerfil">    
+        <div class="card p-40">
+            <div class="card-body">
+
+                <h4 class="card-title mb-0">Información personal</h4>
+                <span class="text-muted">Tus credenciales de inicio de sesión y contraseña</span> 
+                <div class="d-flex">
+                    <div class="form-group m-t-10 mr-3">
+                    <label for="usuario1" class="d-block">Usuario</label>
+                    <input type="text" formControlName="usuario" class="form-control date-inputmask" id="date-mask-1" placeholder="Nombre usuario" style="width: 250px;">
+                    </div>
+                    <div class="form-group m-t-10">
+                    <label for="usuario2" class="d-block">Correo</label>
+                    <input type="text" formControlName="correo" class="form-control date-inputmask" id="date-mask-2" placeholder="Correo electrónico" style="width: 250px;">
+                    </div>
+                </div> 
+                <div class="form-group">
+                    <label>Contraseña</label><br>
+                    <button type="button" class="btn btn-outline-light" style="width: 250px;" onclick="establecerContraseña()">Establecer contraseña</button>
+                </div>
+                
+                <div class="dropdown-divider" style="margin-top: 20px; margin-bottom: 20px; border-color: #EEEEEE;"></div>
+
+                <h4 class="card-title mb-0">Idioma</h4>
+                <span class="text-muted">Establece el idioma en el que se muestra ARte en todos tus espacios de trabajo.</span> 
+                <div style="padding-top: 10px; width: 400px;">
+                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                            <option (click)="changeLanguage('flag_1.jpg')">CASTELLANO</option>
+                            <option value="AK" (click)="changeLanguage('flag_2.jpg')">VALENCIÀ</option>
+                            <option value="HI" (click)="changeLanguage('flag_3.jpg')">ENGLISH</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div style="position: absolute; top: 50px; right: 150px;">
+            <button class="btn btn-outline-success btn-md" type="submit" style="border-radius: 1.5rem;">
+                <span>GUARDAR CAMBIOS</span>
+            </button>
+        </div>
+        <div style="position: absolute; top: 50px; right: 50px;">
+            <div class="col text-right">
+                <button (click)="volver()" type="button" class="btn btn-outline-secondary" style="margin-right: 10px">Volver</button>
+            </div>
+        </div>
+    </form>
+</div>

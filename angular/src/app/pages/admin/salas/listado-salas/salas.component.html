@@ -1,0 +1,161 @@
+
+<!-- Botón crear sala -->
+<div class="boton-arriba">
+    <button class="btn btn-dark btn-md" type="button" (click)="navigateToCreateSala()" style="border-radius: 1.5rem;">
+        <span class="mdi mdi-plus"> CREAR NUEVA</span>
+    </button>
+</div>
+
+<!-- Mensaje sala creada -->
+<div *ngIf="showAlert" style="position:fixed; bottom: 50px; right: 50px; z-index: 9999;"  class="alert alert-success" role="alert">
+    <span>La sala ha sido registrada con éxito.</span>
+    <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<!-- Mensaje sala borrada -->
+<div *ngIf="showAlert2" style="position:fixed; bottom: 50px; right: 50px; z-index: 9999;" class="alert alert-danger" role="alert">
+    <span>La sala ha sido borrada con éxito.</span>
+    <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalBorrarSala" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Borrar sala</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    ¿Seguro de que quiere eliminar esta sala?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="borrarSala()" data-dismiss="modal">Borrar exposición</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Listado -->
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="zero_config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                <!-- Show 10 entries -->
+                <div class="row" style="padding-bottom: 20px; padding-top: 10px; padding-left: 20px;">
+                    <div>
+                        <label>Mostrar</label>
+                    </div>
+                    <div class="pl-2 pr-2">
+                        <select name="zero_config_length" aria-controls="zero_config"
+                            class="form-control form-control-sm" (change)="filtroEntradas($event)" [value]="cantidadPorPagina">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                    <label>entradas</label>
+                    <!-- Categorias -->
+                    <div class="ml-auto" style="margin-right: 30px;">
+                        <div class="col-md-9">
+                            <select class="select2 form-control custom-select" style="width: 160%; height:32px; font-size: 14px; height: 35px;" 
+                            (change)="seleccionarExposicion($event)" [value]="exposicionSeleccionada">
+                                <option value="0">Todas las exposiciones</option>
+                                <option *ngFor="let exposicion of exposiciones" [value]="exposicion.id">{{ exposicion.nombre }}</option>
+                            </select>                            
+                        </div>
+                    </div>                    
+                    <!-- Buscador -->
+                    <form id="zero_config_filter" class="dataTables_filter" style="margin-right: 10px;" (submit)="false">
+                        <div class="input-group">
+                            <input #busqueda type="text" class="form-control" placeholder="Buscar" aria-label="buscar" aria-describedby="basic-addon2"
+                                   (keydown.enter)="buscarSala(busqueda.value); false"> <!-- Aquí se llama a buscarSala y se detiene la propagación del evento -->
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2" (click)="buscarSala(busqueda.value)">
+                                    <span class="mdi mdi-magnify"></span> <!-- Ícono de búsqueda -->
+                                </span>
+                            </div>
+                        </div>
+                    </form>                                  
+                </div>
+                <!---------------------------------------------------------------- Tabla ---------------------------------------------------------->
+                <div class="row">
+                    <div class="col-12">
+                        <table id="zero_config" class="table w-100">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Título</th>
+                                    <th>Descripción</th>
+                                    <th>Exposición</th>
+                                    <th>Estado</th>
+                                    <th class="last-column"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let sala of salas">
+                                    <td class="info align-middle">{{ sala.nombre }}</td>
+                                    <td class="info align-middle">{{ sala.descripcion || 'Sin descripción' }}</td>
+                                    <td class="info align-middle">{{ sala.exposicion_nombre }}</td>
+                                    <td class="align-middle"><span class="badge badge-pill badge-Light">{{ sala.estado_id | uppercase }}</span></td>
+                                    <td class="align-middle">
+                                        <div class="d-inline-flex justify-content-between">
+                                            <button class="btn btn-outline-warning btn-md" type="button" (click)="navigateToEditSala(sala.id)">
+                                                <span class="mdi mdi-pencil"></span>
+                                            </button>
+                                            <button class="btn btn-outline-danger btn-md" type="button" (click)="this.idToDelete = sala.id" data-toggle="modal" data-target="#modalBorrarSala">
+                                                <span class="mdi mdi-delete"></span>
+                                            </button> 
+                                        </div>
+                                    </td>                                    
+                                </tr>
+                            </tbody>                            
+                        </table>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 10px">
+                    <!-- Número de resultados -->
+                    <div style="padding-left: 20px;">
+                        <div class="dataTables_info" id="zero_config_info" role="status" aria-live="polite">
+                            Mostrando <b>{{ calcularRango().primerResultado }} - {{ calcularRango().ultimoResultado }}</b> de <b>{{ totalSalas }}</b> resultados
+                        </div>                                                                    
+                    </div>
+                    <div class="ml-auto" style="margin-right: 12px;">
+                        <div class="ml-auto" style="margin-right: 12px;">
+                            <div class="dataTables_paginate paging_simple_numbers" id="zero_config_paginate">
+                                <ul class="pagination">
+                                    <li class="paginate_button page-item previous" [class.disabled]="numPagina === 1" id="zero_config_previous">
+                                        <a aria-controls="zero_config" class="page-link" (click)="numPagina > 1 && guardarPagina(numPagina - 1)">Anterior</a>
+                                    </li>
+                                    <!-- Generar las páginas de forma dinámica -->
+                                    <ng-container *ngFor="let pagina of calcularPaginas()">
+                                        <li class="paginate_button page-item" [class.active]="numPagina === pagina">
+                                            <a aria-controls="zero_config" class="page-link" (click)="guardarPagina(pagina)">{{ pagina }}</a>
+                                        </li>
+                                    </ng-container>
+                                    <li class="paginate_button page-item next" [class.disabled]="numPagina === calcularPaginas().length" id="zero_config_next">
+                                        <a aria-controls="zero_config" class="page-link" (click)="numPagina < calcularPaginas().length && guardarPagina(numPagina + 1)">Siguiente</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>   
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+  
+
+    

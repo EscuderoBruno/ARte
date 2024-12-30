@@ -1,0 +1,37 @@
+
+.user-dropdown {
+    background-color: white; /* Fondo oscuro */
+    color: #1F262D; /* Texto blanco */
+}
+
+.user-dropdown a {
+    color: #1F262D !important; /* Forzar texto blanco en los enlaces */
+}
+
+.user-dropdown a:hover {
+    background-color: #EEEEEE; /* Cambiar color de fondo al pasar el ratón por encima */
+    color: #1F262D !important; /* Forzar texto blanco en los enlaces al pasar el ratón por encima */
+}
+
+.dropdown-menu-right {
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 0.75rem;
+    padding-top: 10px; 
+    width: 220px; 
+    min-width: 220px;
+}
+
+.dropdown-menu {
+    border-radius: 0.75rem;
+    border: 1px solid #ccc;
+}
+
+.dropdown-item:active {
+    background-color: white;
+}
+
+.dropdown-divider {
+    height: 2px;
+    background-color: #ccc;
+}

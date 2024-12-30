@@ -1,0 +1,7 @@
+.cp:hover {
+    cursor: pointer;
+}
+
+.semitransparent{
+    opacity: 70%;
+}

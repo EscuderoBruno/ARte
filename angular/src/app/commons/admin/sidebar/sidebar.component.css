@@ -1,0 +1,6 @@
+/* Estilo para el elemento activo en el menú */
+.sidebar-nav ul .sidebar-item.selected>.sidebar-link {
+    background: #BE8A66;
+    opacity: 1;
+}
+

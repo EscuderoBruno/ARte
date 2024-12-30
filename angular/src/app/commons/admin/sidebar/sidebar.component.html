@@ -1,0 +1,23 @@
+<!-- ... Existing HTML code ... -->
+
+<aside class="left-sidebar" data-sidebarbg="skin5">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul class="p-t-30">
+                @for(item of sidebarItems; track $index;){
+                    <li class="sidebar-item" [ngClass]="{ 'selected': item.selected }" (click)="seleccionarItem($index)"> 
+                        <a class="sidebar-link waves-effect waves-dark" [routerLink]="item.link" >
+                            <i [ngClass]="'mdi ' + item.icon"></i><span class="hide-menu">{{ item.title }}</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>
+
+<!-- ... Existing HTML code ... -->

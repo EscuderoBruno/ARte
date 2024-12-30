@@ -1,0 +1,60 @@
+<div class="table-responsive">
+    <div id="zero_config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+        <!-- Show 10 entries -->
+        <div class="row">
+            <!-- Catagorias -->
+            <div style="margin-right: 15px;">
+                <div class="col-md-9">
+                    <select class="select2 form-control custom-select"
+                        style="width: 160%; height:32px; font-size: 14px; height: 35px;" (change)="filtrarPiezas()"
+                        [formControl]="filtros.sala">
+                        <option value="0">Todas las salas</option>
+                        @for ( sala of salas; track sala.id ) {
+                        <option [value]="sala.id">{{ sala.nombre }}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <!-- Buscador -->
+            <div style="margin-right: 10px;">
+                <div id="zero_config_filter" class="dataTables_filter input-group">
+                    <input type="search" class="form-control form-control-sm" placeholder="Buscar"
+                        aria-controls="zero_config" style="font-size: 14px;" (change)="filtrarPiezas()"
+                        [formControl]="filtros.nombre">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2" (click)="filtrarPiezas()">
+                            <span class="mdi mdi-magnify"></span> <!-- Ícono de búsqueda -->
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+        <!---------------------------------------------------------------- Tabla ---------------------------------------------------------->
+        <div class="row">
+            <div class="col-12">
+                <table id="zero_config" class="table w-100">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nombre</th>
+                            <th>Sala</th>
+                            <th>Exposición</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(piece of piezas_api; track piece){
+                            <tr (click)="selectPieza($event)" class="fila pointer" [ngClass]="{'selected': piece.id === piezaSeleccionadaInp?.id}" [id]="'row_' + piece.id">
+                                <td class="info align-middle"><img [src]=" piece.imagen ? baseAPI + '/uploads/' + piece.imagen : '../../../../../assets/images/piezas/pieza-ejemplo.jpg'" alt=" Image" class="imagen-pieza img-fluid" /></td>
+                                <td class="info align-middle">{{ piece.nombre }}</td>
+                                <td class="info align-middle">{{ piece.sala_nombre }}</td>
+                                <td class="info align-middle">{{ piece.exposicion_nombre }}</td>
+                                <td class="info align-middle">{{ piece.estado_id }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

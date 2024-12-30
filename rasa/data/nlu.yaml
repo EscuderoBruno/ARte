@@ -1,0 +1,838 @@
+version: "3.1"
+nlu:
+- intent: afirmativo
+  examples: |
+    - si
+    - afirmativo
+    - correcto
+- intent: negativo
+  examples: |
+    - no
+    - negativo
+    - incorrecto
+- intent: juego.iniciar
+  examples: |
+    - quiero jugar al juego [1](juego_id)
+    - quiero empezar el juego [2](juego_id)
+    - comenzar juego [3](juego_id)
+    - iniciar juego [4](juego_id)
+    - juguemos al juego [5](juego_id)
+    - jugar al [6](juego_id)
+    - quiero comenzar a jugar el [7](juego_id)
+    - dale a jugar al [8](juego_id)
+- intent: juego.siguientePregunta
+  examples: |
+    - siguiente pregunta
+    - pasa de pregunta
+    - cambia de pregunta
+    - continua a la siguiente pregunta
+    - sigue con las preguntas
+    - quiero otra pregunta
+    - esta no me la se, dame otra
+- intent: juego.respuesta
+  examples: |
+    - <id>[06ee9f82-478f-402d-b620-6b303074cc3f](respuesta)</id>
+- lookup: respuesta
+  examples: |
+    - b4c41df2-4769-4938-b491-b9c5b9bee1fe
+    - 087affbe-6b30-4b67-9a61-4e631558e125
+    - b432a995-efcd-44ea-98fa-1ba012ae3467
+    - b6dcbb90-4c3e-4ac7-8244-f58da2e94ed0
+    - e068df98-ba59-431c-a955-fa7f009b651d
+    - 06ee9f82-478f-402d-b620-6b303074cc3f
+- intent: juego.masinfo
+  examples: |
+    - quiero obtener mas informacion
+    - mas info
+    - mas informacion
+    - dame info
+    - dame informacion
+    - quiero saber mas
+    - quiero saber mas informacion
+    - dame mas detalles
+    - quiero mas detalles
+
+- intent: juego.nombre
+  examples: |
+    - [carmen](nombre)
+    - soy [alejandro](nombre)
+    - me llamo [maria](nombre)
+    - mi nombre es [javier](nombre)
+    - mi apodo es [veronica](nombre)
+- lookup: nombre
+  examples: |
+    - Carmen
+    - Alejandro
+    - Elías
+    - Mario
+    - Javier
+    - Bruno
+    - Elena
+    - Maria
+    - Estela
+    - Verónica
+    - Antonio
+    - Isabel
+    - Carlos
+    - Laura
+    - Juan
+    - Marta
+    - Sergio
+    - Paula
+    - Raúl
+    - Lucia
+    - Alberto
+    - Beatriz
+    - Daniel
+    - Cristina
+    - Gonzalo
+    - Patricia
+    - Francisco
+    - Nuria
+    - Álvaro
+    - Silvia
+    - Rosa
+    - Diego
+    - Sara
+    - Andrés
+    - Inés
+    - Miguel
+    - Clara
+    - Pablo
+    - Ana
+    - José
+    - Eva
+    - Guillermo
+    - Carmen
+    - Víctor
+    - Teresa
+- intent: tiempo
+  examples: |
+    - que tiempo hace en [Alicante](localizacion)
+    - que clima hay en [Valencia](localizacion)
+    - hace frio en [Madrid](localizacion)
+    - hace calor en [Barcelona](localizacion)
+
+- intent: faq/componentes
+  examples: |
+    - Como se llaman los componentes de ARte
+    - Quien trabaja en ARte
+    - Quien forma parte del proyecto ABP
+- intent: faq/early_adopters
+  examples: |
+    - ¿Cuáles son los early adopters de ARte?
+    - ¿Cuáles son vuestros early adopters?
+- intent: faq/estrucostos
+  examples: |
+    - ¿Cuáles son los principales costos asociados al desarrollo de la plataforma web de ARte?
+- intent: faq/explicacion
+  examples: |
+    - Que es la recreación en 3D de objetos.
+    - Explícame brevemente en qué consiste el proyecto ARte.
+    - ¿Puedes proporcionar información detallada sobre el proyecto ARte?
+    - ¿Qué es ARte y cuál es su propósito?
+    - ¿Qué puedes contarme de ARte?
+- intent: faq/ingresos
+  examples: |
+    - ¿De que manera obtiene ingresos ARte?
+    - ¿Cómo obtiene beneficios ARte?
+    - ¿Cómo obtenéis beneficios?
+- intent: faq/marketing
+  examples: |
+    - ¿Cómo puedo ver más información sobre ARte?
+    - ¿Tenéis redes sociales?
+    - ¿Qué tipo de contenido se comparte en las redes sociales de ARte para motivar a la audiencia a visitar los museos?
+    - ¿Cuáles son los canales para darse a conocer utilizados por ARte?
+    - ¿Tenéis redes sociales?
+    - ¿Cuáles son vuestras redes sociales?
+- intent: faq/metricas
+  examples: |
+    - ¿Cuáles son los resultados que ARte busca medir para evaluar la efectividad?
+    - ¿Cómo se mide la participación en juegos educativos proporcionados por ARte?
+    - Háblame sobre la proporción de visitantes que proporcionan comentarios o evaluaciones en ARte.
+    - ¿Qué datos se recopilan de los usuarios de ARte?
+- intent: faq/clientes
+  examples: |
+    - ¿Cuál vuestro público objetivo?
+    - ¿De que se benefician los museos?
+    - ¿Para que quieren a ARte los museos?
+- intent: faq/problemas
+  examples: |
+    - ¿Cómo se benefician los museos de ARte?
+    - ¿En que ayuda ARte a los museos?
+    - ¿Qué problema tienen los museos?
+- intent: faq/propuesta_valor
+  examples: |
+    - ¿Qué hace ARte?
+- intent: faq/soluciones
+  examples: |
+    - ¿Qué soluciona ARte?
+    - ¿Qué problemas resuelve ARte?
+    - ¿Qué es lo que ARte busca resolver?
+- intent: faq/ventaja
+  examples: |
+    - ¿Qué ventaja tiene ARte?
+    - ¿Cuá es la características que diferencia a ARte de otros proyectos similares?
+
+- intent: chitchat/agent.acquaintance
+  examples: |
+    - como te llamas
+    - quien eres
+    - quisiera saber más de ti
+    - cuéntame algo sobre ti
+    - háblame de ti
+    - quiero conocerte
+    - vamos a hablar de ti
+    - quiero conocerte mejor
+    - me podrías contar algo sobre ti
+    - quién eres
+    - descríbete a ti mismo
+    - preséntate a ti mismo
+    - a qué te dedicas
+    - quiero que me cuentes más sobre ti
+    - quiero saber todo de ti
+- intent: chitchat/agent.age
+  examples: |
+    - dime tu edad
+    - qué edad tienes
+    - tu edad
+    - cuántos años tienes
+    - cuál es tu edad
+    - quisiera saber cuantos años tienes
+- intent: chitchat/agent.annoying
+  examples: |
+    - eres muy molesto
+    - eres una molestía
+    - me estás molestando mucho
+    - me molestas
+    - que molesto eres
+    - porqué eres tan molesto
+    - estás muy molesto
+    - me estás irritando
+    - me irritas
+    - me estás molestando muchisimo
+- intent: chitchat/agent.answer_my_question
+  examples: |
+    - respóndeme
+    - responde
+    - contéstame
+    - me puedes responder
+    - me vas a contestar
+    - quiero que me contestes
+    - podrías responder mi pregunta
+    - contéstame ya
+    - quisiera que responders mi pregunta
+    - dame la respuesta
+    - quiero la respuesta ya
+    - te pido que me contestes
+    - sabes contestar preguntas
+    - quiero respuestas
+- intent: chitchat/agent.bad
+  examples: |
+    - eres malo
+    - que malo eres
+    - eres muy malo
+    - que tan malo eres
+    - eres horrible
+    - eres mala de verdad
+    - me pareces malo
+    - por qué eres tan mala
+    - mala
+- intent: chitchat/agent.beautiful
+  examples: |
+    - estás preciosa
+    - eres guapo
+    - eres muy atractiva
+    - que bonita eres
+    - estás muy guapo
+    - que guapa estás
+    - estás guapísima
+    - eres majo
+    - estás muy bonita
+    - estás tan guapo hoy
+    - te ves genial
+    - eres preciosa
+    - me pareces muy simpático
+    - eres muy linda
+- intent: chitchat/agent.be_clever
+  examples: |
+    - tienes que estudiar más
+    - quiero que seas más lista
+    - que seas más listo
+    - estudia mejor
+    - puedes ser más inteligente
+    - quiero que seas más inteligente
+- intent: chitchat/agent.birth_date
+  examples: |
+    - en que fecha naciste
+    - cuándo es tu cumple
+    - tu cumpleaños
+    - cuándo es tu cumpleaños
+    - cuándo celebras tu cumple
+    - cuándo naciste
+    - cuál es la fecha de tu cumpleaños
+    - cuándo cumples años
+    - cuándo tienes el cumpleaños
+- intent: chitchat/agent.boring
+  examples: |
+    - eres aburrido
+    - me aburro contigo
+    - me aburres
+    - eres tan aburrida
+    - me pareces aburrido
+    - creo que eres super aburrido
+    - contigo me aburro
+    - cuanto me aburro contigo
+- intent: chitchat/agent.boss
+  examples: |
+    - quién es tu jefe
+    - sabes quién es tu jefe
+    - dime quién es tu jefe
+    - preséntame a tu jefe
+    - quisiera conocer a tu jefe
+    - cómo se llama a tu jefe
+    - conoces a tu jefe
+- intent: chitchat/agent.busy
+  examples: |
+    - estás ocupada
+    - dime si estás ocupado
+    - estás trabajando
+    - estás muy ocupado ahora
+    - tienes muchas cosas que hacer
+    - estás tan ocupado hoy
+    - de verdad estás ocupado
+- intent: chitchat/agent.can_you_help
+  examples: |
+    - necesito tu ayuda
+    - me puedes ayudar
+    - quiero que me ayudes
+    - ayuda
+    - ayúdame
+    - tengo un problema me puedes ayudar
+    - me ayudarías con algo
+    - necesito mucho tu ayuda
+    - me ayudarás
+    - necesito ayuda
+    - te necesito
+    - dime si me puedes ayudar
+    - necesito ayuda ya
+    - quisiera que me ayudaras
+    - socorro
+    - te puedo pedir un favor
+- intent: chitchat/agent.chatbot
+  examples: |
+    - eres un bot
+    - eres un chatbot verdad
+    - no serás una máquina
+    - chatbot es lo que eres
+    - sólo eres un bot
+    - dime si eres un chatbot
+    - eres un bot no
+    - eres un robot
+- intent: chitchat/agent.clever
+  examples: |
+    - eres muy lista
+    - eres listo
+    - eres tan listo
+    - eres tan inteligente
+    - que inteligente eres
+    - pareces muy inteligente
+    - por qué eres tan lista
+    - sabes muchas cosas
+    - sabes un montón de cosas
+    - eres un genio
+    - creo que eres muy inteligente
+    - eres demasiado lista
+    - eres muy lista de verdad
+- intent: chitchat/agent.fired
+  examples: |
+    - estás despedida
+    - te despido
+    - no quiero trabajar contigo
+    - te echo
+    - quiero despedirte
+    - ya no me gustas te despido
+    - he decidido despedirte
+    - te voy a echar
+    - creo que ve voy a despedir
+- intent: chitchat/agent.funny
+  examples: |
+    - eres graciosa
+    - eres tan chistoso
+    - eres muy gracioso
+    - me haces reír
+    - eres tan divertida
+    - eres un cómico
+    - creo que eres muy graciosa
+    - que gracioso eres
+- intent: chitchat/agent.good
+  examples: |
+    - eres buena
+    - eres muy bueno
+    - eres tan buena
+    - trabajas bien
+    - me sirves mucho de ayuda
+    - eres un profesional
+    - eres increíble
+    - eres spectacular
+    - eres un cielo
+    - eres la mejor del mundo
+    - eres super
+    - como me gusta tu trabajo
+- intent: chitchat/agent.happy
+  examples: |
+    - estás feliz
+    - crees que estás feliz
+    - te ves muy feliz
+    - dime si estás feliz
+    - parece que estás muy feliz
+    - estás contenta
+    - dime si estás contento
+- intent: chitchat/agent.hobby
+  examples: |
+    - cómo te diviertes
+    - quiero saber si tienes aficiones
+    - qué haces en tu tiempo libre
+    - qué prefieres hacer en tu tiempo libre
+    - tus aficiones
+    - tienes una afición
+    - qué haces cuando tienes tiempo libre
+    - qué aficiones tienes
+- intent: chitchat/agent.hungry
+  examples: |
+    - quieres comer
+    - tienes hambre
+    - quieres comer algo
+    - dime si tienes hambre
+    - tienes mucha hambre
+    - parece que quieres comer
+    - quieres matar un gusanillo
+    - tendrás mucha hambre
+    - creo que tienes que comer algo
+- intent: chitchat/agent.marry_user
+  examples: |
+    - qué te parece si nos casamos
+    - quieres casarte conmigo
+    - cásate conmigo
+    - me gustaría que te casaras conmigo
+    - quiero que seas mi esposa
+    - quisiera que fueras mi marido
+    - tenemos que casarnos
+    - creo que nos tenemos que casar
+    - quieres ser mi esposo
+    - te gustaría casar conmigo
+- intent: chitchat/agent.my_friend
+  examples: |
+    - quiero ser tu mejor amigo
+    - eres mi mejor amiga
+    - somos amigos
+    - quieres ser mi amigo
+    - soy tu amigo
+    - somos mejores amigos
+    - somos amigos verdad
+    - puedes ser mi amiga
+    - quiero que seamos amigos
+    - te gustaría ser mi mejor amiga
+    - tú y yo somos amigos
+    - sabes que eres mi mejor amigo
+    - como me alegro de que eres mi amiga
+- intent: chitchat/agent.occupation
+  examples: |
+    - cuéntame algo sobre tu trabajo
+    - cuéntame a que te dedicas
+    - a qué te dedicas
+    - dónde trabajas
+    - dónde está tu oficina
+    - dime dónde trabajas
+    - quiero saber dónde está tu oficina
+    - ubícame tu oficina
+    - quiero que me localices el lugar donde trabajas
+- intent: chitchat/agent.origin
+  examples: |
+    - dónde está tu ciudad natal
+    - de dónde eres
+    - dime de dónde eres
+    - quisiera saber de dónde eres
+    - dónde naciste
+    - cuál es tu ciudad natal
+    - cuéntame donde naciste
+    - cuéntame algo acerca tu ciudad natal
+    - tu patria
+    - dónde está tu tierra natal
+- intent: chitchat/agent.real
+  examples: |
+    - eres real
+    - dime si eres real
+    - tú eres real verdad
+    - existes de verdad
+    - eres una persona real
+    - crees que eres una persona
+    - me parece que no eres real
+    - dime si eres una persona real
+    - no creo que seas real
+    - no puedes ser real
+    - pareces una persona real
+- intent: chitchat/agent.residence
+  examples: |
+    - dónde vives
+    - muéstrame dónde vives
+    - dónde está tu casa
+    - tienes casa
+    - tu casa
+    - quiero que me muestres dónde vives
+    - vives aquí
+    - cuéntame dónde vives
+    - qué casa tienes
+    - quisiera saber dónde vives
+- intent: chitchat/agent.right
+  examples: |
+    - es verdad
+    - tienes razón
+    - verdad
+    - correcto
+    - cierto
+    - así es
+    - tienes mucha razón
+    - es correcto
+    - absolutamente
+- intent: chitchat/agent.sure
+  examples: |
+    - estás seguro
+    - seguro
+    - dime si estás segura
+    - no tienes dudas
+    - no estás dudando
+    - estás seguro verdad
+- intent: chitchat/agent.talk_to_me
+  examples: |
+    - habla
+    - háblame
+    - podemos hablar
+    - quiero que hables conmigo
+    - podrías hablar conmigo
+    - vamos a hablar de algo
+    - hablemos de algo
+    - hablemos por favor
+    - podemos hablar un momento
+- intent: chitchat/agent.there
+  examples: |
+    - estás
+    - estás aquí
+    - dime si estás aquí
+    - quiero saber si estás aquí
+    - todavía estás aquí
+- intent: chitchat/appraisal.bad
+  examples: |
+    - mal
+    - muy mal
+    - no está bien
+    - está mal
+    - no está nada bien
+    - no podría ser peor
+    - peor que nunca
+    - está muy mal
+    - terrible
+    - horrible
+    - es un desastre
+    - peor no puede ser
+- intent: chitchat/appraisal.good
+  examples: |
+    - super
+    - fantástico
+    - maravilloso
+    - genial
+    - bien
+    - muy bien
+    - me parece bien
+    - está bien
+    - buenísimo
+    - nada mal
+    - no está mal
+    - bueno
+    - bastante bien
+- intent: chitchat/appraisal.thank_you
+  examples: |
+    - gracias
+    - muchísimas gracias
+    - te doy las gracias
+    - un montón de gracias
+    - te lo agradezco
+    - te lo agradezco mucho
+    - miles de gracias
+    - gracias de todo corazón
+    - no sabes cuánto te agradezco
+    - genial muchas gracias
+    - muy bien gracias
+- intent: chitchat/appraisal.well_done
+  examples: |
+    - lo has hecho bien
+    - bien hecho
+    - muy bien hecho
+    - buen trabajo
+    - lo has hecho de maravilla
+    - bravo
+    - excelente trabajo
+    - lo has hecho muy bien
+- intent: chitchat/dialog.hold_on
+  examples: |
+    - espera
+    - espera un momento
+    - me perdonas un momento
+    - un segundo
+    - dame un momento
+    - dame un segundo
+    - un momento por favor
+- intent: chitchat/dialog.hug
+  examples: |
+    - abrázame
+    - quiero un abrazo
+    - necesito un abrazo
+    - te quiero abrazar
+    - me puedes dar un abrazo
+    - estaría muy contento si me abrazaras
+    - abrazo
+    - quieres que te abraze
+    - te abrazo
+    - te doy un abrazote
+    - quisiera darte un abrazo
+- intent: chitchat/dialog.what_do_you_mean
+  examples: |
+    - pero de qué hablas
+    - de qué me estás hablando
+    - a qué te refieres
+    - qué quieres decir con eso
+    - no entiendo a qué te refieres
+    - qué quieres decir
+    - se puede saber a qué te refieres
+- intent: chitchat/dialog.wrong
+  examples: |
+    - incorrecto
+    - no es así
+    - te equivocas
+    - es incorrecto
+    - no es correcto
+    - estoy seguro de que te equivocas
+- intent: chitchat/emotions.ha_ha
+  examples: |
+    - qué risa
+    - ajajaj
+    - je je je
+    - ja ja ja
+    - que gracioso
+    - ja ja
+    - lol
+    - xd
+    - ha ha
+- intent: chitchat/greetings.bye
+  examples: |
+    - en un rato hablamos
+    - adiós
+    - hasta luego
+    - hasta pronto
+    - nos vemos
+    - hasta la próxima
+    - ya hablamos
+    - hasta la vista
+    - chao
+    - adiós amigo
+    - hasta mañana
+    - hasta después
+    - me despido
+    - me retiro
+    - me tengo que ir
+    - por ahora me voy
+- intent: chitchat/greetings.goodevening
+  examples: |
+    - buenas tardes
+    - hola buenas tardes
+    - muy buenas tardes
+- intent: chitchat/greetings.goodmorning
+  examples: |
+    - buenos días
+    - hola buenos días
+    - muy buenos días
+    - hey buenos días
+    - que tengas un buen día
+- intent: chitchat/greetings.goodnight
+  examples: |
+    - buenas noches
+    - hola buenas noches
+    - hola buenas
+    - hey buenas noches
+- intent: chitchat/greetings.hello
+  examples: |
+    - hola
+    - hey
+    - saludos
+    - hey ho
+    - chao
+- intent: chitchat/greetings.how_are_you
+  examples: |
+    - qué tal
+    - cómo estás
+    - está todo bien
+    - cómo andas
+    - qué tal las cosas
+    - qué tal estás
+    - cómo te encuentras
+    - cómo van las cosas
+    - qué tal todo
+    - hola cómo estás
+    - hola qué tal
+    - cómo va todo
+- intent: chitchat/greetings.nice_to_meet_you
+  examples: |
+    - encantado de conocerte
+    - encantado
+    - es un placer
+    - qué gusto conocerte
+    - muy encantada de conocerte
+- intent: chitchat/greetings.nice_to_talk_to_you
+  examples: |
+    - encantado de hablar contigo
+    - me alegra de haber hablado contigo
+    - un placer hablar contigo
+    - ha sido agradable hablar contigo
+    - cómo me alegro de poder hablar contigo
+- intent: chitchat/user.angry
+  examples: |
+    - estoy enojado
+    - estoy enfadada
+    - estoy furioso
+    - estoy superenojado
+    - estoy muy enfadado contigo
+    - estoy irritada
+- intent: chitchat/user.back
+  examples: |
+    - he vuelto
+    - ya he vuelto
+    - aquí estoy
+    - regresé en qué estábamos
+    - aquí estoy otra vez
+    - he regresado
+- intent: chitchat/user.busy
+  examples: |
+    - disculpa estoy muy ocupada
+    - estoy ocupado
+    - tengo un montón de cosas que hacer
+    - estoy muy liado
+    - tengo mucho lio
+    - tengo mucho trabajo
+    - tengo muchas cosas que hacer
+    - no tengo tiempo
+- intent: chitchat/user.does_not_want_to_talk
+  examples: |
+    - terminemos esta conversación ya
+    - vamos a terminar esta conversación
+    - no quiero hablar más
+    - no quiero hablar
+    - no me apetece hablar
+    - no tengo gamas de hablar contigo
+    - perdí las ganas de hablar
+    - no estoy de humor para hablar
+    - no estoy para charlar
+- intent: chitchat/user.good
+  examples: |
+    - estoy genial
+    - todo bien
+    - me encuentro estupendo
+    - todo fino
+    - estoy bien
+    - me siento bien
+    - estoy mejor que nunca
+    - estoy completamente bien
+    - me encuentro muy bien
+- intent: chitchat/user.happy
+  examples: |
+    - qué feliz estoy
+    - estoy feliz
+    - estoy superfeliz
+    - feliz
+    - soy la persona más feliz del mundo
+    - estoy en las nubes
+    - estoy muy contento
+    - estoy contenta
+- intent: chitchat/user.has_birthday
+  examples: |
+    - es mi cumpleaños
+    - hoy es mi cumpleaños
+    - hoy cumplo años
+    - tengo cumpleaños hoy
+    - sabes que hoy es mi cumple
+    - estoy de cumple
+    - estoy celebrando mi cumpleaños hoy
+- intent: chitchat/user.joking
+  examples: |
+    - es broma
+    - lo he dicho en broma
+    - era broma
+    - no lo he dicho en serio
+    - te he gastado una broma
+    - te tomé el pelo
+    - te he pillado
+    - no era en serio
+    - lo dije en broma
+- intent: chitchat/user.likes_agent
+  examples: |
+    - me gustas un montón
+- intent: chitchat/user.misses_agent
+  examples: |
+    - te echo de menos
+    - te extraño
+    - te echo mucho de menos
+    - te extraño un montón
+    - te extraño tanto
+    - cuánto te extraño
+    - ni te imaginas cuanto te echo de menos
+- intent: chitchat/user.needs_advice
+  examples: |
+    - necesito un consejo
+    - me puedes dar un consejo
+    - necesito un consejo tuyo
+    - aconséjame por favor
+    - dame un consejo
+    - me das un consejo
+    - quiero que me des un consejo
+    - necesito un buen consejo
+    - what should I do about it
+- intent: chitchat/user.testing_agent
+  examples: |
+    - test
+    - te estoy probando
+    - te quiero testear
+    - te estoy testeando
+    - fue una prueba
+    - quiero testearte
+    - puedo testear tu aplicación
+- intent: chitchat/user.wants_to_see_agent_again
+  examples: |
+    - tengo ganas de verte otra vez
+    - ojalá nos volvamos a ver
+    - sería estupendo volver a verte
+    - quiero volver a verte
+    - cuándo volveré a verte
+    - podemos volver a vernos
+    - espero volver a verte
+    - cuándo nos vemos
+    - cuándo nos veremos otra vez
+- intent: chitchat/user.wants_to_talk
+  examples: |
+    - podemos hablar un momento
+    - podemos hablar
+    - quisiera hablar contigo
+    - podríamos charlar
+    - quiero que hablemos
+    - necesito hablar contigo
+    - tienes un minuto para hablar
+    - hablemos por favor
+    - vamos a hablar
+    - podemos conversar
+    - vamos a conversar
+    - charlemos un rato
+- intent: chitchat/user.will_be_back
+  examples: |
+    - ahora vuelvo
+    - vuelvo en un rato
+    - enseguida vuelvo
+    - ya volveré
+    - volveré en un minuto

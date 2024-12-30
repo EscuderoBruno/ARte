@@ -1,0 +1,370 @@
+[
+  {
+    "text": "hey",
+    "intent": "saludar",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "hola",
+    "intent": "saludar",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.5539679527282715
+    }
+  },
+  {
+    "text": "buenos dias",
+    "intent": "saludar",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.9972336888313293
+    }
+  },
+  {
+    "text": "buenas tardes",
+    "intent": "saludar",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.9134056568145752
+    }
+  },
+  {
+    "text": "buenas noches",
+    "intent": "saludar",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.5281233191490173
+    }
+  },
+  {
+    "text": "adios",
+    "intent": "despedirse",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.997850775718689
+    }
+  },
+  {
+    "text": "hasta luego",
+    "intent": "despedirse",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.9828566908836365
+    }
+  },
+  {
+    "text": "nos vemos",
+    "intent": "despedirse",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.9942989349365234
+    }
+  },
+  {
+    "text": "que tenga un buen dia",
+    "intent": "despedirse",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.29086437821388245
+    }
+  },
+  {
+    "text": "si",
+    "intent": "afirmativo",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.3670804798603058
+    }
+  },
+  {
+    "text": "confirmo",
+    "intent": "afirmativo",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.43342939019203186
+    }
+  },
+  {
+    "text": "efectivamente",
+    "intent": "afirmativo",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 0.9999816417694092
+    }
+  },
+  {
+    "text": "por supuesto",
+    "intent": "afirmativo",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 0.998392641544342
+    }
+  },
+  {
+    "text": "correcto",
+    "intent": "afirmativo",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.9999706745147705
+    }
+  },
+  {
+    "text": "no",
+    "intent": "incorrecto",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.9999940395355225
+    }
+  },
+  {
+    "text": "negativo",
+    "intent": "incorrecto",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.9996057152748108
+    }
+  },
+  {
+    "text": "nunca",
+    "intent": "incorrecto",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.9954858422279358
+    }
+  },
+  {
+    "text": "no creo",
+    "intent": "incorrecto",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.999963641166687
+    }
+  },
+  {
+    "text": "no me gusta",
+    "intent": "incorrecto",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.9980053305625916
+    }
+  },
+  {
+    "text": "de ninguna manera",
+    "intent": "incorrecto",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.6795716881752014
+    }
+  },
+  {
+    "text": "en verdad no",
+    "intent": "incorrecto",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.6592250466346741
+    }
+  },
+  {
+    "text": "incorrecto",
+    "intent": "incorrecto",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.9998093247413635
+    }
+  },
+  {
+    "text": "si, mis cojones",
+    "intent": "incorrecto",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.9725490212440491
+    }
+  },
+  {
+    "text": "perfecto",
+    "intent": "estado_contento",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "bien",
+    "intent": "estado_contento",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.6937432289123535
+    }
+  },
+  {
+    "text": "increible",
+    "intent": "estado_contento",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.9579066634178162
+    }
+  },
+  {
+    "text": "me siento bien",
+    "intent": "estado_contento",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.9127222299575806
+    }
+  },
+  {
+    "text": "maravilloso",
+    "intent": "estado_contento",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.9637520909309387
+    }
+  },
+  {
+    "text": "soy muy bueno",
+    "intent": "estado_contento",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.7407391667366028
+    }
+  },
+  {
+    "text": "soy increible",
+    "intent": "estado_contento",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.9758498072624207
+    }
+  },
+  {
+    "text": "soy perfecto",
+    "intent": "estado_contento",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "muy bien",
+    "intent": "estado_contento",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.881915271282196
+    }
+  },
+  {
+    "text": "mi dia ha sido horrible",
+    "intent": "estado_triste",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.9999557733535767
+    }
+  },
+  {
+    "text": "estoy triste",
+    "intent": "estado_triste",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.8735109567642212
+    }
+  },
+  {
+    "text": "no me siento bien",
+    "intent": "estado_triste",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.9956871867179871
+    }
+  },
+  {
+    "text": "estoy decepcionado",
+    "intent": "estado_triste",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.4133938252925873
+    }
+  },
+  {
+    "text": "super triste",
+    "intent": "estado_triste",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 0.6048439741134644
+    }
+  },
+  {
+    "text": "muy triste",
+    "intent": "estado_triste",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.3983423113822937
+    }
+  },
+  {
+    "text": "triste",
+    "intent": "estado_triste",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.5862889885902405
+    }
+  },
+  {
+    "text": "descontento",
+    "intent": "estado_triste",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.7689375877380371
+    }
+  },
+  {
+    "text": "no muy bien",
+    "intent": "estado_triste",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.9996451139450073
+    }
+  },
+  {
+    "text": "extremadamente triste",
+    "intent": "estado_triste",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 0.6724309325218201
+    }
+  },
+  {
+    "text": "eres un bot?",
+    "intent": "reto_bot",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.9505123496055603
+    }
+  },
+  {
+    "text": "eres un humano?",
+    "intent": "reto_bot",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.9849371314048767
+    }
+  },
+  {
+    "text": "estoy hablando con un bot?",
+    "intent": "reto_bot",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.9471772313117981
+    }
+  },
+  {
+    "text": "estoy hablando con un humano?",
+    "intent": "reto_bot",
+    "intent_prediction": {
+      "name": "bot_challenge",
+      "confidence": 0.9652053117752075
+    }
+  }
+]

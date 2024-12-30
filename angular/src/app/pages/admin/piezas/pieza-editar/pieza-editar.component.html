@@ -1,0 +1,194 @@
+<div class="container-fluid" class="row">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <form [formGroup]="this.datos_generales" (submit)="handleSubmit($event)">
+        <div class="row">
+
+            <div class="col-md-5">
+                <div class="row d-flex align-items-stretch">
+                    <div class="col-md-6 p-10">
+                        <div class="card h-100">
+                            <div class="card-body h-100">
+                                <div class="d-flex">
+                                    <h3 class="card-title">Foto</h3><br>
+                                    <span (click)="borrarImagen()" class="cp ml-auto"><i class="fa fa-trash"></i></span>
+                                </div>
+                                <label for="fileInputImage" class="w-100 text-center">
+                                    <img alt="Image" class="imagen-pieza img-fluid cp image-pieza" [src]="newImage" />
+                                </label>
+                                <!-- Input personalizado -->
+                                <input type="file" class="custom-file-input" id="fileInputImage" name="imagen"
+                                    (change)="cambiarImagen($event)" style="display: none;" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 p-10">
+                        <div class="card h-100">
+                            <div class="card-body h-100">
+                                <div class="d-flex">
+                                    <h3 class="card-title">Pictograma</h3><br>
+                                    <span (click)="borrarPictograma()" class="cp ml-auto"><i
+                                            class="fa fa-trash"></i></span>
+                                </div>
+                                <label for="fileInputPicto" class="w-100 text-center">
+                                    <img alt="Image" class="imagen-pieza img-fluid cp image-pieza"
+                                        [src]="newPictograma" />
+                                </label>
+                                <!-- Input personalizado -->
+                                <input type="file" class="custom-file-input" id="fileInputPicto" name="pictograma"
+                                    (change)="cambiarPictograma($event)" style="display: none;" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body" class="p-20">
+                                <div class="d-flex">
+                                    <h3 class="card-title">Modelo</h3><br>
+                                    <span (click)="borrarModelo()" class="cp ml-auto"><i class="fa fa-trash"></i></span>
+                                </div>
+                                <label for="fileInputModel" class="w-100 text-center">
+                                    <img alt="Image" class="imagen-pieza img-fluid cp image-pieza" [src]="newModelo" />
+                                </label>
+                                <!-- Input personalizado -->
+                                <input type="file" id="fileInputModel" (change)="cambiarModelo($event)" name="modelo" style="display: none;" accept=".glb,.json">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="card">
+                    <div class="tab-content tabcontent-border" style="min-height: 100px">
+                        <div class="p-20">
+                            <h3 class="card-title">Datos</h3><br><br>
+                            <div class="form-group row">
+                                <label class="col-md-2" style="font-size: 15px;">Sala: </label>
+                                <div class="col-md-9">
+                                    <select class="form-select form-control" formControlName="sala">
+                                        <option value="0" disabled>Elegir una sala</option>
+                                        @for(sala of salas; track sala.id){
+                                        <option [value]="sala.id">{{ sala.nombre }}</option>
+                                        }
+                                    </select>
+                                    <div *ngIf="formularioEnviado && sala_control.invalid" class="text-danger">Se debe
+                                        seleccionar una sala</div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2" style="font-size: 15px;">Estado: </label>
+                                <div class="col-md-9">
+                                    <select class="form-select form-control" formControlName="estado">
+                                        <option value="0" disabled>Elegir un estado</option>
+                                        @for(estado of estadosPosibles; track estado.nombre){
+                                        <option [value]="estado.nombre">{{ estado.nombre }}</option>
+                                        }
+                                    </select>
+                                    <div *ngIf="formularioEnviado && estado_control.invalid" class="text-danger">Se debe
+                                        seleccionar un estado</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="tabpanel">
+                            <ul class="nav nav-tabs" role="tablist">
+                                @for (idioma of idiomasElegidos; track idioma.id) {
+                                <li class="nav-item"> <a class="nav-link" [class]="($index === 0) ? 'active' : ''"
+                                        data-toggle="tab" [href]="'#' + idioma.id" role="tab" [id]="'tab-' + idioma.id"><span
+                                            class="hidden-sm-up"></span><span class="hidden-xs-down">{{ idioma.idioma
+                                            }}</span></a></li>
+                                }
+                                <li>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-light dropdown-toggle"
+                                            style="border-radius: 0%;" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="mdi mdi-plus"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            @for (idioma of this.idiomasPosibles; track idioma.id){
+                                            <button type="button" class="dropdown-item"
+                                                (click)="this.addIdioma(idioma)">{{
+                                                idioma.idioma }}</button>
+                                            }
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content tabcontent-border">
+                                @for (idioma of idiomasElegidos; track idioma.id) {
+                                <div class="tab-pane p-20" [class]="($index === 0) ? 'active' : ''" [id]="idioma.id"
+                                    role="tabpanel">
+                                    <form class="p-2" [formGroup]="this.datos_idiomas[$index]">
+                                        <input type="text" style="display: none;" formControlName="id">
+                                        <input type="text" style="display: none;" formControlName="idioma">
+                                        <div class="form-group row">
+                                            <label class="col-md-3" style="font-size: 15px;">Nombre: </label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder=""
+                                                    formControlName="nombre">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" style="font-size: 15px;">
+                                            <label class="col-md-3">Texto completo: </label>
+                                            <div class="col-md-9">
+                                                <textarea type="text" class="form-control" id="fname" placeholder=""
+                                                    style="height: 120px;" formControlName="texto_completo"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" style="font-size: 15px;">
+                                            <label class="col-md-3">Texto fácil: </label>
+                                            <div class="col-md-9">
+                                                <textarea type="text" class="form-control" id="fname" placeholder=""
+                                                    style="height: 80px;" formControlName="texto_facil"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row d-flex align-items-center" style="font-size: 15px;">
+                                            <label class="col-md-3">Audio: </label>
+                                            @if(newAudios[$index] !== null){
+                                                <div class="col-md-8">
+                                                    <audio controls [src]="newAudios[$index]"></audio>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <i class="fa fa-trash" (click)="newAudios[$index] = null"></i>
+                                                </div>
+                                            }
+                                            <div class="col-md-9" [ngClass]="{ hidden: newAudios[$index] !== null }">
+                                                <input type="file" [id]="'audioFile-' + $index" accept="audio/*" (input)="addAudio($event)">
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <button type="button" class="btn btn-danger text-white"
+                                        (click)="this.removeIdioma(idioma)">Eliminar información de este idioma
+                                        - {{
+                                        idioma.idioma }}</button>
+                                </div>
+                                }
+                                @if(idiomasElegidos.length <= 0){ <p class="m-4">Añada algun idioma para guardar la
+                                    pieza.
+                                    </p>
+                                    }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="boton-arriba2">
+            <button class="btn btn-success btn-md" type="submit" style="border-radius: 1.5rem">
+                <span>Guardar cambios</span>
+            </button>
+        </div>
+        <div class="boton-arriba">
+            <div class="col text-right">
+                <button (click)="volver()" type="button" class="btn btn-secondary"
+                    style="margin-right: 10px">Volver</button>
+            </div>
+        </div>
+    </form>
+</div>

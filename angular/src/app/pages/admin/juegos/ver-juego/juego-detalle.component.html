@@ -1,0 +1,49 @@
+<div class="container-fluid" *ngIf="juego" class="row">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Foto</h5>
+                   <!-- <img [src]="piece.image" alt="{{ piece.name }} Image" class="imagen-juego img-fluid" />-->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab"><span class="hidden-sm-up"></span> <span class="hidden-xs-down">Español</span></a> </li>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab"><span class="hidden-sm-up"></span> <span class="hidden-xs-down">Valenciano</span></a> </li>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages" role="tab"><span class="hidden-sm-up"></span> <span class="hidden-xs-down">English</span></a> </li>
+                </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content tabcontent-border" style="min-height: 394px">
+                        <!-- ESPAÑOL -->
+                        <div class="tab-pane active p-20" id="home" role="tabpanel">
+                            <div class="p-20">
+                                <!-- Contenido Español -->
+                            </div>
+                        </div>                        
+                        <!-- VALENCIANO -->
+                        <div class="tab-pane p-20" id="profile" role="tabpanel">
+                            <div class="p-20">
+                                <!-- Contenido Valenciano -->
+                            </div>
+                        </div>    
+                        <!-- INGLES -->
+                        <div class="tab-pane p-20" id="messages" role="tabpanel">
+                            <div class="p-20">
+                                <!-- Contenido Inglés -->
+                            </div>
+                        </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+    <button (click)="navigateToEditar()" type="button" class="btn btn-danger ml-auto" style="margin-right: 20px">Editar</button>
+    <button (click)="volver()" type="button" class="btn btn-secondary" style="margin-right: 10px">Volver</button>
+</div>

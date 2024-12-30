@@ -1,0 +1,150 @@
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+<div class="main-container">
+
+    <div class="content-container">
+  
+        <!-- <div class="row">
+            <div class="col-12">
+                <div class="card-body paginacion">
+                    <p class="p-1 mb-2">La alcudia</p>
+                </div>
+            </div>
+            <div class="col-0 ml-auto d-flex">
+                <div class="card-body paginacion p-0" style=" margin-bottom: -20px;">
+                </div>
+            </div>
+        </div> -->
+  
+        <div class="card-body contenedor-juego mobile-container">
+
+            <div class="centrar">
+                <div class="circle activo" style="margin-top: -44px;">1</div>
+                <div class="circle" style="margin-top: -44px;">2</div>
+                <div class="circle" style="margin-top: -44px;">3</div>
+            </div>
+
+            <div class="opciones-juego">
+                <div class="chat-content card-enunciado centrar mt-0">
+                    <div class="box-opciones-imagen bg-light-info"><img src="../../../../../assets/images/piezas/pieza-ejemplo.jpg" alt="user" style="width: 100px;"></div>
+                    <div class="box-texto bg-light-info">
+                        <span><b>Olpe romana</b></span><br>
+                        <span>Notable pieza de cerámica del siglo II. Destaca por su elegante diseño y detalle artístico.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="centrar">
+                <div class="circle2" style="margin-top: -15px;">CHAT</div>
+            </div> -->
+
+            <!-- <div class="opciones-juego">
+                <div class="chat-content card-enunciado centrar mt-0">
+                    <div class="box-opciones-imagen2 bg-light-info"><img src="../../../../../assets/images/alcudio/Celebrando.PNG" alt="user" style="width: 100px;"></div>
+                    <div class="box-texto bg-light-info">
+                        <span><b>¡Enhorabuena!</b></span><br>
+                        <span>¡Has encontrado la pieza robada! Aun así nuestra aventura no ha terminado.</span>
+                        <div class="chat-content mt-1">
+                            <div class="box2 bg-light-info">Siguiente <i class="mdi mdi-arrow-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+    
+            <div class="chat-box scrollable">
+                <!--chat Row -->
+                <ul class="chat-list">
+                    <!--chat Row -->
+                    @for (message of messages; track message; let index = $index){
+                        <li [class]="message.transmitter === 'chatbot' ? 'chat-item' : 'odd chat-item'" [id]="'msg_' + index">
+                            @if (message.transmitter === 'chatbot'){
+                                <div class="chat-img">
+                                    <img src="../../../../../assets/images/logos/Mano.PNG " alt="user" style="width: 90px;">
+                                    <h6 class="font-medium ml-3" style="font-size: 15px; padding-top: 5px;">Alcudio</h6>
+                                </div>
+                                <div class="chat-content">
+                                    <div class="box bg-light-info">{{ message.content }}</div>
+                                </div>
+                            } @else {
+                                <div class="chat-content">
+                                    <div class="box bg-light-inverse">{{ message.content }}</div><i class="mdi mdi-format-right"></i>
+                                    <br>
+                                </div>
+                            }
+                            <!-- <div class="chat-time">{{ message.datetime.getHours() + ':' + message.datetime.getMinutes()}}</div> -->
+                        </li>
+                    }
+                </ul>
+                <!-- <div class="opciones-juego">
+                    <div class="chat-content centrar mt-0">
+                        <div class="box-opciones-texto bg-light-info">Opcion 1</div>
+                        <div class="box-opciones-texto bg-light-info">Opcion 2</div>
+                    </div><br>
+                    <div class="chat-content centrar mt-0">
+                        <div class="box-opciones-texto bg-light-info">Opcion 3</div>
+                        <div class="box-opciones-texto bg-light-info">Opcion 4</div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="chat mobile-container">
+                <form class="row align-items-center" (submit)="sendMessage($event)">
+                    <div class="col-8">
+                        <div class="input-field">
+                            <input type="text" placeholder="Escribir mensaje..." class="form-control user-input" [formControl]="userContent" />
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-circle2 btn-lg btn-cyan centrar"><i class="mdi mdi-qrcode-scan"></i></button>
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-circle btn-lg btn-cyan centrar"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </form>
+            </div>
+    
+        </div>
+
+        <div class="container">
+            <h1> ngx-scanner-qrcode </h1>
+
+            <!-- devices -->
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 my-1">
+                    <select #select1 (change)="action.playDevice(select1.value)" class="form-select form-select-md">
+                        <option [value]="null" selected>Select device</option>
+                        <option *ngFor="let c of action.devices.value; let i = index" [value]="c.deviceId"
+                            [selected]="i == action.deviceIndexActive">{{c.label}}</option>
+                    </select>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 my-1">
+                    <select #select2 (change)="action.decode = select2.value" class="form-select form-select-md">
+                        <option value="utf-8" [selected]="action.decode == 'utf-8'">UTF-8</option>
+                        <option value="iso-8859-15" [selected]="action.decode == 'iso-8859-15'">ISO-8859-15</option>
+                        <option value="windows-1252" [selected]="action.decode == 'windows-1252'">Windows-1252</option>
+                        <option value="macintosh" [selected]="action.decode == 'macintosh'">Macintosh</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <!-- ngx-scanner-qrcode -->
+
+            <ngx-scanner-qrcode #action="scanner" [config]="config"
+                (event)="onEvent($event, action)"></ngx-scanner-qrcode>
+
+
+
+            <button class="btn" [disabled]="action.isLoading"
+                (click)="handle(action, action.isStart ? 'stop' : 'start')">
+                camara
+            </button>
+
+
+        </div>
+    </div>
+</div>
+  

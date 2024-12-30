@@ -1,0 +1,66 @@
+
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <form (submit)="crearSala($event)" [formGroup]="nuevaSala">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="tab-content tabcontent-border" style="min-height: 350px">
+                        <div class="p-40">
+                            <h3 class="card-title">Datos</h3><br><br>
+                            <div class="form-group row">
+                                <label class="col-md-2" style="font-size: 15px;">Nombre: </label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" formControlName="nombre"
+                                        placeholder="Nombre de la sala">
+                                        <div *ngIf="formularioEnviado && nombre.invalid" class="text-danger">El nombre no puede estar vacío</div>
+                                </div>
+                            </div>
+                            <div class="form-group row" style="font-size: 15px;">
+                                <label class="col-md-2">Descripción: </label>
+                                <div class="col-md-8">
+                                    <textarea type="text" class="form-control" formControlName="descripcion"
+                                        placeholder="Descripción de la sala" style="height: 80px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2" style="font-size: 15px;">Exposición: </label>
+                                <div class="col-md-8">
+                                    <select class="form-select form-control" style="width: auto;" formControlName="exposicion">
+                                        <option value="0" disabled>Seleccionar una exposición</option>
+                                        <option *ngFor="let exposicion of exposiciones" [ngValue]="exposicion.id">{{ exposicion.nombre }}</option>
+                                    </select> 
+                                    <div *ngIf="formularioEnviado && exposicion.invalid" class="text-danger">Se debe seleccionar una exposición</div> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2" style="font-size: 15px;">Estado: </label>
+                                <div class="col-md-9">
+                                    <select class="form-select form-control" formControlName="estado" style="width: auto">
+                                        <option value="0" disabled>Seleccionar un estado</option>
+                                        @for(estado of estadosPosibles; track estado.nombre){
+                                            <option [value]="estado.nombre">{{ estado.nombre }}</option>
+                                        }
+                                    </select>
+                                    <div *ngIf="formularioEnviado && estado.invalid" class="text-danger">Se debe seleccionar un estado</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="boton-arriba2">
+            <button class="btn btn-success btn-md" type="submit" style="border-radius: 1.5rem;">
+                <span>CREAR</span>
+            </button>
+        </div>
+        <div class="boton-arriba">
+            <div class="col text-right">
+                <button (click)="volver()" type="button" class="btn btn-secondary" style="margin-right: 10px">Volver</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,191 @@
+
+<!-- Botón crear sala -->
+<div class="boton-arriba">
+    <button class="btn btn-dark btn-md" type="button" (click)="goToCreatePie()" style="border-radius: 1.5rem;">
+        <span class="mdi mdi-plus"> CREAR NUEV JUEGO</span>
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalVerQR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Información QR</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center"> <!-- Aquí agregamos la clase text-center -->
+                <div class="qrcodeImage">
+                    <qrcode
+                      [qrdata]="(this.baseAPI.substr(0, this.baseAPI.length - 4)) + '/alcudio/' + idToDelete"
+                      [elementType]="'canvas'"
+                      [errorCorrectionLevel]="'M'"
+                      [margin]="1"
+                      [scale]="1"
+                      [width]="300"
+                    ></qrcode>
+                  </div>
+            </div>
+            <div class="modal-footer justify-content-center"> <!-- Agregamos la clase justify-content-center para centrar los botones -->
+                <button type="button" class="btn btn-Light" data-dismiss="modal" (click)="irAlEnlace()" >Ir al enlace</button>
+                <button type="button" class="btn btn-Light" data-dismiss="modal" (click)="descargarQr()" style="margin-left: 10px;">Descargar QR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalBorrarPieza" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Borrar pieza</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    ¿Seguro de que quiere eliminar este juego?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="deletePie()" data-dismiss="modal">Borrar pieza</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Página -->
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Listado</h5><br>
+        <div class="table-responsive">
+            <div id="zero_config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                <!-- Show 10 entries -->
+                <div class="row">
+                    <div>
+                        <label>Mostrar</label>
+                    </div>
+                    <div class="pl-2 pr-2">
+                        <select name="zero_config_length" aria-controls="zero_config"
+                            class="form-control form-control-sm" (change)="getJuegos()" [formControl]="filtros.numero">
+                            <option value="2">2</option>
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>entradas</label>
+                    </div>
+                    <!-- Catagorias -->
+                    <div class="ml-auto" style="margin-right: 15px;">
+                        <div class="col-md-9">
+                            <select class="select2 form-control custom-select" style="width: 160%; height:32px; font-size: 14px; height: 35px;" 
+                            (change)="getJuegos()" [formControl]="filtros.exposicion" >
+                                <option value="0">Todas las exposiciones</option>
+                                @for ( expo of exposiciones; track expo.id ) {
+                                    <option [value]="expo.id">{{ expo.nombre }}</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Buscador -->
+                    <div style="margin-right: 10px;">
+                        <div id="zero_config_filter" class="dataTables_filter input-group">
+                            <input type="search" class="form-control form-control-sm" placeholder="Buscar"
+                                aria-controls="zero_config" style="font-size: 14px;" (change)="getJuegos()" [formControl]="filtros.nombre">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2" (click)="getJuegos()">
+                                    <span class="mdi mdi-magnify"></span> <!-- Ícono de búsqueda -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+                <!---------------------------------------------------------------- Tabla ---------------------------------------------------------->
+                <div class="row">
+                    <div class="col-12">
+                        <table id="zero_config" class="table w-100">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Exposición</th>
+                                    <th>Estado</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let juego of juegos">
+                                    <td class="info align-middle">{{ juego.nombre }}</td>                                   
+                                    <td class="info align-middle">{{ juego.descripcion }}</td>
+                                    <td class="info align-middle">{{ juego.exposicion.nombre }}</td>
+                                    <td class="info align-middle">{{ juego.estado.nombre }}</td>
+                                    <td class="info row justify-content-end">
+                                            <button class="btn btn-outline-info btn-md" type="button" (click)="this.idToDelete = juego.id" data-toggle="modal" data-target="#modalVerQR">
+                                                <span class="mdi mdi-qrcode-scan"></span>
+                                            </button>
+                                            <button class="btn btn-outline-warning btn-md" type="button" (click)="goToEditPie(juego.id)">
+                                                <span class="mdi mdi-pencil"></span>
+                                            </button>
+                                            <button class="btn btn-outline-danger btn-md" type="button" (click)="this.idToDelete = juego.id" data-toggle="modal" data-target="#modalBorrarPieza">
+                                                <span class="mdi mdi-delete"></span>
+                                            </button> 
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 10px">
+                    <div>
+                        <div class="dataTables_info" id="zero_config_info" role="status" aria-live="polite">
+                            Mostrando {{ paginacion.desde }}-{{ paginacion.hasta }} de {{ paginacion.total }} entradas
+                        </div>
+                    </div>
+                    <div class="ml-auto" style="margin-right: 11px;">
+                        <div class="dataTables_paginate paging_simple_numbers" id="zero_config_paginate">
+                            <ul class="pagination">
+                                <li class="paginate_button page-item previous" [class]="(this.paginacion.pagina - 1 > 0) ? '': 'disabled'" id="zero_config_previous" (click)="goToPag(this.paginacion.pagina - 1)">
+                                    <a
+                                        class="page-link">Anterior</a>
+                                </li>
+                                <li *ngIf="this.paginacion.pagina - 2 > 0" class="paginate_button page-item" (click)="goToPag(this.paginacion.pagina - 2)">
+                                    <a
+                                        class="page-link">{{ this.paginacion.pagina - 2 }}</a>
+                                </li>
+                                <li *ngIf="this.paginacion.pagina - 1 > 0" class="paginate_button page-item" (click)="goToPag(this.paginacion.pagina - 1)">
+                                    <a
+                                        class="page-link">{{ this.paginacion.pagina - 1 }}</a>
+                                </li>
+                                <li class="paginate_button page-item active">
+                                    <a
+                                        class="page-link">{{ this.paginacion.pagina }}</a>
+                                </li>
+                                <li *ngIf="this.paginacion.pagina + 1 <= this.paginacion.totalPag" class="paginate_button page-item" (click)="goToPag(this.paginacion.pagina + 1)">
+                                    <a
+                                        class="page-link">{{ this.paginacion.pagina + 1 }}</a>
+                                </li>
+                                <li *ngIf="this.paginacion.pagina + 2 <= this.paginacion.totalPag" class="paginate_button page-item" (click)="goToPag(this.paginacion.pagina + 2)">
+                                    <a
+                                        class="page-link">{{ this.paginacion.pagina + 2 }}</a>
+                                </li>
+                                <li class="paginate_button page-item next" [class]="(this.paginacion.pagina + 1 <= this.paginacion.totalPag) ? '': 'disabled'" id="zero_config_next" (click)="goToPag(this.paginacion.pagina + 1)">
+                                    <a
+                                        class="page-link">Siguiente</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

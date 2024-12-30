@@ -1,0 +1,118 @@
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <form class="w-100 row" [formGroup]="editarJuego" (submit)="handlerSubmit($event)">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-5">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="fname" class="col-sm-3 control-label col-form-label">Nombre:</label>
+                            <div class="col">
+                                <input type="text" class="form-control" id="fname" formControlName="nombre">
+                                @if(formularioEnviado && nombre.invalid){
+                                    <div class="text-danger">Se debe especificar un nombre</div>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lname"
+                                class="col-sm-3 control-label col-form-label">Descripcion:</label>
+                            <div class="col">
+                                <input type="text" class="form-control" id="lname" formControlName="descripcion">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lname" class="col-sm-3 control-label col-form-label">Fecha:</label>
+                            <div class="col">
+                                <input type="date" class="form-control" id="lname" formControlName="fecha">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3" style="font-size: 15px;">Exposición:</label>
+                            <div class="col">
+                                <select class="form-select form-control" formControlName="exposicion">
+                                    <option value="0" disabled>Elegir una exposicion</option>
+                                    @for(expo of exposiciones; track expo.id){
+                                    <option [value]="expo.id">{{ expo.nombre }}</option>
+                                    }
+                                </select>
+                                @if(formularioEnviado && exposicion.invalid){
+                                    <div class="text-danger">Se debe especificar una exposición</div>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3" style="font-size: 15px;">Estado:</label>
+                            <div class="col">
+                                <select class="form-select form-control" formControlName="estado">
+                                    <option value="0" disabled>Elegir un estado</option>
+                                    @for(estado of estados; track estado.nombre){
+                                    <option [value]="estado.nombre">{{ estado.nombre }}</option>
+                                    }
+                                </select>
+                                @if(formularioEnviado && estado.invalid){
+                                    <div class="text-danger">Se debe especificar un estado</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-7">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center mx-1 my-2">
+                            <h5 class="text-h5 m-0">Piezas del juego</h5>
+                            <button type="button" class="btn btn-primary ml-auto" (click)="piezaSelector.filtrarPiezas()" data-toggle="modal" data-target="#listaPiezasModal">Añadir pieza</button>
+                        </div>
+                        <div class="column">
+                            <table class="table table-sm">
+                                @for(pieza of piezas; track pieza.id){
+                                    <tr>
+                                      <td>{{ pieza.nombre }}</td>
+                                      <td>{{ pieza.sala_nombre }}</td>
+                                      <td>{{ pieza.exposicion_nombre }}</td>
+                                      <td (click)="removePieza(pieza.id)"><i class="mdi mdi-delete"></i></td>
+                                    </tr>
+                                }
+                              </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="boton-arriba2">
+                <button class="btn btn-success btn-md" type="submit" style="border-radius: 1.5rem;">
+                    <span>EDITAR</span>
+                </button>
+            </div>
+            <div class="boton-arriba">
+                <div class="col text-right">
+                    <button type="button" class="btn btn-secondary" (click)="volver()" style="margin-right: 10px">Volver</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="listaPiezasModal" tabindex="-1" aria-labelledby="listaPiezasModal" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Listado de piezas</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <app-piezas-selector [piezaSeleccionadaInp]="piezaSeleccionada" [piezasAnadidas]="piezas" (piezaSeleccionada)="getPiezaSeleccionada($event)"></app-piezas-selector>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" [disabled]="!piezaSeleccionada" (click)="addPieza()">Añadir pieza</button>
+        </div>
+      </div>
+    </div>
+  </div>
