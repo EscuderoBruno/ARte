@@ -42,7 +42,7 @@ Este proyecto, realizado en colaboración con el **Museo de la Universidad de Al
 - **HTML5 y CSS3**: Diseño responsive adaptable a dispositivos móviles y de escritorio.
 
 ### Otras Herramientas
-- **Rasa/Dialogflow**: Chatbot interactivo para asistentes virtuales educativos.
+- **Rasa**: Chatbot interactivo para asistentes virtuales educativos.
 - **Git y GitHub**: Control de versiones y colaboración en equipo.
 - **SEO y Accesibilidad**: Estrategias para optimizar el alcance y la inclusión, incluyendo compatibilidad con pictogramas.
 
