@@ -38,7 +38,7 @@ Este proyecto, realizado en colaboración con el **Museo de la Universidad de Al
 
 ### Frontend
 - **Motor Gráfico Propio**: Motor desarrollado desde cero, capaz de renderizar piezas arqueológicas en 3D y permitir su interacción mediante rotación, ampliación y visualización detallada.
-- **JavaScript**: Implementación de una Single Page Application (SPA) para una experiencia fluida.
+- **Angular**: Desarrollo de una SPA (Single Page Application) robusta y dinámica.
 - **HTML5 y CSS3**: Diseño responsive adaptable a dispositivos móviles y de escritorio.
 
 ### Otras Herramientas
