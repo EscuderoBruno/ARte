@@ -8,10 +8,10 @@ import upload from "../middlewares/subirFichero.js";
 const router = express.Router();
 
 router.post("/", validateToken, upload.single('imagen'), checkExpoErrors, validatorExpress ,createExposicion);
-router.get("/", validateToken ,getAllExposiciones);
-router.get("/:id", validateToken, getExposicionById);
-router.get("/:exposicion_id/salas", validateToken, verSalasPorExposicionId);
-router.put("/:id", validateToken, upload.single('imagen'), checkExpoErrors, validatorExpress, updateExposicionById);
-router.delete("/:id",deleteExposicionById);
+router.get("/" ,getAllExposiciones);
+router.get("/:id", getExposicionById);
+router.get("/:exposicion_id/salas", verSalasPorExposicionId);
+router.put("/:id", upload.single('imagen'), checkExpoErrors, validatorExpress, updateExposicionById);
+router.delete("/:id",validateToken, deleteExposicionById);
 
 export default router;

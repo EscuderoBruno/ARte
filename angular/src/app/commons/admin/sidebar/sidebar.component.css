@@ -1,6 +1,19 @@
 /* Estilo para el elemento activo en el menú */
-.sidebar-nav ul .sidebar-item.selected>.sidebar-link {
-    background: #BE8A66;
-    opacity: 1;
+.sidebar-nav ul .sidebar-item.selected > .sidebar-link::before {
+    width: 6px; /* Ancho de la barra */
+    background-color: #B7835E; /* Color de la barra */
 }
+ 
+.sidebar-nav ul .sidebar-item.selected > .sidebar-link {
+    padding-left: 10px; /* Espacio entre la barra y el contenido */
+    background-color: #1F262D; /* Color de fondo del elemento seleccionado */
+    color: #CCAC98;
+}
+
+.sidebar-nav ul .sidebar-item.selected > .sidebar-link i {
+    color: #CCAC98; /* Cambia el color del icono cuando el elemento está seleccionado */
+}
+
+
+
 

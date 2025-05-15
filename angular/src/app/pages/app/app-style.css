@@ -58,6 +58,7 @@ button {
 /* Agrega estos estilos para personalizar la apariencia */
 .main-container {
   flex-direction: column;
+  max-width: 600px;
 }
 
 .piece-container {

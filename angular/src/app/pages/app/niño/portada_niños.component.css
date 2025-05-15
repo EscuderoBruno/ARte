@@ -1,0 +1,270 @@
+/* Definición de la fuente 'Kids' */
+@font-face {
+  font-family: 'Kids';
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+Khojki&display=swap')
+}
+
+.transparente {
+  animation: aparecer 1s;
+}
+
+.transparente-1 {
+  animation: aparecer-1 2s;
+}
+
+.transparente-2 {
+  animation: aparecer-2 3s;
+}
+
+.transparente-3 {
+  animation: aparecer-3 4s;
+}
+
+@keyframes aparecer {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes aparecer-1 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes aparecer-2 {
+  0% {
+    opacity: 0;
+  }
+
+  66% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes aparecer-3 {
+  0% {
+    opacity: 0;
+  }
+
+  75% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.circle {
+  color: #343a40;
+  font-weight: bold;
+  margin-right: 2px;
+  width: 40px; /* Ancho del círculo */
+  height: 40px; /* Altura del círculo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Hace que el div sea un círculo */
+  background-color: #f4f2e9; /* Color de fondo del círculo */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra */
+}
+.activo {
+  background-color: #eb5e28;
+  color: white;
+  width: 45px; /* Ancho del círculo */
+  height: 45px; /* Altura del círculo */
+}
+
+.centrar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto; /* Auto margin para centrar horizontalmente */
+}
+
+/* Estilos generales de la página */
+.main-container {
+  max-width: 600px;
+  flex-direction: column;
+  font-family: 'Kids', sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-container {
+  padding: 15px;
+  background-size: cover; 
+  background-clip: padding-box;
+  background-repeat: no-repeat;
+}
+
+/* Estilos para las piezas */
+.piece-container {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+/* Estilos generales de la imagen */
+img {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+}
+
+.chat-img {
+  margin-right: 5px;
+  color: #454545;
+}
+
+/* Estilos para los títulos */
+h2 {
+  margin-top: 50px;
+}
+
+/* Estilos para las listas */
+ul li {
+  margin: 16px 0;
+}
+
+/* Estilos para ocultar elementos */
+.hidden {
+  display: none;
+}
+
+/* Estilos para el nombre de la pieza */
+.piece-name {
+  text-align: center;
+}
+
+.titulo {
+  color: white;
+  border-bottom: 5px solid #202123;
+  margin-left: -30px;
+  margin-right: -30px;
+  background-color: #343a40;
+  padding-top: 12px;
+}
+
+/* Estilos para los párrafos */
+p {
+  text-align: left;
+  padding: 10px;
+}
+
+.paginacion {
+  padding: 15px;
+  padding-top: 6px;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: normal;
+  line-height: 22px;
+  text-transform: uppercase;
+  color: #454545;
+}
+
+/* Estilos para el contenido del chat */
+.chat-box {
+  height: calc(80vh - 71.38px - 60px - 60px);
+  padding-bottom: 10px;
+  color: white;
+}
+
+.chat-time {
+  color: white;;
+}
+
+.font-medium {
+  margin-left: 2dvh;
+}
+
+.chat-content  .box {
+  font-size: 15px;
+  text-align: center;
+  display: inline-block;
+  padding: 12px;
+  color: #252422;
+  background: white;
+  border: 1px solid #454545;
+  border-radius: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+.chat-content .box2 {
+  display: inline-block;
+  padding: 15px;
+  color: white;
+  background: #eb5e28;
+  border-radius: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra */
+  border: 1px solid #391815;
+}
+
+/* Estilos para los elementos impares del chat */
+.chat-item.odd .box {
+  background: #898178;
+  color: white;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); /* Sombra */
+}
+
+/* Estilos para el contenedor del chat */
+.chat {
+  height: calc(20vh - 88.26px - 43.6px);
+  border-top: 1px solid #3E5569;
+  padding: 10px;
+
+  textarea {
+    font-size: 15px;
+  }
+
+  margin-bottom: 20px;
+}
+
+/* Estilos para el contenedor del juego */
+.main-container {
+  background-image: url('../../../../assets/images/background/fondo_desierto.png');
+  background-size: cover; 
+  background-clip: padding-box;
+  background-repeat: no-repeat;
+  height: calc(100dvh - 71px);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.imagen_portada{
+  width: 200px;
+}
+
+@media (max-height: 850px) {
+  .chat-content  .box {
+    font-size: 13px;
+  }
+
+  .imagen_portada {
+    width: 150px;
+  }
+}
+
+
+
+
+
+

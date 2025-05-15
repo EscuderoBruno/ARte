@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Pieza } from '../pages/admin/piezas/pieza-servicio.service';
 import { IncidcadoresService } from '../indicadores/indicadores.service';
+import { Juego } from '../pages/admin/juegos/juego-servicio.service';
 
 export interface escaneoPieza {
   id: string,
@@ -12,8 +13,19 @@ export interface escaneoPieza {
   tiempo?: Number;
   motor_grafico?: Number;
   audio?: Number;
+  idioma?: string,
   pieza_id?: string;
   pieza?: Pieza;
+}
+
+export interface escaneoJuego {
+  id: string,
+  fecha?: Date;
+  tiempo?: Number;
+  finalizado?: Number;
+  total_piezas?: Number;
+  juego_id?: string;
+  juego?: Juego;
 }
 
 export interface DataEscaneoPieza {
@@ -22,9 +34,27 @@ export interface DataEscaneoPieza {
   title: string;
 }
 
-export interface escaneoJuego {
-  nombre: string;
-  color: string;
+export interface DataEscaneoJuego {
+  values: number[];
+  names: string[];
+  title: string;
+}
+
+export interface Usuario {
+  id: string,
+  adulto?: Number;
+  niño?: Number;
+  ultima_sesion?: Date;
+}
+
+export interface DataUsuarios {
+  values: number[];
+  names: string[];
+}
+
+export interface UsoIdiomas {
+  values: number[];
+  names: string[];
 }
 
 @Injectable({
@@ -39,6 +69,8 @@ export class escaneoService {
   ) {}
 
   apiUrlPieza = environment.apiURL + '/indicadores/escaneoPieza';
+  apiUrlJuego = environment.apiURL + '/indicadores/escaneoJuego';
+  apiUrlUsuario = environment.apiURL + '/usuario';
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -47,6 +79,14 @@ export class escaneoService {
   });
 
   options = { headers: this.headers };
+
+  // ---------------------------------- Escaneos Pieza ---------------------------------------------- //
+
+  getAllEscaneosPiezas(): Observable<escaneoPieza[]> {
+    return this.http.get<any[]>(this.apiUrlPieza, { 
+      headers: this.headers // Agregar this.options como parte de los headers
+    });
+  }
 
   getAllEscaneosPieza(pieza_id: string): Observable<escaneoPieza[]> {
     return this.http.get<any[]>(this.apiUrlPieza, { 
@@ -90,4 +130,96 @@ export class escaneoService {
   editarEscaneosPieza(id: string, element: Omit<escaneoPieza, 'id'>): Observable<escaneoPieza> {
     return this.http.put<any>(`${this.apiUrlPieza}/${id}`, element, this.options);
   }
+
+  getUsoIdiomas(): Observable<UsoIdiomas> {
+    return this.http.get<any>(`${this.apiUrlPieza}/idiomas`, { 
+      headers: this.headers // Agregar this.options como parte de los headers
+    });
+  }
+
+  // ---------------------------------- Escaneos Juego ---------------------------------------------- //
+
+  getAllEscaneosJuegos(): Observable<escaneoJuego[]> {
+    return this.http.get<any[]>(this.apiUrlJuego, { 
+      headers: this.headers // Agregar this.options como parte de los headers
+    });
+  }
+
+  getAllEscaneosJuego(juego_id: string): Observable<escaneoJuego[]> {
+    return this.http.get<any[]>(this.apiUrlJuego, { 
+      params: { juego_id: juego_id },
+      headers: this.headers // Agregar this.options como parte de los headers
+    });
+  }
+
+  getFiltroEscaneosJuego(year: string): Observable<DataEscaneoJuego>;
+  getFiltroEscaneosJuego(year: string, month: string): Observable<DataEscaneoJuego>;
+  getFiltroEscaneosJuego(year: string, month: string, week: string): Observable<DataEscaneoJuego>;
+  getFiltroEscaneosJuego(year: string, month: string, week: string, day: string): Observable<DataEscaneoJuego>;
+  
+  getFiltroEscaneosJuego(year: string, month?: string, week?: string, day?: string): Observable<DataEscaneoJuego> {
+    let params = new HttpParams().set('year', year.toString());
+
+    if (month !== undefined) {
+      params = params.set('month', month.toString());
+    }
+
+    if (week !== undefined) {
+      params = params.set('week', week.toString());
+    }
+
+    if (day !== undefined) {
+      params = params.set('day', day.toString());
+    }
+
+    console.log('URL:', `${this.apiUrlJuego}/filtro?${params.toString()}`);
+
+    return this.http.get<DataEscaneoJuego>(`${this.apiUrlJuego}/filtro`, { 
+      params: params,
+      headers: this.headers
+    });
+  }
+
+  createNewEscaneosJuego(element: Omit<escaneoJuego, 'id'>): Observable<escaneoJuego> {
+    return this.http.post<any>(this.apiUrlJuego, element, this.options);
+  }
+
+  editarEscaneosJuego(id: string, element: Omit<escaneoJuego, 'id'>): Observable<escaneoJuego> {
+    return this.http.put<any>(`${this.apiUrlJuego}/${id}`, element, this.options);
+  }
+
+  // ---------------------------------- Obtener Usuarios ---------------------------------------------- //
+
+  getAllUsuarios(): Observable<Usuario[]> {
+    return this.http.get<any[]>(this.apiUrlUsuario, { 
+      headers: this.headers // Agregar this.options como parte de los headers
+    });
+  }
+
+  getIndicadorUsuarios(): Observable<DataUsuarios> {
+    return this.http.get<any>(`${this.apiUrlUsuario}/indicadores`, { 
+      headers: this.headers // Agregar this.options como parte de los headers
+    });
+  }
+
+  createNewUsuarioAdulto(): Observable<any> {
+    const usuarioData = { adulto: 1, niño: 0 };
+    return this.http.post<any>(this.apiUrlUsuario, usuarioData);
+  }
+
+  createNewUsuarioNino(): Observable<any> {
+    const usuarioData = { niño: 1, adulto: 0 };
+    return this.http.post<any>(this.apiUrlUsuario, usuarioData);
+  }
+
+  addNino(id: string): Observable<any> {
+    const usuarioData = { niño: 1};
+    return this.http.put<any>(`${this.apiUrlUsuario}/${id}`, usuarioData, this.options);
+  }
+
+  addAdulto(id: string): Observable<any> {
+    const usuarioData = { adulto: 1};
+    return this.http.put<any>(`${this.apiUrlUsuario}/${id}`, usuarioData, this.options);
+  }
+
 }

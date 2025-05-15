@@ -75,7 +75,8 @@ export class CrearJuegoComponent {
       estado_id: this.crearJuego.value.estado || '',
       exposicion_id: this.crearJuego.value.exposicion || '',
       fecha: new Date(this.crearJuego.value.fecha || ''),
-      piezas: this.piezas
+      piezas: this.piezas,
+      Pregunta: [] 
     }
     if(this.crearJuego.value.descripcion){
       juegoNuevo.descripcion = this.crearJuego.value.descripcion

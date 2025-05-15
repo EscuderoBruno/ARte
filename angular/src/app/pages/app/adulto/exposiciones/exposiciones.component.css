@@ -1,0 +1,88 @@
+.main-container {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url('../../../../../assets/images/background/patron_fondo2.png');
+    background-size: cover; 
+    background-clip: padding-box;
+    background-repeat: no-repeat;
+    font-family: lato, sans-serif;
+    min-height: calc(100dvh - 71.38px);
+}
+
+
+.card {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); /* Sombra */
+}
+
+.cabecera {
+    background-color: #ede9e1;
+    color: #454545;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); /* Desplazamiento vertical de 2px, sin desplazamiento horizontal */
+}
+
+.cabecera2 {
+    padding: 10px;
+    padding-bottom: 0px;
+    color: #454545;
+}
+
+.row.justify-content-center {
+    display: flex;
+    justify-content: center;
+}
+
+.menu-opcion {
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 3px solid transparent; /* Línea inferior transparente */
+}
+
+.menu-opcion.selected {
+    border-bottom-color: #1F262D; /* Cambia el color de la línea inferior cuando la pestaña está seleccionada */
+}
+
+.content-container {
+    /*padding: 10px;*/
+}
+
+.center-horizontal {
+    justify-content: center;
+}
+
+.paginacion {
+    padding: 4px;
+    padding-left: 16px;
+    padding-bottom: 0px;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: normal;
+    line-height: 22px;
+    text-transform: uppercase;
+}
+
+p {
+    margin: 0px;
+    padding: 10px;
+}
+
+a {
+    color: grey;
+    text-decoration: none;
+}
+
+.imagen-pieza {
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.text-muted {
+    font-size: 15px;
+}
+
+.nombre-pieza {
+    font-size: 18px;
+}
+

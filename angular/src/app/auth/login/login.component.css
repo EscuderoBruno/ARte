@@ -1,0 +1,43 @@
+.card {
+    background-color: #1F262D;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.8); /* Desplazamiento vertical de 2px, sin desplazamiento horizontal */
+    margin: 0 auto; /* Esto centrará horizontalmente la tarjeta */
+}
+
+.container {
+    width: 900px;
+}
+
+.btn-custom {
+    background-color: #a77552;
+    color: white; /* Para asegurar que el texto sea legible */
+    /* Otros estilos opcionales */
+    border: none;
+    /* Agrega estilos adicionales según sea necesario */
+}
+
+#google-signin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Ajusta según sea necesario */
+}
+
+.g_id_signin {
+    margin: 0 auto; /* Esto centra horizontalmente el elemento */
+}
+
+/* Media query para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+    .card-body {
+        padding-bottom: 0 !important;
+        padding-top: 0 !important;
+    }
+    .col-md-5 {
+        border-right: none !important;
+    }
+}
+

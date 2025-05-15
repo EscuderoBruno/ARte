@@ -1,0 +1,90 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="main-container">   
+    <nav class="navbar navbar-expand-lg">      
+        <div class="navbar-collapse justify-content-center">
+            <div class="d-flex align-items-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" style="padding-top: 6px;" href="../"><img src="../../assets/images/logos/logo_arte.png" width="40px" alt="logo" /></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../conocenos">Conócenos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>   
+    <div class="contenedor justify-content-center d-flex align-items-center">
+        <div class="container pt-5 pb-5">
+            <div class="row justify-content-center">
+                <div class="descripcion">
+                    <h2 class="titulo pb-1">Contacto</h2>
+                    <p>En ARte, nos apasiona la interacción con nuestros visitantes y queremos asegurarnos de proporcionarte toda la información que puedas necesitar. No solo estamos aquí para responder a tus preguntas y comentarios, sino que también nos encantaría explorar posibles oportunidades de colaboración.</p>
+                    <p>Si prefieres enviarnos un mensaje directo, utiliza nuestro formulario de contacto a continuación.</p>
+                </div>
+                <div class="formulario col-md-11 pt-3">
+                    <!-- Card que envuelve ambas secciones -->
+                    <div class="card">
+                        <div class="row align-items-center">
+                            <!-- Sección izquierda con la imagen y la descripción -->
+                            <div class="col-md-5 p-md-4 p-sm-0" style="border-right: 1px solid #787e83;">
+                                <div class="card-body">        
+                                    <div class="text-center">
+                                        <div class="pb-3 pt-3" style="font-size: 25px; color: #F2EFE8"><span>Formulario de contacto</span></div>
+                                        <p class="text-muted" style="font-size: 16px;">Gracias por considerar ARte. Estaremos encantados de conectarnos contigo y esperamos brindarle la información que necesitas.</p>
+                                        <a href="https://www.instagram.com/arte_abp_ua" target="_blank"><i class="fab fa-instagram pr-4"></i></a>
+                                        <a href="https://www.tiktok.com/@arte_abp" target="_blank"><i class="fab fa-tiktok"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Sección derecha con el formulario de inicio de sesión -->
+                            <div class="col-md-7 col-sm-12 p-md-4 p-sm-0">
+                                <div class="card-body">
+                                    <form (submit)="contacto($event)">
+                                        <div class="text-muted pb-3" style="font-size: 25px;"><span> </span></div>
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" placeholder="Nombre">
+                                        </div>
+                                        <div class="mb-3">
+                                            <input type="password" class="form-control" placeholder="Email">
+                                        </div>
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" placeholder="Asunto">
+                                        </div>
+                                        <div class="mb-3">
+                                            <textarea class="form-control" placeholder="Mensaje"></textarea>
+                                        </div>
+                                        <div class="text-center">
+                                            <button class="btn btn-block p-2 btn-custom" type="submit">ENVIAR</button>
+                                        </div>
+                                        <br>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer text-center">
+    <div class="footer-content">
+        &copy; ARte. Diseñado y desarrollado por el grupo 
+        <a href="https://arte.ovh/withu" class="mr-2">WithU</a> |
+        <a href="politica-de-privacidad" class="ml-2">Política de Privacidad y Cookies</a>
+    </div>
+    <div class="redes-sociales">
+        <a href="https://www.instagram.com/arte_abp_ua" target="_blank"><i class="fab fa-instagram pr-4"></i></a>
+        <a href="https://www.tiktok.com/@arte_abp" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
+</footer>

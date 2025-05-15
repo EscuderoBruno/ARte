@@ -14,13 +14,13 @@
                 <b class="logo-icon p-l-10">
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <img src="../../assets/images/logos/logo_arte_header.png" width="35px" alt="homepage" class="light-logo" style="padding-top: 15px;"/>     
+                    <img src="../../assets/images/logos/logo_arte_header.png" width="36px" alt="homepage" class="light-logo" style="padding-top: 15px;"/>     
                 </b>
                 <!--End Logo icon -->
                 <!-- Logo text -->
                 <span class="logo-text">
                     <!-- dark Logo text -->
-                    <img src="../../assets/images/logos/logo_arte_rte.png" width="60px" alt="homepage" class="light-logo" style="padding-top: 15px;" />       
+                    <img src="../../assets/images/logos/logo_arte_rte.png" width="62px" alt="homepage" class="light-logo" style="padding-top: 15px;" />       
                 </span>
                 <span class="logo-text">
                     <!-- dark Logo text -->
@@ -67,6 +67,12 @@
                         <a class="dropdown-item" routerLink="/administrador/juegos/crear">Juego</a>
                     </div>
                 </li>
+                <div class="nav-item dropdown">
+                    <div class="d-flex align-items-center nav-link">
+                        <a class="text-muted" (click)="goToMuseo()" style="text-decoration: underline; font-size: 15px;"><i class="mdi mdi-link pr-2"></i>Ir al museo</a>
+                    </div>
+                                     
+                </div>   
             </ul>
             <!-- ============================================================== -->
             <!-- Right side toggle and nav items -->
@@ -80,20 +86,20 @@
                         </span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding-top: 8px; margin-right: 50px;">
-                        <a class="dropdown-item" (click)="changeLanguage('flag_1.jpg')" style="font-size: 13px;">&nbsp;CASTELLANO</a>
-                        <a class="dropdown-item" (click)="changeLanguage('flag_2.jpg')" style="font-size: 13px;">&nbsp;VALENCIÀ</a>
-                        <a class="dropdown-item" (click)="changeLanguage('flag_3.jpg')" style="font-size: 13px;">&nbsp;ENGLISH</a>
+                        <a class="dropdown-item" (click)="changeLanguage('es')" style="font-size: 13px;">&nbsp;CASTELLANO</a>
+                        <a class="dropdown-item" (click)="changeLanguage('val')" style="font-size: 13px;">&nbsp;VALENCIÀ</a>
+                        <a class="dropdown-item" (click)="changeLanguage('en')" style="font-size: 13px;">&nbsp;ENGLISH</a>
                     </div>
                 </li>
             </ul>
             <div class="nav-item dropdown" style="padding-right: 30px; margin-top: -2px; font-size: 12px;">
                 <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="nav-item dropdown" style="font-size: 14px; color: white;">{{ user }}</span>
+                    <span class="nav-item dropdown" style="font-size: 15px; color: white;">{{ user }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right user-dd animated user-dropdown" style="margin-top: 16px;">
                     <a routerLink="/administrador/perfil" class="dropdown-item" href="javascript:void(0)">Mi perfil</a>
-                    <a class="dropdown-item" href="javascript:void(0)">Ajustes</a>
-                    <a class="dropdown-item" href="javascript:void(0)">Ayuda</a>
+                    <!-- <a class="dropdown-item" href="javascript:void(0)">Ajustes</a> -->
+                    <!-- <a class="dropdown-item" href="javascript:void(0)">Ayuda</a> -->
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" style="font-size: 14px;" href="javascript:void(0)" (click)="signOut()">Cerrar sesión</a>
                 </div>

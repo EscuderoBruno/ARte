@@ -1,12 +1,18 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { BreadcrumbService } from '../../../../commons/admin/breadcrumb/breadcrumb.service'
+import { BreadcrumbService } from '../../../../commons/admin/breadcrumb/breadcrumb.service';
 
-import { Pagination, PieceService, Pieza, PiezaLista } from '../pieza-servicio.service';
+import {
+  Pagination,
+  PieceService,
+  Pieza,
+  PiezaLista,
+} from '../pieza-servicio.service';
 import { DateService } from '../../../../services/date.service';
 import { Sala, SalaService } from '../../salas/sala-servicio.service';
 import { InformacionService } from '../../../../services/informacion.service';
+import { AlertService } from '../../../../services/alert.service';
 import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Idioma, IdiomaService } from '../../../../services/idioma.service';
 import { environment } from '../../../../../environments/environment';
@@ -41,6 +47,8 @@ export class PiezasComponent implements OnInit {
   idToDelete: string = '';
 
   baseAPI = environment.apiURL;
+  showAlert = false;
+  showAlert2 = false;
 
   constructor(
     private pieceService: PieceService,
@@ -48,13 +56,14 @@ export class PiezasComponent implements OnInit {
     private dateService: DateService,
     private breadcrumbService: BreadcrumbService,
     private router: Router,
-    private idiomaService: IdiomaService
+    private idiomaService: IdiomaService,
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
     this.idiomaService.getAll().subscribe((idiomasDisponibles) => {
       this.idiomas = idiomasDisponibles;
-      this.filtros.idioma.setValue(idiomasDisponibles[0].id);
+      this.filtros.idioma.setValue(idiomasDisponibles[1].id);
 
       // Obtener todas las piezas
       this.pieceService
@@ -71,12 +80,22 @@ export class PiezasComponent implements OnInit {
       this.salas = data;
     });
 
+    this.showAlert = this.alertService.getAlertPiezas();
+
+    setTimeout(() => {
+      this.alertService.showAlertPiezas(false);
+      this.showAlert = this.alertService.getAlertPiezas();
+    }, 3000);
+
     // Actualizar el título de la página dinámicamente
     this.breadcrumbService.updateBreadcrumb('Piezas', ['Inicio', 'Piezas']);
   }
 
   goToViewPie(piezaId: string) {
-    this.router.navigate(['../pieza', piezaId]);
+    const url = this.router
+      .createUrlTree(['../pieza', piezaId, this.filtros.idioma.value])
+      .toString();
+    window.open(url, '_blank');
   }
 
   goToEditPie(piezaId: string) {
@@ -94,6 +113,14 @@ export class PiezasComponent implements OnInit {
         (exp) => exp.id === this.idToDelete
       );
       this.pieces.splice(indexToDelete, 1);
+      // Mensaje borrado
+      this.alertService.showAlertPiezas(true);
+      this.showAlert2 = this.alertService.getAlertPiezas();
+      setTimeout(() => {
+        console.log("Borrado");
+        this.alertService.showAlertPiezas(false);
+        this.showAlert2 = this.alertService.getAlertPiezas();
+      }, 3000);
     });
   }
 
@@ -113,12 +140,16 @@ export class PiezasComponent implements OnInit {
   }
 
   goToPag(pag: number) {
+    if (pag > this.paginacion.totalPag) return;
     this.filtros.pagina = pag;
     this.filtrarPiezas();
   }
 
   irAlEnlace() {
-    this.router.navigate(['/pieza/' + this.idToDelete]);
+    const url = this.router
+      .createUrlTree(['../pieza', this.idToDelete, this.filtros.idioma.value])
+      .toString();
+    window.open(url, '_blank');
   }
 
   generarCodigoQR(url: string) {
@@ -136,19 +167,19 @@ export class PiezasComponent implements OnInit {
 
   convertBase64ToBlob(Base64Image: string) {
     // split into two parts
-    const parts = Base64Image.split(";base64,")
+    const parts = Base64Image.split(';base64,');
     // hold the content type
-    const imageType = parts[0].split(":")[1]
+    const imageType = parts[0].split(':')[1];
     // decode base64 string
-    const decodedData = window.atob(parts[1])
+    const decodedData = window.atob(parts[1]);
     // create unit8array of size same as row data length
-    const uInt8Array = new Uint8Array(decodedData.length)
+    const uInt8Array = new Uint8Array(decodedData.length);
     // insert all character code into uint8array
     for (let i = 0; i < decodedData.length; ++i) {
-      uInt8Array[i] = decodedData.charCodeAt(i)
+      uInt8Array[i] = decodedData.charCodeAt(i);
     }
     // return blob image after conversion
-    return new Blob([uInt8Array], { type: imageType })
+    return new Blob([uInt8Array], { type: imageType });
   }
 
   descargarQr() {
@@ -168,5 +199,9 @@ export class PiezasComponent implements OnInit {
       link.download = 'qr-pieza-' + this.idToDelete;
       link.click();
     }
+  }
+
+  closeAlert(): void {
+    this.showAlert = false;
   }
 }

@@ -49,7 +49,7 @@ export class BarChartComponent implements OnInit, OnChanges {
       title: {
         text: this.barChartTitle,
         textStyle: {
-          fontSize: 12,
+          fontSize: 13,
         },
         left: 'center', // Centrar el título horizontalmente
         top: '15px'
@@ -73,7 +73,7 @@ export class BarChartComponent implements OnInit, OnChanges {
           data: this.barChartDataValues,
           type: 'bar',
           itemStyle: {
-            color: '#8B412B',
+            color: '#9C6644',
             shadowColor: 'rgba(0, 0, 0, 0.5)',
             shadowBlur: 4
           },

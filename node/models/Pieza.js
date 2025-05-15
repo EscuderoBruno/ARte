@@ -19,6 +19,10 @@ const Pieza = sequelize.define('Pieza', {
     type: DataTypes.STRING,
     allowNull: true
   },
+  textura: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
   sala_id: {
     type: DataTypes.STRING,
     allowNull: false,

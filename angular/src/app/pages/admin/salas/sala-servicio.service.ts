@@ -12,7 +12,8 @@ export interface Sala {
   estado_id?: string,
   exposicion_id?: string,
   exposicion_nombre?: string,
-  exposicion?: Exposicion
+  exposicion?: Exposicion,
+  totalEscaneos?: number;
 }
 
 @Injectable({

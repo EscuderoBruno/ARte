@@ -1,0 +1,35 @@
+<div class="main-container" style="background-image: url('../../../../../assets/images/background/patron_fondo2.png');">
+    <div class="content-container">
+            <div class="cabecera">
+                <div class="paginacion" (click)="exposicion && goToExposicion(exposicion.id)">
+                    <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        <i class="mdi mdi-arrow-left" style="margin-right: 5px; padding-top: 8px;"></i>
+                        {{ exposicion?.nombre }}
+                    </p>                      
+                </div>
+            </div>
+            <div class="cabecera2">
+                <div class="paginacion">
+                    <span>{{ sala?.nombre }}<span class="text-muted" style="font-size: 12px; padding-left: 5px;"> <i class="mdi mdi-menu-right"></i> {{ listadoTitulo }}</span></span>
+                </div>
+                <div style="padding-left: 15px; padding-top: 5px;">
+                    <span class="text-muted" [hidden]="!ocultarDescripcion">{{ sala?.descripcion }}</span>
+                </div>
+            </div>
+        
+        <div style="padding: 10px;">
+            <table id="zero_config" class="table w-100">
+                <tbody>
+                    <tr *ngFor="let piece of pieces">
+                        <div class="card pl-4 m-2" style="display: flex; flex-direction: row; align-items: center;" (click)="goToPiece(piece.id)">
+                            <div class="info align-middle" style="width: 100px;">
+                                <img [src]=" piece.imagen ? baseAPI + '/uploads/' + piece.imagen : '../../../../../assets/images/piezas/pieza-ejemplo.jpg'" alt="Image" style="width: 70px; height: 70px; object-fit: cover; aspect-ratio: 1 / 1;" />
+                            </div>
+                            <div class="info nombre-pieza align-middle">{{ piece.nombre }}</div>
+                        </div>        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

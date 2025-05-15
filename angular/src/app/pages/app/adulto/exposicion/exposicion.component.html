@@ -1,0 +1,32 @@
+<div class="main-container" style="background-image: url('../../../../../assets/images/background/patron_fondo2.png');">
+    <div class="content-container">
+        <div class="cabecera">
+            <div class="card-body paginacion" (click)="goToExposiciones()">
+                <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    <i class="mdi mdi-arrow-left" style="margin-right: 5px; padding-top: 8px;"></i>
+                    {{titulo}}
+                </p>                      
+            </div>
+        </div>
+        <div class="cabecera2">
+            <div class="card-body paginacion">
+                <span>{{ exposicion?.nombre }} <span class="text-muted" style="font-size: 12px;"> <i class="mdi mdi-menu-right">{{ listadoTitulo }}</i></span></span>
+            </div>
+            <div style="padding-left: 15px;">
+                <span class="text-muted" [hidden]="!ocultarDescripcion">{{ exposicion?.descripcion }}</span>
+            </div>
+        </div>
+        
+        <div style="padding: 10px;">
+            <table id="zero_config" class="table w-100">
+                <tbody>
+                    <tr *ngFor="let sala of salas">
+                        <div class="card pl-4 m-2" style="display: flex; flex-direction: row; align-items: center; height: 70px;" (click)="goToSala(sala.id)">
+                            <div class="info nombre-pieza align-middle">{{ sala.nombre }}</div>
+                        </div>        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

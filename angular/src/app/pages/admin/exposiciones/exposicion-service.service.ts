@@ -15,6 +15,7 @@ export interface Exposicion {
   fecha_inicio: Date,
   fecha_fin?: Date,
   imagen?: string,
+  totalEscaneos?: number;
 }
 
 @Injectable({

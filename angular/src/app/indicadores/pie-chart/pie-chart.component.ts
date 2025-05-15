@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import * as echarts from 'echarts';
 
 type EChartsOption = echarts.EChartsOption;
@@ -9,12 +9,25 @@ type EChartsOption = echarts.EChartsOption;
   styleUrls: ['./pie-chart.component.css']
 })
 export class PieChartComponent implements OnInit {
+  @Input() pieChartDataValues: any[] = []; // Datos de ejemplo para las barras
+  @Input() pieChartDataNames: any[] = []; // Nombres de los datos para las barras
 
   ngOnInit(): void {
     this.generarPieChart();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['pieChartDataValues'] && changes['pieChartDataValues'].currentValue ||
+        changes['pieChartDataNames'] && changes['pieChartDataNames'].currentValue) {
+      this.generarPieChart();
+    }
+  }  
+
   generarPieChart() {
+    if (!this.pieChartDataValues || !this.pieChartDataNames || this.pieChartDataValues.length === 0 || this.pieChartDataNames.length === 0) {
+      return;
+    }
+
     var dom = document.getElementById('pie-chart-container');
     var myChart = echarts.init(dom, null, {
       renderer: 'canvas',
@@ -22,61 +35,41 @@ export class PieChartComponent implements OnInit {
     });
   
     var option: EChartsOption;
+
+    // Definir una matriz de colores
+    var colors = ['#9C6644', '#DDB892', '#BE8A66', '#e9d2c0'];
     
     option = {
-      title: {
-        left: 'center',
-        top: '3%',
-        textStyle: {
-          fontWeight: 'bold',
-          fontSize: 16,
-        }
-      },
       tooltip: {
-        trigger: 'item',
-        formatter: '{a} <br/>{b}: {c} ({d}%)' // Aquí se muestra el porcentaje
+        trigger: 'item'
       },
       legend: {
-        top: '5%',
-        left: 'center'
-      },
-      grid: {
-        left: '10%',   // Ajusta los márgenes izquierdo y derecho
-        right: '10%',
-        top: '10%',    // Ajusta los márgenes superior e inferior
-        bottom: '10%',
-        containLabel: true
+        orient: 'vertical',
+        left: 'right'
       },
       series: [
         {
           name: 'Total',
           type: 'pie',
-          radius: ['40%', '70%'],
-          avoidLabelOverlap: false,
-          padAngle: 5,
-          itemStyle: {
-            borderRadius: 10,
-          },
+          radius: '80%',
           label: {
             show: false,
             formatter: '{d}%', // Muestra el porcentaje en las etiquetas
             position: 'outside', // Coloca las etiquetas fuera del pie chart
             fontSize: 14
           },
+          data: this.pieChartDataValues.map((value, index) => ({
+            value,
+            name: this.pieChartDataNames[index],
+            itemStyle: { color: colors[index % colors.length], shadowColor: 'rgba(0, 0, 0, 0.5)', shadowBlur: 4 }
+          })),
           emphasis: {
-            label: {
-              show: false,
-              fontSize: 14,
-              fontWeight: 'bold'
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
             }
-          },
-          labelLine: {
-            show: true
-          },
-          data: [
-            { value: 1230, name: 'Adultos', itemStyle: { color: '#E45E2D', shadowColor: 'rgba(0, 0, 0, 0.5)', shadowBlur: 4 } }, // Cambio de color para adultos
-            { value: 672, name: 'Niños', itemStyle: { color: '#FBDB68', shadowColor: 'rgba(0, 0, 0, 0.5)', shadowBlur: 4 } },    // Cambio de color para niños
-          ]
+          }
         }
       ]
     };

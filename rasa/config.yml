@@ -46,6 +46,8 @@ policies:
 # # If you'd like to customize them, uncomment and adjust the policies.
 # # See https://rasa.com/docs/rasa/policies for more information.
    - name: MemoizationPolicy
+     max_history: 5
+     augmentation_factor: 50
    - name: RulePolicy
    - name: UnexpecTEDIntentPolicy
      max_history: 5

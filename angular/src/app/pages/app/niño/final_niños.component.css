@@ -1,0 +1,62 @@
+/* Definición de la fuente 'Kids' */
+@font-face {
+  font-family: 'Kids';
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+Khojki&display=swap')
+}
+
+.fondo {
+  height: calc(100dvh - 71px);
+  width: 100dvw;
+  max-width: 600px;
+  background-image: url('../../../../assets/images/background/fondo_desierto.png') !important;
+  background-size: cover; 
+  background-clip: padding-box;
+  background-repeat: no-repeat;
+  margin: 0 auto; /* Establecer márgenes automáticos para centrarlo horizontalmente */
+
+  & picture {
+
+    & #img {
+      width: 250px;
+      height: 250px;
+    }
+  }
+}
+
+.time {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.btn-volver {
+  background-color: rgb(228, 186, 158);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.puntuacion-div {
+  position: relative;
+  display: inline-block; /* Esto es para que el div solo ocupe el espacio necesario */
+  width: 260px !important;
+  height: 260px !important;
+}
+
+.puntos {
+  position: absolute;
+  bottom: 15px; /* Ajusta según sea necesario */
+  left: 48px; /* Ajusta según sea necesario */
+  font-size: 36px;
+  color: black;
+  font-weight: 600;
+  margin: 0; /* Elimina cualquier margen para un mejor alineamiento */
+}
+
+.card {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.card-body {
+  max-width: 450px;
+  width: 85dvw;
+  margin: 0 auto; /* Establece los márgenes automáticos para centrar horizontalmente */
+  text-align: center; /* Opcional: si deseas centrar el texto dentro de .card-body */
+}

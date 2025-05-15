@@ -7,9 +7,12 @@ export const createTexto = async (req, res) => {
     try {
         const { nombre, texto_completo, texto_facil, pieza_id, idioma_id } = req.body;
 
+        // Verificar si nombre es undefined o null, y asignarle un valor predeterminado en caso afirmativo
+        const nombreValor = nombre !== undefined && nombre !== null ? nombre : '';
+
         const info = {
             id: req.id || uuidv4(),
-            nombre,
+            nombre: nombreValor,
             texto_completo,
             texto_facil,
             pieza_id,

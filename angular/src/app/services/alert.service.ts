@@ -9,6 +9,7 @@ export class AlertService {
 
     visibleSala: boolean = false;
     visibleExposicion: boolean = false;
+    visiblePieza: boolean = false;
 
 
     showAlertSalas(b: boolean) {
@@ -25,6 +26,14 @@ export class AlertService {
 
     getAlertExposiciones(): boolean {
         return this.visibleExposicion;
+    }
+
+    showAlertPiezas(b: boolean) {
+        this.visiblePieza = b;
+    }
+
+    getAlertPiezas(): boolean {
+        return this.visiblePieza;
     }
     
 }

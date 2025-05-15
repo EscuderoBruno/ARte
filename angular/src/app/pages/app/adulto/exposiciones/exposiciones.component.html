@@ -1,0 +1,49 @@
+<div class="main-container" style="background-image: url('../../../../../assets/images/background/patron_fondo2.png');">
+    <div class="content-container">
+        <div class="cabecera">
+            <div class="card-body paginacion">
+                <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    {{titulo}}
+                </p>                      
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="menu-opcion" [class.selected]="pestanaSeleccionada === 1" (click)="pestanaSeleccionada = 1">{{activas}}</div>
+                </div>
+                <div class="col-6">
+                    <div class="menu-opcion" [class.selected]="pestanaSeleccionada === 2" (click)="pestanaSeleccionada = 2">{{pasadas}}</div>
+                </div>
+            </div>    
+        </div>    
+        
+        <div *ngIf="pestanaSeleccionada === 1" style="padding: 10px; padding-top: 20px;">
+            <table id="zero_config" class="table w-100">
+                <tbody>
+                    <tr *ngFor="let exposicion of exposicionesActivas">
+                        <div class="card pl-4 m-2" style="display: flex; flex-direction: row; align-items: center; height: 90px;" (click)="goToExposicion(exposicion.id)">
+                            <div class="info align-middle" style="width: 120px;">
+                                <img [src]=" exposicion.imagen ? baseAPI + '/uploads/' + exposicion.imagen : '../../../../../assets/images/exposiciones/alcudia.jpg'" alt="Image" style="width: 90px; height: 90px; object-fit: cover; aspect-ratio: 1 / 1;" />
+                            </div>
+                            <div class="info nombre-pieza align-middle">{{ exposicion.nombre }}</div>
+                        </div>        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="pestanaSeleccionada === 2" style="padding: 10px; padding-top: 20px;">
+            <table id="zero_config" class="table w-100">
+                <tbody>
+                    <tr *ngFor="let exposicion of exposicionesPasadas">
+                        <div class="card pl-4 m-2" style="display: flex; flex-direction: row; align-items: center; height: 90px;" (click)="goToExposicion(exposicion.id)">
+                            <div class="info align-middle" style="width: 120px;">
+                                <img [src]=" exposicion.imagen ? baseAPI + '/uploads/' + exposicion.imagen : '../../../../../assets/images/exposiciones/alcudia.jpg'" alt="Image" style="width: 90px; height: 90px; object-fit: cover; aspect-ratio: 1 / 1;" />
+                            </div>
+                            <div class="info nombre-pieza align-middle">{{ exposicion.nombre }}</div>
+                        </div>        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -121,8 +121,9 @@ export const deleteExposicionById = async (req, res) => {
     }
 
     await exposicion.destroy();
-
-    fs.unlinkSync(path.join('./uploads/', exposicion.imagen))
+    if (exposicion.imagen != null) {
+      fs.unlinkSync(path.join('./uploads/', exposicion.imagen));
+    }
 
     res.status(204).send();
   } catch (error) {

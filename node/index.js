@@ -11,6 +11,7 @@ import testRoute from './routes/test.route.js';
 import idiomaRoute from './routes/idioma.route.js';
 import estadosRoute from './routes/estado.route.js';
 import indicadoresRoute from './routes/indicadores.route.js';
+import usuarioRoute from './routes/usuario.route.js';
 
 import './database/init.js';
 
@@ -33,6 +34,7 @@ app.use("/api/idioma", idiomaRoute);
 app.use("/api/test", testRoute);
 app.use("/api/estados", estadosRoute);
 app.use("/api/indicadores", indicadoresRoute);
+app.use("/api/usuario", usuarioRoute);
 
 app.get('/api/', (req, res) => {
   res.send('¡Esta es la API del servidor de ARte! 🔙🔚👌');

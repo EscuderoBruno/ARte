@@ -10,6 +10,7 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { BreadcrumbComponent } from '../../commons/admin/breadcrumb/breadcrumb.component';
 import { FooterComponent } from '../../commons/admin/footer/footer.component';
 import { PieChartComponent } from '../../indicadores/pie-chart/pie-chart.component';
+import { PieChartComponent2 } from '../../indicadores/pie-chart2/pie-chart2.component';
 import { BarChartComponent } from '../../indicadores/bar-chart/bar-chart.component';
 import { IndicadoresComponent } from './indicadores/indicadores.component';
 import { LineChartComponent } from '../../indicadores/line-chart/line-chart.component';
@@ -26,6 +27,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     BreadcrumbComponent,
     FooterComponent,
     PieChartComponent,
+    PieChartComponent2,
     BarChartComponent,
     LineChartComponent
   ],

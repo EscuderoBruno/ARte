@@ -5,16 +5,59 @@
 
 <!-- REAL -->
 
-<div class="main-container">
-    <div class="content-container">
+<!-- Modal -->
+<div class="modal fade" id="modalVerPictograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Pictograma</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModalQR">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img [src]="pictograma" alt="Pictograma de la pieza" style="max-width: 320px;">
+            </div>            
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalVerTexto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Información</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModalQR">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="titulo-pieza text-center">
+                    <h3 class="titulo-pagina" style="color: #3A3A3A">{{ infoPieza?.nombre }} </h3>
+                </div>
+                <div class="contenedor-descripcion">
+                    <p>{{ infoPieza?.texto_completo }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main-container" *ngIf="borrador">
+    <div class="cabecera">
         <div class="row">
             <div class="col-9">
-                <div class="card-body paginacion" style="margin-bottom: -20px;">
-                    <p><i class="mdi mdi-arrow-left" style="margin-right: 5px; padding-top: 8px;"></i>Sala romana</p>
+                <div class="card-body paginacion" (click)="sala && goToSala(sala.id)">
+                    <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        <i class="mdi mdi-arrow-left" style="margin-right: 5px; padding-top: 8px;"></i>
+                        {{ sala?.nombre }}
+                    </p>                      
                 </div>
             </div>
             <div class="col-3 ml-auto d-flex">
-                <div class="card-body paginacion p-0" style=" margin-bottom: -20px;">
+                <div class="card-body paginacion p-0" style=" margin-bottom: -24px;">
                     <div>
                         <button class="btn-pag mb-4"><i class="fas fa-angle-left"></i></button>
                         <button class="btn-pag mb-4"><i class="fas fa-angle-right"></i></button>
@@ -22,150 +65,92 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="content-container">
+        <p class="p-4">Pieza en edicion. Disponible próximamente.</p>
+    </div>
+</div>
+
+<div class="main-container" *ngIf="publico">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-10">
+                <div class="card-body paginacion" (click)="sala && goToSala(sala.id)">
+                    <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        <i class="mdi mdi-arrow-left" style="margin-right: 5px; padding-top: 8px;"></i>
+                        {{ sala?.nombre }}
+                    </p>                      
+                </div>
+            </div>
+            <!-- <div class="col-3 ml-auto d-flex">
+                <div class="card-body paginacion p-0" style=" margin-bottom: -24px;">
+                    <div>
+                        <button class="btn-pag mb-4"><i class="fas fa-angle-left"></i></button>
+                        <button class="btn-pag mb-4"><i class="fas fa-angle-right"></i></button>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="content-container">
   
         <div class="contenedor-motor" id="contenedor-motor" (click)="usarMotorGrafico()">
-            <div class="engine-wrapper" id="altura">
-                <app-engine [rutaModelo]="rutaModelo"></app-engine>
+            <div class="engine-wrapper" *ngIf="modelo" id="altura">
+                <app-self-engine [rutaModelo]="rutaModelo" [rutaTextura]="rutaTextura"></app-self-engine>
             </div>
+            <div class="engine-wrapper" *ngIf="!modelo" id="altura" style="overflow: hidden; background-color: black;">
+                <img [src]="rutaImagen" alt="Imagen Pieza" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>                                       
         </div>      
 
         <div class="card contenedor-juego mobile-container" id="contenedor_informacion" style="margin-top: 12px;">
-            <div class="row">
-                <div class="col-1">
-                    <i id="boton_musica" class="mdi mdi-botones mdi-play-circle-outline" (click)="togglePlay()"></i>
+            <div class="row pb-2">
+                <div class="col-1" [hidden]="ocultarBoton" (click)="togglePlay()">
+                    <i id="boton_musica" class="mdi mdi-botones mdi-play-circle-outline"></i>
                 </div>  
-                <div class="col-9 pl-4">
+                <div class="col-9 pl-4 pr-3" style="display: flex; align-items: center;">
                     <div class="titulo-pieza">
-                        <h3 class="titulo-pagina" style="color: #3A3A3A">{{ pieza?.informacion?.[0]?.nombre }}</h3>
-                            <span class="info-pieza text-muted">{{ salaNombre }} </span><span class="info-pieza text-muted">/  Siglo XX</span>
+                        <h3 class="titulo-pagina" style="color: #3A3A3A">{{ infoPieza?.nombre }}</h3>
+                        <!-- <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0;">
+                            <span class="info-pieza text-muted">{{ exposicion?.nombre }}</span>
+                        </p> -->
                     </div>
                 </div>              
                 <div class="col-2" id="opciones_accesibilidad" style="font-size: 14px; color: #454545; padding-left: 0px;">                   
                     <div class="toggle-container">
 
-                        <!-- <input type="radio" id="option1" name="toggle" value="texto" class="toggle-input" checked (change)="onToggleChange($event)">
-                        <label for="option1" class="toggle-label">
-                          <i class="mdi mdi-format-title"></i>
-                        </label>
-                        
-                        <input type="radio" id="option2" name="toggle" value="reproductor" class="toggle-input" (change)="onToggleChange($event)">
-                        <label for="option2" class="toggle-label">
-                          <i class="mdi mdi-volume-high"></i>
-                        </label>
-
-                        <input type="radio" id="option3" name="toggle" value="pictograma" class="toggle-input" (change)="onToggleChange($event)">
-                        <label for="option3" class="toggle-label">
-                          <i class="mdi mdi mdi-file-image"></i>
-                        </label> -->
-
                         <div class="dropdown pr-2" id="opciones_texto">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownAccesibilidad" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0px;">
-                                <i class="mdi mdi-botones {{ opcionSeleccionadaIcono }}" style="font-size: 25px;"></i>
-                            </a>
+                            <a class="nav-link dropdown-toggle d-inline-block" id="navbarDropdownAccesibilidad" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0px;">
+                                <i class="mdi mdi-botones {{ opcionSeleccionadaIcono }}" style="font-size: calc(24px - 0.2vw);"></i>
+                            </a>                            
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAdditional" style="padding-top: 5px;">
-                                <a class="dropdown-item" style="font-size: 13px;" (click)="onToggleChange(1,'mdi-format-align-left')"><i class="mdi mdi-format-align-left" style="margin-right: 5px;"></i>INFORMACIÓN</a>
-                                <!-- <a class="dropdown-item" style="font-size: 13px;" value="reproductor" (click)="onToggleChange(2,'mdi-unfold-less')"><i class="mdi mdi-unfold-less" style="margin-right: 5px;"></i>CORTO</a> -->
-                                <a class="dropdown-item" style="font-size: 13px;" value="reproductor" (click)="onToggleChange(3,'mdi-volume-high')"><i class="mdi mdi-volume-high" style="margin-right: 5px;"></i>AUDIO</a>
-                                <a class="dropdown-item" style="font-size: 13px;"><i class="mdi mdi-file-image" style="margin-right: 5px;"></i>PICTOGRAMA</a>
+                                <a class="dropdown-item" style="font-size: 13px;" (click)="onToggleChange(1,'mdi-format-align-left')"><i class="mdi mdi-format-align-left" style="margin-right: 5px;"></i>{{menu_informacion}}</a>
+                                <a class="dropdown-item" style="font-size: 13px;" value="reproductor" (click)="onToggleChange(2,'mdi-volume-high')"><i class="mdi mdi-volume-high" style="margin-right: 5px;"></i>{{menu_audio}}</a>
+                                <a class="dropdown-item" style="font-size: 13px;" (click)="onToggleChange(3,'mdi-file-image')"><i class="mdi mdi-file-image" style="margin-right: 5px;"></i>{{menu_pictograma}}</a>
                             </div>
                         </div>
 
-                        <!-- <i id="boton_musica" class="mdi mdi-botones mdi-play-circle-outline" (click)="togglePlay()"></i> -->
-
                     </div>                                                                                                                               
                 </div>
             </div>
-            <div class="contenedor-descripcion scrollable" id="descripcion">
-                <p>{{ pieza?.informacion?.[0]?.texto_completo }}</p>
-            </div>
-            <div class="contenedor-musica scrollable" id="reproductor" style="padding-top: 20px;">
-                <audio id="miAudio" class="" controls="controls" src="../../../../../assets/audios/07.mp3" style="width: 100%;">Your browser does not support the audio element.</audio>           
-            </div>
+            <div class="scrollable contenedor-informacion">
+                <div class="contenedor-descripcion" id="descripcion">
+                    <div style="text-align: center;">
+                        <a href="#" data-toggle="modal" data-target="#modalVerTexto" style="text-decoration: underline; cursor: pointer;" aria-label="Ver texto en pantalla completa">{{verTextoCompleto}}</a>
+                    </div>
+                    <p>{{ infoPieza?.texto_completo }}</p>
+                </div>
+                <div class="contenedor-musica" id="reproductor" style="padding-top: 20px; text-align: center;">
+                    <audio id="miAudio" class="" controls="controls" [src]="rutaAudio" style="width: 100%;" (play)="reproducir()" (pause)="pausar()" aria-label="Reproductor de audio">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>                    
+                    <a [hidden]="!ocultarBoton">Audio no disponible</a>         
+                </div>                       
+                <div class="contenedor-pictograma" id="pictograma" style="text-align: center;">
+                    <a href="#" data-toggle="modal" data-target="#modalVerPictograma" style="text-decoration: underline; cursor: pointer;" aria-label="Ver pictograma en pantalla completa">{{verPictogramaCompleto}}</a>
+                    <img [src]="pictograma" alt="user" style="max-width: 300px; margin-top: 10px;">
+                </div>   
+            </div> 
         </div>
     </div>
 </div>
-
-<!-- PRUEBA -->
-
-<!--
-<div class="main-container">
-    <div class="content-container">
-        <div class="row">
-            <div class="col-9">
-                <div class="card-body paginacion" style="margin-bottom: -20px;">
-                    <p><i class="mdi mdi-arrow-left" style="margin-right: 5px; padding-top: 8px;"></i>Sala romana</p>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card-body paginacion" style="margin-bottom: -20px;">
-                </div>
-            </div>
-        </div>
-  
-        <div class="contenedor-motor" id="contenedor-motor" (click)="usarMotorGrafico()">
-            <div class="engine-wrapper" id="altura">
-                <app-engine [rutaModelo]="rutaModelo"></app-engine>
-            </div>
-        </div>          
-
-        <div class="card contenedor-juego mobile-container" id="contenedor-descripcion" style="margin-top: 12px;">
-            <div class="row">
-                <div class="col-9">
-                    <div class="titulo-pieza">
-                        <h3 class="titulo-pagina" style="color: #3A3A3A">Jarrón romano</h3>
-                            <span class="info-pieza text-muted">Sala romana </span><span class="info-pieza text-muted">/  Siglo XX</span>
-                    </div>
-                </div>              
-                <div class="col-3" id="opciones_accesibilidad" style="font-size: 14px; color: #454545; padding-left: 0px;">                   
-                    <div class="toggle-container">
-                        <input type="radio" id="option1" name="toggle" value="texto" class="toggle-input" checked (change)="onToggleChange($event)">
-                        <label for="option1" class="toggle-label">
-                          <i class="mdi mdi-format-title"></i>
-                        </label>
-                        
-                        <input type="radio" id="option2" name="toggle" value="reproductor" class="toggle-input" (change)="onToggleChange($event)">
-                        <label for="option2" class="toggle-label">
-                          <i class="mdi mdi-volume-high"></i>
-                        </label>
-
-                        <input type="radio" id="option3" name="toggle" value="pictograma" class="toggle-input" (change)="onToggleChange($event)">
-                        <label for="option3" class="toggle-label">
-                          <i class="mdi mdi mdi-file-image"></i>
-                        </label>
-                    </div>                                                                                                                               
-                </div>
-            </div>
-            <div class="contenedor-descripcion scrollable" id="descripcion">
-                <p>La jarra de época romana, conocida como olpe, es una notable pieza de cerámica del siglo II. Producida en talleres locales, destaca por su elegante diseño y detalle artístico. Producida en talleres locales, destaca por su elegante diseño y detalle artístico.</p>
-                <p>La jarra de época romana, conocida como olpe, es una notable pieza de cerámica del siglo II. Producida en talleres locales, destaca por su elegante diseño y detalle artístico.</p>
-            </div>
-            <div class="contenedor-musica scrollable" id="reproductor" style="padding-top: 20px;">
-                <audio id="" class="" controls="controls" src="../../../../../assets/audios/07.mp3" style="width: 100%;">Your browser does not support the audio element.</audio>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<!-- <div class="dropdown" id="opciones_texto">
-    <a class="nav-link dropdown-toggle" id="navbarDropdownAccesibilidad" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0px;">
-        <i class="mdi mdi-format-size"></i>
-    </a>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAdditional" style="padding-top: 8px;">
-        <a class="dropdown-item" style="font-size: 13px;"><i class="mdi mdi-format-align-center" style="margin-right: 5px;"></i>COMPLETO</a>
-        <a class="dropdown-item" style="font-size: 13px;"><i class="mdi mdi-unfold-less" style="margin-right: 5px;"></i>CORTO</a>
-        <a class="dropdown-item" style="font-size: 13px;"><i class="mdi mdi-brightness-2" style="margin-right: 5px;"></i>CONTRASTE</a>
-        <a class="dropdown-item" style="font-size: 13px;"><i class="mdi mdi-file-image" style="margin-right: 5px;"></i>PICTOGRAMA</a>
-    </div>
-</div> -->  
-
-<script>
-    function expandirContenedor() {
-        var contenedor = document.getElementById("contenedor-motor");
-        contenedor.style.width = "100vw";
-        contenedor.style.height = "100vh";
-        contenedor.style.position = "fixed";
-        contenedor.style.top = "0";
-        contenedor.style.left = "0";
-        contenedor.style.zIndex = "9999";
-    }
-</script>

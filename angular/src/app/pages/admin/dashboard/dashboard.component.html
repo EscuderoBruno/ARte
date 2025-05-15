@@ -5,7 +5,7 @@
 <td class="align-middle"><span class="badge badge-pill badge-danger" style="text-transform: uppercase;">en restauración</span></td> -->
 
 <div style="display: flex; align-items: center; padding-top: 20px;">
-    <h3 style="margin-right: 20px;">Bienvenido de nuevo, <span style="color: #8B412B;">{{ editor?.nombre }}</span></h3>
+    <h3 style="margin-right: 20px;">Bienvenido de nuevo, <span style="color: #905235">{{ editor?.nombre }}</span></h3>
     <span class="text-muted" style="margin-right: 20px; padding-bottom: 2px;">Último acceso: {{ ultima_sesion }}</span>
 </div><br>
 
@@ -13,7 +13,7 @@
 <div class="card vision-general">
     <div class="row estadisticas">
         <div class="col-md-2" style="padding-left: 50px;"> 
-            <h5 class="card-title">Visión general</h5>
+            <h4 class="card-title mb-0">Visión general</h4>
         </div>
         <!-- Primera columna (ocupa dos filas) -->
         <div class="col-md-10">
@@ -21,15 +21,15 @@
                 <div class="col-md-3">
                     <div class="row info-general">
                         <div class="col-md-4 p-0">
-                            <div class="card p-3" style="background-color: #E97E3B;">
+                            <div class="card p-3" style="background-color: #D08968;">
                                 <div class="m-t-0 text-center">
                                     <i class="mdi mdi-image-multiple"></i>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-8 pr-0 pl-4">
-                            <h4>{{ totalPiezas }} <span style="font-size: 12px; color: #28B779;"> +10%</span></h4>
-                            <span class="text-muted">Piezas</span>
+                            <h4>{{ totalPiezas }} <span style="font-size: 12px; color: #28B779;"></span></h4>
+                            <span class="text-muted" style="font-size: 15px;">Piezas</span>
                         </div>
                     </div>
                 </div>
@@ -37,15 +37,15 @@
                 <div class="col-md-3">
                     <div class="row info-general">
                         <div class="col-md-4 p-0">
-                            <div class="card p-3" style="background-color: #CF4F29;">
+                            <div class="card p-3" style="background-color: #7F5539;">
                                 <div class="m-t-0 text-center">
                                     <i class="mdi mdi-qrcode"></i>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-8 pr-0 pl-4">
-                            <h4>{{ totalEscaneos }} <span style="font-size: 12px; color: #28B779;">+{{ diferenciaEscaneos }}%</span></h4>
-                            <span class="text-muted">Escaneos</span>
+                            <h4>{{ totalEscaneos }} <span style="font-size: 12px; color: #28B779;"></span></h4>
+                            <span class="text-muted" style="font-size: 15px;">Escaneos</span>
                         </div>
                     </div>
                 </div>
@@ -53,15 +53,15 @@
                 <div class="col-md-3">
                     <div class="row info-general">
                         <div class="col-md-4 p-0">
-                            <div class="card p-3" style="background-color: #FDEA6F;">
+                            <div class="card p-3" style="background-color: #9C6644;">
                                 <div class="m-t-0 text-center">
-                                    <i class="mdi mdi-star"></i>
+                                    <i class="mdi mdi-puzzle"></i>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-8 pr-0 pl-4">
-                            <h4>89% <span style="font-size: 12px; color: #28B779;"> +10%</span></h4>
-                            <span class="text-muted">Valoración</span>
+                            <h4>{{ totalPartidasAlcudio }} <span style="font-size: 12px; color: #28B779;"></span></h4>
+                            <span class="text-muted" style="font-size: 15px;">Partidas Alcudio</span>
                         </div>
                     </div>
                 </div>
@@ -69,15 +69,15 @@
                 <div class="col-md-3">
                     <div class="row info-general">
                         <div class="col-md-4 p-0">
-                            <div class="card p-3" style="background-color: #F3B355;">
+                            <div class="card p-3" style="background-color: #DDB892;">
                                 <div class="m-t-0 text-center">
-                                    <i class="mdi mdi-image-multiple"></i>
+                                    <i class="mdi mdi-account-multiple"></i>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-8 pr-0 pl-4">
-                            <h4>2560 <span style="font-size: 12px; color: #28B779;"> +10%</span></h4>
-                            <span class="text-muted">Registros</span>
+                            <h4>{{ totalUsuarios }} </h4>
+                            <span class="text-muted" style="font-size: 15px;">Usuarios totales</span>
                         </div>
                     </div>
                 </div>
@@ -90,19 +90,19 @@
 <div class="row align-items-stretch">
     <div class="col-md-6">
         <div class="card p-3 altura-minima">
-            <div class="pl-2 align-items-center">
+            <div class="pl-2 pt-1 align-items-center">
                 <div class="row">
                     <div class="col-md-7">
                         <div class="d-flex align-items-center">
-                            <h5 class="card-title m-b-0 mr-2">Escaneos</h5>
-                            <div class="dropdown">
+                            <h4 class="card-title m-b-0 mr-2">Escaneos</h4>
+                            <!-- <div class="dropdown">
                                 <button class="btn dropdown-toggle bg-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="#">Gráfico de barras</a>
                                     <a class="dropdown-item" href="#">Gráfico de líneas</a>
                                     <a class="dropdown-item" href="#">Gráfico circular</a>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>                        
                     </div>
                     <div class="col-md-5 d-flex justify-content-end pr-4">
@@ -136,7 +136,7 @@
                             </div>
                         </div>  
                     </div>                                     
-                </div>
+                </div> 
             </div>
             <div class="row">
                 <div class="col-md-1 d-flex align-items-center justify-content-center pl-4">
@@ -158,15 +158,71 @@
         </div>
     </div>
     <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card altura-minima2 p-3 mb-3">
+                    <div class="pl-2 pt-1 align-items-center">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex align-items-center">
+                                    <h4 class="card-title m-b-1 mr-2">Proporción Adultos/Niños</h4>
+                                    <!--  <div class="dropdown">
+                                        <button class="btn dropdown-toggle bg-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Gráfico de barras</a>
+                                            <a class="dropdown-item" href="#">Gráfico de líneas</a>
+                                            <a class="dropdown-item" href="#">Gráfico circular</a>
+                                        </div>
+                                    </div> -->
+                                </div>                        
+                            </div>
+                        </div> 
+                    </div>
+                    <app-pie-chart
+                        [pieChartDataValues]="pieChartDataValues" 
+                        [pieChartDataNames]="pieChartDataNames">
+                    </app-pie-chart>      
+                    <!-- <app-pie-chart 
+                        [pieChartDataValues]="[1230, 674]" 
+                        [pieChartDataNames]="['Adultos', 'Niños']">
+                    </app-pie-chart> -->          
+
+                </div>                                      
+                <div class="card altura-minima3 p-3">
+                    <div class="pl-2 align-items-center">
+                        <div class="d-flex align-items-center">
+                            <h4 class="card-title m-b-1 mr-2">{{ opcionSeleccionada }}</h4>
+                            <div class="dropdown dropup">
+                                <button class="btn dropdown-toggle bg-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" (click)="updateDesplegable('Uso motor gráfico')">Uso motor gráfico</a>
+                                    <a class="dropdown-item" (click)="updateDesplegable('Uso reproductor de audio')">Uso reproductor de audio</a>
+                                    <a class="dropdown-item" (click)="updateDesplegable('Tiempo medio por sesión')">Tiempo medio por sesión</a>
+                                    <a class="dropdown-item" (click)="updateDesplegable('Juegos finalizados')">Juegos finalizados</a>
+                                    <a class="dropdown-item" (click)="updateDesplegable('Usuarios totales')">Usuarios totales</a>
+                                    <a class="dropdown-item" (click)="updateDesplegable('Tiempo medio jugando')">Tiempo medio jugando</a>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div style="font-size: 32px; padding-left: 10px;">
+                        {{ valorOpcionSeleccionada }}
+                    </div>
+                </div>                              
+            </div>
+        </div>        
+    </div>
+    <div class="col-md-3">
         <div class="card p-3 altura-minima">
-            <div class="pl-2 d-flex align-items-center">
-                <h5 class="card-title m-b-0">Piezas más escaneadas</h5>
+            <div class="pl-2 d-flex align-items-center" style="padding-bottom: 10px;">
+                <h4 class="card-title m-b-1">{{ listaSeleccionada }}</h4>
                 <div class="dropdown">
                     <button class="btn dropdown-toggle bg-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Gráfico de barras</a>
-                        <a class="dropdown-item" href="#">Gráfico de líneas</a>
-                        <a class="dropdown-item" href="#">Gráfico circular</a>
+                        <a class="dropdown-item" (click)="updateLista('Piezas más escaneadas')">Piezas más escaneadas</a>
+                        <a class="dropdown-item" (click)="updateLista('Exposiciones con más escaneos')">Exposiciones con más escaneos</a>
+                        <a class="dropdown-item" (click)="updateLista('Salas con más escaneos')">Salas con más escaneos</a>
+                        <a class="dropdown-item" (click)="updateLista('Juegos más jugados')">Juegos más jugados</a>
                     </div>
                 </div>
             </div>
@@ -179,31 +235,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let piece of sortedPieces">
-                            <td>{{ piece.nombre }}</td>
-                            <td>{{ piece.totalEscaneos }}</td>
-                        </tr>
+                        <ng-container *ngFor="let item of valorlistaSeleccionada; let i = index">
+                            <tr [ngClass]="{'primera-fila': isFirstElement(i)}">
+                              <td style="max-width: 20ch; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">{{ item.nombre }}</td>
+                              <td>{{ item.totalEscaneos }}</td>
+                            </tr>
+                        </ng-container>
                     </tbody>
                 </table>
             </div>
-            <div class="text-right mt-1">
-                <a href="https://arte.ovh/withu">Ver lista completa<i class="mdi mdi-chevron-right"></i></a>
-            </div>
         </div>
-    </div>
-    <div class="col-md-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card p-3 altura-minima2 mb-3">
-                    <h5 class="card-title m-b-2">Últimos QR generados</h5>
-                    <!-- Contenido de la tabla -->
-                </div>                                        
-                <div class="card altura-minima3 p-3">
-                    <h5 class="card-title m-b-2">Tiempo medio de sesión</h5>
-                    <!-- Contenido de la segunda tarjeta -->
-                </div>
-            </div>
-        </div>        
     </div>
     
 </div><br>

@@ -10,15 +10,17 @@ router.post("/", validateToken, upload.fields([
     { name: 'imagen', maxCount: 1 },
     { name: 'modelo', maxCount: 1 },
     { name: 'pictograma', maxCount: 1 },
+    { name: 'textura', maxCount: 1 }
 ]), checkPiezaErrors, validatorExpress, crearPieza);
-router.get("/", validateToken, getAllPiezas);
-router.get("/lista/:id", validateToken, getListaPiezas);
-router.get("/info/:id/:idioma", validateToken, getInfoPieza);
-router.get("/:id",validateToken, getPiezaById);
-router.put("/:id", validateToken, upload.fields([
+router.get("/", getAllPiezas);
+router.get("/lista/:id", getListaPiezas);
+router.get("/info/:id/:idioma", getInfoPieza);
+router.get("/:id", getPiezaById);
+router.put("/:id", upload.fields([
     { name: 'imagen', maxCount: 1 },
     { name: 'modelo', maxCount: 1 },
     { name: 'pictograma', maxCount: 1 },
+    { name: 'textura', maxCount: 1 }
 ]), checkPiezaErrors, validatorExpress, updatePiezaById);
 router.delete("/:id", validateToken, deletePiezaById);
 

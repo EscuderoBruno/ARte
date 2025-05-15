@@ -3,33 +3,29 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { Pieza } from '../pages/admin/piezas/pieza-servicio.service';
+import { Idioma } from './idioma.service';
 
 export interface Informacion {
-    id: string,
-    pieza_id: string,
-    idioma_id: string,
-    nombre?: string,
-    texto_completo?: string,
-    texto_facil?: string,
-    audio?: string,
-  }
+  id: string;
+  pieza: Pieza;
+  idioma: Idioma;
+  nombre?: string;
+  texto_completo?: string;
+  texto_facil?: string;
+  audio?: string;
+}
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class InformacionService {
-
-  constructor(
-    private http: HttpClient,
-    private cookies: CookieService,
-  ) { }
-
+  constructor(private http: HttpClient, private cookies: CookieService) {}
 
   apiUrl = environment.apiURL + '/info';
 
   headers = new HttpHeaders({
-    'Authorization': 'Bearer ' + this.cookies.get('withuUserToken')
+    Authorization: 'Bearer ' + this.cookies.get('withuUserToken'),
   });
 
   options = { headers: this.headers };
@@ -53,5 +49,4 @@ export class InformacionService {
   deleteOne(id: string): Observable<Informacion> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`, this.options);
   }
-
 }

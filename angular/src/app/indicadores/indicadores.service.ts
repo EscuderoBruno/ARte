@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators'; // Importa map de rxjs/operators
 @Injectable({
   providedIn: 'root'
 })
+
 export class IncidcadoresService {
 
   constructor(private http: HttpClient) { }

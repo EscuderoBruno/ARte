@@ -67,9 +67,9 @@
                     </div>
                     <label>entradas</label>
                     <!-- Categorias -->
-                    <div class="ml-auto" style="margin-right: 30px;">
+                    <div class="ml-auto">
                         <div class="col-md-9">
-                            <select class="select2 form-control custom-select" style="width: 160%; height:32px; font-size: 14px; height: 35px;" 
+                            <select class="select2 form-control custom-select" style="width: 200px;" 
                             (change)="seleccionarExposicion($event)" [value]="exposicionSeleccionada">
                                 <option value="0">Todas las exposiciones</option>
                                 <option *ngFor="let exposicion of exposiciones" [value]="exposicion.id">{{ exposicion.nombre }}</option>

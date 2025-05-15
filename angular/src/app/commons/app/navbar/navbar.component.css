@@ -3,6 +3,8 @@
 header {
     padding: 16px 22px;
     background-color: #1F262D;
+    max-width: 600px;
+    margin: 0 auto; /* Establecer márgenes automáticos para centrarlo horizontalmente */
   }
   
   header .wrapper {
@@ -70,4 +72,26 @@ a {
 
 .logo-text {
   color: white;
+}
+
+.btn-enviar{
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 18px;
+  color: white;
+  background-color: #EB5E28;
+  border: 1px solid rgb(153, 43, 0);
+}
+
+.btn-qr {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 18px;
+  color: white;
+  background-color: #403D39;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+td {
+  padding: 6px;
 }

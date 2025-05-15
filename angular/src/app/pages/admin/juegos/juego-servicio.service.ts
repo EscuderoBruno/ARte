@@ -8,6 +8,7 @@ import { PiezaLista } from '../piezas/pieza-servicio.service';
 import { Exposicion } from '../exposiciones/exposicion-service.service';
 import { Estado } from '../../../services/estados.service';
 import { FormGroup } from '@angular/forms';
+import { Pregunta } from '../../../services/pregunta.service';
 
 
 export interface Juego {
@@ -17,7 +18,8 @@ export interface Juego {
   fecha?: Date,
   exposicion_id: string,
   estado_id: string,
-  piezas: PiezaLista[]
+  Pregunta: Pregunta[],
+  piezas: PiezaLista[],
 }
 
 export interface JuegoLista {
@@ -26,7 +28,8 @@ export interface JuegoLista {
   descripcion?: string,
   fecha: Date,
   exposicion: Exposicion,
-  estado: Estado
+  estado: Estado,
+  totalEscaneos?: number;
 }
 
 export interface Pagination {

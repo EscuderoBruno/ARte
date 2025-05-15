@@ -1,3 +1,12 @@
 .hidden{
     opacity: 0;
 }
+
+.of-h{
+    overflow: hidden;
+    height: 1.2em;
+}
+
+.cp:hover {
+    cursor: pointer;
+}

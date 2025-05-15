@@ -7,11 +7,11 @@
         <nav class="sidebar-nav">
             <ul class="p-t-30">
                 @for(item of sidebarItems; track $index;){
-                    <li class="sidebar-item" [ngClass]="{ 'selected': item.selected }" (click)="seleccionarItem($index)"> 
-                        <a class="sidebar-link waves-effect waves-dark" [routerLink]="item.link" >
-                            <i [ngClass]="'mdi ' + item.icon"></i><span class="hide-menu">{{ item.title }}</span>
+                    <li class="sidebar-item" [ngClass]="{ 'selected': item.selected }" (click)="seleccionarItem($index)" style="border-bottom: 1px solid #3f3f3f; padding-top: 4px; padding-bottom: 4px;"> 
+                        <a class="sidebar-link waves-effect waves-dark" [routerLink]="item.link" style="font-size: 16px;">
+                            <i [ngClass]="'mdi ' + item.icon" style="font-size: 22px; padding-left: 10px;"></i><span class="hide-menu pl-2">{{ item.title }}</span>
                         </a>
-                    </li>
+                    </li>                                     
                 }
             </ul>
         </nav>

@@ -208,11 +208,11 @@ export const createEscaneoPieza = async (req, res) => {
         res.status(201).json(newEscaneoPieza);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Error al crear la exposición." });
+      res.status(500).json({ error: "Error al crear el escaneo pieza." });
     }
-  };
+};
 
-  export const editarEscaneoPieza = async (req, res) => {
+export const editarEscaneoPieza = async (req, res) => {
     try {
         const { id } = req.params;
         const { tiempo, motor_grafico, audio } = req.body;
@@ -227,5 +227,32 @@ export const createEscaneoPieza = async (req, res) => {
     } catch (error) {
         console.log(error);
         return res.status(409).json({ error });
+    }
+};
+
+export const obtenerUsoIdiomas = async (req, res) => {
+    try {
+        // Obtener todos los escaneos de piezas
+        const escaneosPieza = await EscaneoPieza.findAll();
+
+        // Objeto para almacenar el conteo de piezas por idioma
+        const conteoPiezasPorIdioma = { "es": 0, "en": 0, "va": 0 };
+
+        // Iterar sobre cada escaneo de pieza para contar las piezas por idioma
+        escaneosPieza.forEach(escaneo => {
+            if (escaneo.idioma && conteoPiezasPorIdioma.hasOwnProperty(escaneo.idioma)) {
+                conteoPiezasPorIdioma[escaneo.idioma]++;
+            }
+        });
+
+        // Obtener los nombres de los idiomas y sus respectivos conteos
+        const names = Object.keys(conteoPiezasPorIdioma);
+        const values = Object.values(conteoPiezasPorIdioma);
+
+        // Retornar los arrays de nombres de idiomas y valores
+        res.status(200).json({ names, values });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error: "Error al contar las piezas por idioma" });
     }
 };

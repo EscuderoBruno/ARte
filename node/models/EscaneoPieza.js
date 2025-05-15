@@ -25,6 +25,10 @@ const EscaneoPieza = sequelize.define('EscaneoPieza', {
     allowNull: true,
     defaultValue: false
   },
+  idioma: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   pieza_id: {
     type: DataTypes.STRING,
     allowNull: false,

@@ -20,6 +20,11 @@ import {
 } from '../../../../services/informacion.service';
 import { Estado, EstadosService } from '../../../../services/estados.service';
 import { environment } from '../../../../../environments/environment';
+import { info } from 'console';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 
 @Component({
   selector: 'app-editar-pieza',
@@ -28,19 +33,20 @@ import { environment } from '../../../../../environments/environment';
   templateUrl: './pieza-editar.component.html',
   styleUrl: './pieza-editar.component.css',
 })
-
 export class EditarPiezaComponent {
-
   id = '';
   newImage = '../../../../assets/images/piezas/defualt_image.png';
   newPictograma = '../../../../assets/images/piezas/defualt_image.png';
   newModelo = '../../../../assets/images/piezas/defualt_image.png';
+  newTextura = '../../../../assets/images/piezas/defualt_image.png';
   newAudios = Array<String | null>();
   idiomas: Idioma[] = [];
-  idiomasElegidos: Idioma[] = [];
-  idiomasPosibles: Idioma[] = [];
   salas: Sala[] = [];
   estadosPosibles: Estado[] = [];
+  nombre: string = '';
+  nombreModelo: string = 'Modelo';
+
+  datosCargados = false;
 
   datos_generales = new FormGroup({
     sala: new FormControl('0', this.noZeroValidator()),
@@ -48,7 +54,7 @@ export class EditarPiezaComponent {
   });
 
   datos_idiomas: Array<FormGroup> = [];
-  datos_idiomas_API : Array<Informacion> = [];
+  datos_idiomas_API: Array<Informacion> = [];
 
   imagen = new FormControl('');
 
@@ -67,27 +73,13 @@ export class EditarPiezaComponent {
   ) {}
 
   ngOnInit(): void {
-
     this.id = this.route.snapshot.paramMap.get('id') || '';
-
-    // Actualizar el título de la página dinámicamente
-    this.breadcrumbService.updateBreadcrumb('Editar pieza', [
-      'Inicio',
-      'Piezas',
-      'Editar',
-    ]);
-
-    this.idiomaService.getAll().subscribe((data) => {
-      this.idiomas = data;
-      this.idiomasPosibles = this.idiomas;
-    });
 
     this.salaService.getAll().subscribe((data) => {
       this.salas = data;
     });
 
     this.estadoService.getAllEstados().subscribe((data) => {
-      console.log(data);
       this.estadosPosibles = data;
     });
 
@@ -98,45 +90,64 @@ export class EditarPiezaComponent {
         estado: data.estado_id,
       });
 
-      if(data.imagen){
+      if (data.imagen) {
         this.newImage = environment.apiURL + '/uploads/' + data.imagen;
       }
-      if(data.pictograma){
+      if (data.pictograma) {
         this.newPictograma = environment.apiURL + '/uploads/' + data.pictograma;
       }
-      if(data.modelo){
+      if (data.modelo) {
         this.newModelo = environment.apiURL + '/uploads/' + data.modelo;
+        this.nombreModelo = data.modelo;
+        this.renderizarModelo(environment.apiURL + '/uploads/' + data.modelo);
       }
-
-      this.idiomaService.getAll().subscribe((data) => {
-        this.idiomas = data;
-        this.idiomasPosibles = this.idiomas;
-      });
+      if (data.textura) {
+        this.newTextura = environment.apiURL + '/uploads/' + data.textura;
+      }
 
       this.datos_idiomas_API = data.informacion;
 
       data.informacion.forEach((infoIdioma, index) => {
-        
-        this.idiomaService.getOne(infoIdioma.idioma_id || '').subscribe(idioma => {
-          console.log(idioma);
-          this.addIdioma(idioma);
+        this.idiomas.push(infoIdioma.idioma);
 
-          this.datos_idiomas[index].setValue({
-            id: infoIdioma.id,
-            nombre: infoIdioma.nombre || '',
-            texto_completo: infoIdioma.texto_completo || '',
-            texto_facil: infoIdioma.texto_facil || '',
-            idioma: infoIdioma.idioma_id
+        this.datos_idiomas.push(
+          new FormGroup({
+            id: new FormControl(''),
+            nombre: new FormControl(''),
+            texto_completo: new FormControl(''),
+            texto_facil: new FormControl(''),
+            idioma: new FormControl(''),
           })
+        );
+        this.datos_idiomas[index].setValue({
+          id: infoIdioma.id,
+          nombre: infoIdioma.nombre || '',
+          texto_completo: infoIdioma.texto_completo || '',
+          texto_facil: infoIdioma.texto_facil || '',
+          idioma: infoIdioma.idioma.id,
+        });
 
-          if(infoIdioma.audio){
-            this.newAudios[index] = environment.apiURL + '/uploads/' + infoIdioma.audio;
-          }
-        })
+        if (infoIdioma.audio) {
+          this.newAudios.push(
+            environment.apiURL + '/uploads/' + infoIdioma.audio
+          );
+        } else {
+          this.newAudios.push(null);
+        }
+        if (infoIdioma.nombre != null) {
+          this.nombre = infoIdioma.nombre;
+        }
 
-      })
+        // Actualizar el título de la página dinámicamente
+        this.breadcrumbService.updateBreadcrumb('Editar pieza', [
+          'Inicio',
+          'Piezas',
+          this.nombre,
+          'Editar',
+        ]);
+      });
 
-      console.log(data);
+      this.datosCargados = true;
     });
   }
 
@@ -200,7 +211,7 @@ export class EditarPiezaComponent {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.newModelo = reader.result as string;
+        this.renderizarModelo(reader.result as string);
       };
       reader.readAsDataURL(file);
     }
@@ -208,43 +219,81 @@ export class EditarPiezaComponent {
 
   borrarModelo() {
     this.newModelo = '../../../../assets/images/piezas/defualt_image.png';
+    const fileInputModel = document.getElementById(
+      'fileInputModel'
+    ) as HTMLInputElement;
+    if (fileInputModel) {
+      fileInputModel.value = '';
+    }
   }
 
+  cambiarTextura(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.newTextura = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  borrarTextura() {
+    this.newTextura = '../../../../assets/images/piezas/defualt_image.png';
+    const fileInputTextura = document.getElementById(
+      'fileInputTextura'
+    ) as HTMLInputElement;
+    if (fileInputTextura) {
+      fileInputTextura.value = '';
+    }
+  }
 
   volver() {
     this.location.back();
   }
 
-
   handleSubmit(event: any) {
-
     event.preventDefault();
 
-    new FormData(event.target).forEach(el => console.log(el))
+    new FormData(event.target).forEach((el) => console.log(el));
 
     this.formularioEnviado = true;
-    if(!this.datos_generales.valid){ return; }
+    if (!this.datos_generales.valid) {
+      return;
+    }
     const formData = new FormData(event.target);
 
-    if(this.datos_generales.value.sala){
+    if (this.datos_generales.value.sala) {
       formData.append('sala_id', this.datos_generales.value.sala);
     }
-    if(this.datos_generales.value.estado){
+    if (this.datos_generales.value.estado) {
       formData.append('estado_id', this.datos_generales.value.estado);
     }
-    if(this.newImage === '../../../../assets/images/piezas/defualt_image.png'){
+    if (
+      this.newImage === '../../../../assets/images/piezas/defualt_image.png'
+    ) {
       formData.append('imagen_delete', 'true');
     }
-    if(this.newPictograma === '../../../../assets/images/piezas/defualt_image.png'){
+    if (
+      this.newPictograma ===
+      '../../../../assets/images/piezas/defualt_image.png'
+    ) {
       formData.append('pictograma_delete', 'true');
     }
-    if(this.newModelo === '../../../../assets/images/piezas/defualt_image.png'){
+    if (
+      this.newModelo === '../../../../assets/images/piezas/defualt_image.png'
+    ) {
       formData.append('modelo_delete', 'true');
+    }
+    if (
+      this.newTextura === '../../../../assets/images/piezas/defualt_image.png'
+    ) {
+      formData.append('textura_delete', 'true');
     }
 
     this.pieceService.editOne(this.id, formData).subscribe((piezaEdiatda) => {
       console.log('Pieza creada con exito: ', piezaEdiatda);
-      console.log(this.datos_idiomas)
+      console.log(this.datos_idiomas);
       this.datos_idiomas.forEach((form, index) => {
         const nuevaInfoIdioma = new FormData();
         nuevaInfoIdioma.append('idioma_id', form.controls['idioma'].value);
@@ -253,90 +302,114 @@ export class EditarPiezaComponent {
           nuevaInfoIdioma.append('nombre', form.controls['nombre'].value);
         }
         if (form.controls['texto_completo']) {
-          nuevaInfoIdioma.append('texto_completo', form.controls['texto_completo'].value);
+          nuevaInfoIdioma.append(
+            'texto_completo',
+            form.controls['texto_completo'].value
+          );
         }
         if (form.controls['texto_facil']) {
-          nuevaInfoIdioma.append('texto_facil', form.controls['texto_facil'].value);
+          nuevaInfoIdioma.append(
+            'texto_facil',
+            form.controls['texto_facil'].value
+          );
         }
         const inputFile = document.getElementById('audioFile-' + index) as any;
         // No se sube bien el audio
-        console.log(inputFile, 'audioFile-' + index)
-        if(inputFile && inputFile.files.length === 1 && this.newAudios[index] !== null){
+        if (
+          inputFile &&
+          inputFile.files.length === 1 &&
+          this.newAudios[index] !== null
+        ) {
           nuevaInfoIdioma.append('audio', inputFile.files[0]);
-        }else{
-          if(this.newAudios[index] === null){
+        } else {
+          if (this.newAudios[index] === null) {
             nuevaInfoIdioma.append('audio_delete', 'true');
           }
         }
 
         const info_id = form.controls['id'].value || '';
 
-        if(info_id !== ''){
-          this.informacionService.editOne(info_id, nuevaInfoIdioma).subscribe((info) => {
-            console.log(info);
-          });
-        }else {
-          this.informacionService.createNew(nuevaInfoIdioma).subscribe(info => {
-            console.log(info);
-          })
+        if (info_id !== '') {
+          this.informacionService
+            .editOne(info_id, nuevaInfoIdioma)
+            .subscribe((info) => {
+              console.log(info);
+            });
+        } else {
+          this.informacionService
+            .createNew(nuevaInfoIdioma)
+            .subscribe((info) => {
+              console.log(info);
+            });
         }
       });
-
-      const idiomasBorrados = this.datos_idiomas_API.filter(_idioma => {
-        return !this.idiomasElegidos.some(idioma => {
-          return _idioma.idioma_id === idioma.id
-        })
-      })
-
-      idiomasBorrados.forEach(idiomaBorrado => {
-        console.log(idiomaBorrado.id)
-        this.informacionService.deleteOne(idiomaBorrado.id).subscribe(data => {
-          console.log(data)
-        });
-      })
 
       this.router.navigate(['/administrador/piezas']);
     });
   }
 
-  addIdioma(idioma: Idioma) {
-    const index = this.idiomasPosibles.findIndex(_idioma => idioma.id === _idioma.id);
-    this.idiomasElegidos.push(idioma);
-    this.idiomasPosibles.splice(index, 1);
-    this.datos_idiomas.push(
-      new FormGroup({
-        id: new FormControl(''),
-        nombre: new FormControl(''),
-        texto_completo: new FormControl(''),
-        texto_facil: new FormControl(''),
-        idioma: new FormControl(idioma.id),
-      })
-    );
-    this.newAudios.push(null);
-    setTimeout(() => {
-      const a = document.getElementById('tab-' + idioma.id);
-      if(a) a.click();
-    },10)
-  }
-
-  removeIdioma(idioma: Idioma) {
-    this.idiomasPosibles.push(idioma);
-    const idx = this.idiomasElegidos.findIndex(_idioma => idioma.id === _idioma.id);
-    this.idiomasElegidos.splice(idx, 1);
-    this.datos_idiomas.splice(idx, 1);
-    this.newAudios.splice(idx, 1);
-    if(idx > 0){
-      setTimeout(() => {
-        const a = document.getElementById('tab-' + this.idiomasElegidos[idx - 1].id);
-        if(a) a.click();
-      },10)
-    }
-  }
-
-  addAudio(evt: any){
+  addAudio(evt: any) {
     const file = evt.target.files[0];
     const id = Number(evt.target.id.split('-')[1]);
     const audioURL = URL.createObjectURL(file);
     this.newAudios[id] = audioURL;
   }
+
+  deleteAudio(i: number) {
+    this.newAudios[i] = null;
+    const input = document.getElementById(`audioFile-${i}`) as HTMLInputElement;
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  renderizarModelo(modeloURL: string) {
+    // Crear un nuevo cargador de Three.js para archivos OBJ
+    const loader = new OBJLoader();
+  
+    // Cargar el archivo OBJ
+    loader.load(
+      modeloURL,
+      (object) => {
+        // Asegurarnos de que el objeto cargado sea del tipo Object3D
+        const loadedObject = object as THREE.Object3D;
+  
+        // Crear una escena
+        const scene = new THREE.Scene();
+
+        // Establecer el color de fondo de la escena en blanco
+        scene.background = new THREE.Color(0x888888); // Color blanco
+
+        // Agregar el objeto cargado a la escena
+        scene.add(loadedObject);
+
+        // Agregar luces para iluminar la escena
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+        scene.add(ambientLight);
+  
+        // Crear una cámara y un renderer con una relación de aspecto más alta
+        const aspectRatio = window.innerWidth / window.innerHeight;
+        const camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+  
+        // Configurar la posición y el zoom de la cámara
+        camera.position.set(0, 0, 5);
+        camera.zoom = 2.5;
+        camera.updateProjectionMatrix();
+  
+        // Renderizar la escena
+        renderer.render(scene, camera);
+  
+        // Capturar la imagen y asignarla como vista previa del modelo
+        const imageURL = renderer.domElement.toDataURL();
+        this.newModelo = imageURL;
+        this.nombreModelo = modeloURL;
+      },
+      undefined,
+      (error) => {
+        console.error('Error al cargar el modelo:', error);
+      }
+    );
+  }  
 }

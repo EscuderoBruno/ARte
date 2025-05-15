@@ -1,0 +1,120 @@
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+  rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/instascan@2"></script>
+<script src="script.js"></script>
+
+<!-- Modal -->
+<div class="modal fade" id="modalVerQR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel">Escaneo QR</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModalQR">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="reader" style="width: 100%; height: 100%;"></div>   
+    </div>
+  </div>
+</div>
+
+<div class="main-container container d-flex flex-column" *ngIf="datosCargados">
+
+  <div class="row pt-2 px-4 align-items-center justify-content-center">
+    @for(level of juego.Pregunta; track $index){
+    <div class="num" [id]="'step-' + $index" [ngClass]="{ 'selected': $index === this.selectedSlide}">{{ $index + 1 }}
+    </div>
+    }
+  </div>
+
+  <div class="row p-2 pb-0 align-items-center">
+    <div class="col">
+      <img src="../../../../assets/images/alcudio/logo_juego2.png" alt="Busqueda del tesoro">
+    </div>
+    <div class="col-auto">
+      <div style="position: relative; display: inline-block;">
+        <span class="mdi mdi mdi-arrow-expand" style="position: absolute; bottom: 4px; right: 8px; color: white;" data-toggle="modal" data-target="#modalzoomimage"></span>
+        <img
+          [src]="apiUrl + '/uploads/' + this.juego.Pregunta[this.selectedSlide].pieza.imagen || '../../../../../assets/images/piezas/pieza-ejemplo.jpg'"
+          alt="Imagen de la pieza" class="pieza-img" id="pieza-imagen" data-toggle="modal" data-target="#modalzoomimage">
+      </div>
+    </div>    
+  </div>
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="modalzoomimage" aria-labelledby="modalzoomimage" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <img
+        [src]="apiUrl + '/uploads/' + this.juego.Pregunta[this.selectedSlide].pieza.imagen || '../../../../../assets/images/piezas/pieza-ejemplo.jpg'"
+        alt="Imagen de la pieza" id="pieza-imagen">
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-0 my-2 flex-grow-1 flex-column main">
+    <!--chat Row -->
+    <ul class="col p-0 flex-grow-1 msg-box py-2" id="scroll-chat">
+      <!--chat Row -->
+      @for (message of messages; track message; let index = $index){
+      <li class="row" [class]="message.transmitter === 'chatbot' ? 'msg bot' : 'msg user'" [id]="'msg_' + index">
+        @if (message.transmitter === 'chatbot'){
+        <div class="col-auto">
+          <img src="../../../../assets/images/alcudio/Guiño.PNG" alt="chatbot"
+            style="width: 45px; transform: scale(-1,1);">
+        </div>
+        <div class="content">
+          <p class="p-content">{{ message.content }}</p>
+          @if(message.buttons){
+          <div>
+            @for (button of message.buttons; track $index) {
+            <button type="button" class="btn btn-secondary" (click)="clickBtn({ text: button.payload }, index)">{{
+              button.title }}</button>
+            }
+          </div>
+          }
+        </div>
+        } @else {
+        <div class="content user-msg">
+          {{ message.content }}
+        </div>
+        }
+        <!-- <div class="chat-time">{{ message.datetime.getHours() + ':' + message.datetime.getMinutes()}}</div> -->
+      </li>
+      }
+      @if(this.escribiendo){
+      <li class="row msg bot">
+        <div class="col-auto">
+          <img src="../../../../assets/images/alcudio/Guiño.PNG" alt="chatbot"
+            style="width: 45px; transform: scale(-1,1);">
+        </div>
+        <div class="content">
+          <p class="p-content"> ... </p>
+        </div>
+      </li>
+      }
+    </ul>
+    <!-- <div class="separator"></div> -->
+    <form class="row align-items-center p-3 mr-1" (submit)="sendMessage($event)">
+      <div class="col">
+        <div class="input-field input">
+          <input type="text" placeholder="Escribir mensaje..." class="form-control" [formControl]="userContent" />
+        </div>
+      </div>
+      <div class="col-auto px-1">
+        <button type="button" class="btn btn-circle m-0 btn-qr" data-toggle="modal" data-target="#modalVerQR"><i
+            class="mdi mdi-qrcode-scan"></i></button>
+      </div>
+      <div class="col-auto px-1">
+        <button type="submit" class="btn btn-circle m-0 btn-enviar" [disabled]="this.escribiendo"><i
+            class="fas fa-paper-plane"></i></button>
+      </div>
+    </form>
+  </div>
+
+</div>

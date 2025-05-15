@@ -6,6 +6,21 @@
     </button>
 </div>
 
+<!-- Mensaje exposición creada -->
+<div *ngIf="showAlert" style="position:fixed; bottom: 50px; right: 50px; z-index: 9999;"  class="alert alert-success" role="alert">
+    <span>La exposición ha sido registrada con éxito.</span>
+    <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<!-- Mensaje exposición borrada -->
+<div *ngIf="showAlert2" style="position:fixed; bottom: 50px; right: 50px; z-index: 9999;" class="alert alert-danger" role="alert">
+    <span>La exposición ha sido borrada con éxito.</span>
+    <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
 <!-- Modal -->
 <div class="modal fade" id="modalVerQR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -20,7 +35,7 @@
             <div class="modal-body text-center"> <!-- Aquí agregamos la clase text-center -->
                 <div class="qrcodeImage">
                     <qrcode
-                      [qrdata]="(this.baseAPI.substr(0, this.baseAPI.length - 4)) + '/pieza/' + idToDelete"
+                      [qrdata]="(this.baseAPI.substr(0, this.baseAPI.length - 4)) + '/pieza/' + idToDelete + '/es'"
                       [elementType]="'canvas'"
                       [errorCorrectionLevel]="'M'"
                       [margin]="1"
@@ -74,7 +89,7 @@
                     <div class="pl-2 pr-2">
                         <select name="zero_config_length" aria-controls="zero_config"
                             class="form-control form-control-sm" (change)="filtrarPiezas()" [formControl]="filtros.numero">
-                            <option value="2">2</option>
+                            <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
@@ -87,25 +102,24 @@
                     <!-- Idioma -->
                     <div class="ml-auto">
                         <div class="col-md-9">
-                            <select class="select2 form-control custom-select" style="width: 160%; height:32px; font-size: 14px; height: 35px;" (change)="filtrarPiezas()" [formControl]="filtros.idioma">
+                            <select class="select2 form-control custom-select" style="width: 160%;" (change)="filtrarPiezas()" [formControl]="filtros.idioma">
                                 @for ( idioma of this.idiomas; track idioma.id ) {
                                     <option [value]="idioma.id">{{ idioma.idioma }}</option>
                                 }
                             </select>
                         </div>
                     </div>
-                    <!-- Catagorias -->
-                    <div style="margin-right: 15px;">
+                    <div>
                         <div class="col-md-9">
-                            <select class="select2 form-control custom-select" style="width: 160%; height:32px; font-size: 14px; height: 35px;" 
-                            (change)="filtrarPiezas()" [formControl]="filtros.sala" >
+                            <select class="select2 form-control custom-select" style="width: 180px;" 
+                            (change)="filtrarPiezas()" [formControl]="filtros.sala">
                                 <option value="0">Todas las salas</option>
-                                @for ( sala of salas; track sala.id ) {
+                                @for (sala of salas; track sala.id) {
                                     <option [value]="sala.id">{{ sala.nombre }}</option>
                                 }
                             </select>
                         </div>
-                    </div>
+                    </div>                    
                     <!-- Buscador -->
                     <div style="margin-right: 10px;">
                         <div id="zero_config_filter" class="dataTables_filter input-group">
@@ -130,17 +144,21 @@
                                     <th>Sala</th>
                                     <th>Exposición</th>
                                     <th>Estado</th>
-                                    <th></th>
+                                    <th class="last-column"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let piece of pieces">
-                                    <td class="info align-middle" style="width: 90px;"><img [src]=" piece.imagen ? baseAPI + '/uploads/' + piece.imagen : '../../../../../assets/images/piezas/pieza-ejemplo.jpg'" alt=" Image" class="imagen-pieza img-fluid" /></td>
-                                    <td class="info align-middle">{{ piece.nombre }}</td>                                   
-                                    <td class="info align-middle">{{ piece.sala_nombre }}</td>
-                                    <td class="info align-middle">{{ piece.exposicion_nombre }}</td>
-                                    <td class="info align-middle">{{ piece.estado_id }}</td>
-                                    <td class="info row justify-content-end">
+                                    <td class="info align-middle" style="width: 90px;"><img [src]=" piece.imagen ? baseAPI + '/uploads/' + piece.imagen : '../../../../../assets/images/piezas/defualt_image.png'" alt=" Image" class="imagen-pieza img-fluid" /></td>
+                                    <td class="info align-middle" style="max-width: 150px;">{{ piece.nombre }}</td>                                   
+                                    <td class="info align-middle" style="max-width: 140px;">{{ piece.sala_nombre }}</td>
+                                    <td class="info align-middle" style="max-width: 140px;">{{ piece.exposicion_nombre }}</td>
+                                    <td class="info align-middle" style="max-width: 100px;">
+                                        <span class="badge badge-pill {{ piece.estado_id == 'Publico' ? 'badge-Light' : 'badge-warning' }}">
+                                            {{ piece.estado_id | uppercase }}
+                                        </span>
+                                    </td>       
+                                    <td class="align-middle">
                                         <div class="d-inline-flex justify-content-between">
                                             <button class="btn btn-outline-info btn-md" type="button" (click)="this.idToDelete = piece.id" data-toggle="modal" data-target="#modalVerQR">
                                                 <span class="mdi mdi-qrcode-scan"></span>
@@ -155,7 +173,7 @@
                                                 <span class="mdi mdi-delete"></span>
                                             </button> 
                                         </div>
-                                    </td>
+                                    </td>                               
                                 </tr>
                             </tbody>
                         </table>

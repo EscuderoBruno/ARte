@@ -1,5 +1,5 @@
 
-import { CSP_NONCE, Component, OnInit } from '@angular/core';
+import { CSP_NONCE, Component, OnInit, ChangeDetectorRef  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -40,7 +40,8 @@ export class ListadoExposicionesComponent implements OnInit {
   constructor(private exposicionService: ExposicionService, 
               private router: Router, 
               private breadcrumbService: BreadcrumbService,
-              private alertService: AlertService) {}
+              private alertService: AlertService,
+              private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     // Obtener todas las salas
@@ -80,21 +81,22 @@ export class ListadoExposicionesComponent implements OnInit {
     this.exposicionService.deleteOne(this.idToDelete).subscribe(data => {
       console.log(data);
       let indexToDelete = this.exposiciones.findIndex(exp => exp.id === this.idToDelete);
-      this.exposiciones.splice(indexToDelete, 1);
+      this.exposiciones.splice(indexToDelete, 1); 
       // Mensaje borrado
       this.alertService.showAlertExposiciones(true);
       this.showAlert2 = this.alertService.getAlertExposiciones();
       setTimeout(() => {
+        console.log("Borrado");
         this.alertService.showAlertExposiciones(false);
         this.showAlert2 = this.alertService.getAlertExposiciones();
       }, 3000);
-      if ((this.totalExposiciones-1)%this.cantidadPorPagina == 0) {
-        this.guardarPagina(this.numPagina-1);
+      if ((this.totalExposiciones - 1) % this.cantidadPorPagina === 0) {
+        this.guardarPagina(this.numPagina - 1);
       } else {
         this.guardarPagina(this.numPagina);
       }
     });
-  }
+  }  
 
   closeAlert(): void {
     this.showAlert = false;

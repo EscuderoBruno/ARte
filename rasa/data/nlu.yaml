@@ -1,838 +1,1410 @@
 version: "3.1"
 nlu:
-- intent: afirmativo
-  examples: |
-    - si
-    - afirmativo
-    - correcto
-- intent: negativo
-  examples: |
-    - no
-    - negativo
-    - incorrecto
-- intent: juego.iniciar
-  examples: |
-    - quiero jugar al juego [1](juego_id)
-    - quiero empezar el juego [2](juego_id)
-    - comenzar juego [3](juego_id)
-    - iniciar juego [4](juego_id)
-    - juguemos al juego [5](juego_id)
-    - jugar al [6](juego_id)
-    - quiero comenzar a jugar el [7](juego_id)
-    - dale a jugar al [8](juego_id)
-- intent: juego.siguientePregunta
-  examples: |
-    - siguiente pregunta
-    - pasa de pregunta
-    - cambia de pregunta
-    - continua a la siguiente pregunta
-    - sigue con las preguntas
-    - quiero otra pregunta
-    - esta no me la se, dame otra
-- intent: juego.respuesta
-  examples: |
-    - <id>[06ee9f82-478f-402d-b620-6b303074cc3f](respuesta)</id>
-- lookup: respuesta
-  examples: |
-    - b4c41df2-4769-4938-b491-b9c5b9bee1fe
-    - 087affbe-6b30-4b67-9a61-4e631558e125
-    - b432a995-efcd-44ea-98fa-1ba012ae3467
-    - b6dcbb90-4c3e-4ac7-8244-f58da2e94ed0
-    - e068df98-ba59-431c-a955-fa7f009b651d
-    - 06ee9f82-478f-402d-b620-6b303074cc3f
-- intent: juego.masinfo
-  examples: |
-    - quiero obtener mas informacion
-    - mas info
-    - mas informacion
-    - dame info
-    - dame informacion
-    - quiero saber mas
-    - quiero saber mas informacion
-    - dame mas detalles
-    - quiero mas detalles
+  - intent: afirmativo
+    examples: |
+      - si
+      - afirmativo
+      - correcto
+  - intent: negativo
+    examples: |
+      - no
+      - negativo
+      - incorrecto
+  - intent: juego.iniciar
+    examples: |
+      - quiero jugar al juego [06756c12-674c-4b3a-b52a-34057a602835](id)
+      - quiero empezar el juego [3ca36e61-451e-441b-b056-677175dd1aa1](id)
+      - comenzar juego [140736c9-f7c0-4157-962a-f30f03c67238](id)
+      - iniciar juego [c6543b39-dff4-421b-86ab-55cf77a25361](id)
+      - juguemos al juego [937c4af7-e94f-4c76-80bc-bb1646639edc](id)
+      - jugar al [15a955c1-4eb4-4c7d-874f-79de975e2a05](id)
+  - intent: juego.dudas
+    examples: |
+      - no se que hacer ahora
+      - tengo dudas
+      - que hago ahora
+      - que tengo que hacer
+      - que hay que hacer
+      - tengo una duda
+      - cual es el siguiente paso
+      - que hago ahora
+      - no se que tengo que hacer
+      - no se que hacer
+      - no se que escribir
+      - no se como jugar
+      - como juego
+      - como se juega
+      - cual es mi objetivo
+      - necesito que me guies
+      - necesito una guia
+      - enseñame a jugar
+      - como se juega
+      - como encuentro la pieza
+      - como te digo la pieza
+      - donde esta la informacion del juego
+  - intent: juego.pieza
+    examples: |
+      - dime donde esta la imagen
+      - y la imagen
+      - donde se encuentra la imagen
+      - señalame la imagen
+      - donde encuentro la imagen
+      - donde esta la imagen
+      - la imagen donde esta
+      - en que lugar esta la imagen
+      - indicame la imagen
+  - intent: juego.resultados
+    examples: |
+      - dame los resultados
+      - quiero ver los resultados
+      - ir a los resultados
+      - resultados
+      - enseñame los resultados
+      - quiero los resultados
+      - muestrame los resultados
+      - quiero ver mis puntos
+      - enseñame mis puntos
+      - cuantos puntos tengo
+      - cuantos puntos he conseguido
+  - regex: id
+    examples: |
+      - ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+  - lookup: id
+    examples: |
+      - 22d61718-88cc-4db6-8df0-3ad22f2fa5fe
+      - 6390fd41-05c2-40df-8a7d-e3967497b628
+      - 547754db-5494-4a4f-9681-c489ea16516d
+      - 3d7db127-7899-4e6d-ad2f-d92c215b95f7
+      - e516ecf1-73e0-4e23-a3d1-1b5b55496cce
+      - 7450885f-0fd6-4dda-b791-0bdba93dbf7f
+      - 206cfea8-3b78-4dbf-bbe5-66481f052101
+      - 4d1f1e8b-a6d1-49af-a6cf-8d0a1cb693d7
+      - 925976a2-2845-4d73-b150-b7ca24e93ab4
+      - d7d7e8d2-59c6-497f-b006-b55df5dbfd1b
+      - e1e9cf44-49a6-4619-8d5d-27c618d105b1
+      - 73c9860e-248a-47a7-bf4c-9e5b899742bd
+      - 2e315578-0bae-4833-9fe2-7a7f89c608fc
+      - 1b5e7ccb-9b2e-4180-9038-167befa10785
+      - d85166bf-99f7-455b-92d2-ef604781a274
+      - d8e7de16-70b3-4582-b5fa-5875cde4e4d8
+      - 80f14558-bee9-4b43-9aa2-40b58894f583
+      - cc9fef56-aed7-4fa1-abce-33be2cbf5be0
+      - b0333664-1213-4855-a1ba-645f131f37aa
+      - 9ac5c334-43cb-4b28-a7cf-824a7ac21912
+      - d4525120-253b-49af-9fb7-0ad2a1182938
+      - 30cfb923-b532-4f93-a8f9-852b32bd444b
+      - ff400b0b-9e8a-4a49-a306-98fffa2de5b8
+      - 637fc8ad-1537-4d12-992d-8a01ff2d5ffc
+      - 90ea4cad-38cc-4f03-8210-21b75e011122
+      - 52cf96e9-1b5d-4449-a4fa-5e0e9d04880f
+      - 1f6f6fa0-412d-44f9-a1f8-71ff4ec68e6d
+      - 003217f7-1db8-4927-9fa6-76c03d46f96d
+      - a16d9049-a409-4014-94ef-6ed86008e826
+      - 5bbaf693-1790-43f8-92d5-168f14fbfbfc
+      - ff69be40-9273-48a7-bdda-957766182db0
+      - 908a7d1d-a189-4880-9645-ca6c50cc286c
+      - 4bb408a3-1489-479a-a50e-d9e812112e32
+      - a6a5609f-351b-4372-a20c-1415b04636d6
+      - db0f5592-a0f1-41e4-bbb9-66e5da1aaa68
+      - 1d08257c-705e-4425-a76c-c3661d7b3a0a
+      - a1084ede-7f84-4d41-8a2b-137bd77cabc0
+      - d3409d46-0240-40c5-973c-f0a051b91b18
+      - 330e6e6f-5297-48d2-8d7f-6827bbe50b77
+      - 35d06b8f-e6df-4f75-a182-05ddadaa25c2
+      - e71d905f-d837-41e1-8123-2378f283ad8b
+      - b32b9a83-2487-467f-9371-698010d4f60f
+      - ea394bad-2baf-4b3c-b24c-e06869aa671a
+      - c68a1095-bccf-4b9d-b504-2138fc273cf3
+      - a7cdb084-f324-4022-928c-32476f66feb1
+      - 8bf47d88-3afc-4170-b1b2-b1d64a438aa5
+      - c5708911-d33a-4c72-9f1f-bf3254e5f284
+      - 488823e6-97dd-47de-891e-b8908f9484f2
+      - 056fc3a6-ae30-4fd4-8387-49d633188d4e
+      - 1d25e850-1d53-48d1-863c-1628640d99a4
+      - 313936ae-9cd5-4d78-a34f-ff2608b736ab
+      - 7db9423e-8242-440b-aa01-3ff7912c0e70
+      - 67a8f970-e364-4e07-9302-86b01b0c26c5
+      - a7568385-0c88-4157-8f3e-95828bc85651
+      - 53674f42-0804-47a0-ae74-c3ee85abfea3
+      - d02a7287-5664-46af-80e1-725e92a06f7d
+      - b0762cf2-c145-46a7-9b1c-9c7e91de9aaf
+      - f897fba0-139d-4bba-8948-cd484b12cb95
+      - a89696bb-a62a-4c18-84cd-bee6d5f1e6f4
+      - 404091d8-4afe-4be6-abc0-3e9179bce920
+      - aa3754b4-b65c-4520-8786-7ddc4c018f80
+      - e4b7def6-294f-43f6-ae89-83d47f5286ff
+      - 601e99c4-edc8-45e8-b81d-db45f543ae2b
+      - 7406b8b5-4eea-4fc2-b274-003701581f32
+      - 9e5a282b-f995-4b0a-a28f-2fdef7eb4f4b
+      - d8b9fce0-18b1-4b7b-a9f0-f3fc613c6db0
+      - e9a55ec7-5789-49a3-a0fd-6b0d9f9b2af4
+      - 31d40280-ba23-4ef4-9c48-7c1f9a6d8ac3
+      - 2d8075b2-4e93-4383-8dbc-918409458a27
+      - 34a3eb48-d6b1-4cb1-a243-50136b632942
+      - c8b31670-cb52-419f-b4fb-1b7cef44982b
+      - 58641482-4b6b-4547-8ceb-2d8ba1eec96e
+      - 0ee88bd7-0271-460a-9e61-cc6c239f41db
+      - da845195-d12a-46a1-92f1-686a0c520fb2
+      - 83662e97-2801-4d76-b357-eaa760464928
+      - 1b5e0636-1257-47f1-9821-22f7ed5b4201
+      - 49851384-eebc-47a4-98c8-9a5ce69445bb
+      - 7632b22b-5161-492b-9b30-1f2bbc4114a3
+      - 8e073778-918a-4101-9bab-cf3f30b0ec04
+      - 30608321-a006-447b-803e-240e7c579106
+      - 5be707f4-8904-4ee9-b407-b3bf8ec5b1d2
+      - 15d86865-54ad-49d9-b694-2744e354e1ee
+      - fa782d6e-772d-4e21-bc2f-e15438865515
+      - 74cd45fe-8ef8-46fc-b38d-a5b88d67c6f6
+      - 0e5ee1aa-08f5-4d99-a72d-c87d792b77d3
+      - 329d2a82-df1f-4833-b983-b7d5ebdcd054
+      - c1c4eaf6-c3ec-4f50-9b5d-fbd532d2819e
+      - 8d7006d4-09b9-42db-b1d9-125a5722bb3c
+      - 1e82b850-550c-423b-88a1-b8ab9618d365
+      - e24e9052-bde8-4c3a-9b95-12243a07689c
+      - 08978c75-10a8-4984-ba71-b60a5bf635d3
+      - 07bcf1a8-4564-43f1-bb30-9e578c372b47
+      - 9b0a244d-436d-4e55-acbc-ce879943ab8f
+      - 27b95f6a-23e2-40ed-b9d5-12356ee854d7
+      - 37b17d74-e412-46ce-b076-47f17c74ed46
+      - 7c9fd5a1-e581-43f1-ba49-7ab0c3f4154e
+      - a7599cd3-b278-4661-8451-d04f00dde841
+      - e1952699-799a-4b7c-b1b0-e187381c5204
+      - 9328b5ff-a93e-4ca9-8cd6-1638b93d0f26
+      - 424a2d44-896d-4040-ad14-39fb5dfa98bf
+      - 4034e3ae-3f6d-4cdc-be7f-a836170ba6bc
+      - 96d2d29c-18f3-4809-a55f-ae0e631e2a94
+      - 388dc8b5-4968-498c-9645-5b8915669c6d
+      - e06ade47-41b5-41a1-b8b6-21099a2008f0
+      - f73ef572-f3e2-47f4-9998-47f4f413d205
+      - 979d740f-c11a-4d77-857c-66eaf79db91f
+      - b0e41a60-b8f7-4036-a3f3-31ca99422a52
+      - d9d52931-e547-4e63-b684-7c1e21bfbf66
+      - 171fc32d-894e-4628-8b10-2827c6cd0953
+      - a64112a1-485c-4c9f-89ec-695882b561f1
+      - 3d17a88b-5af6-47a2-935c-5aab28474b49
+      - c52f9c51-fe7e-4433-9829-14610cc23e23
+      - 8f8e990b-42e6-41d2-bd38-4461751f9fc1
+      - 7a663476-63bf-419e-919a-1e93daf7e9c1
+      - 0b2e6c1a-223d-485a-9c41-b339e102815d
+      - 37fc1f14-c5a4-4589-a132-590321c948c4
+      - bf7ad03c-b1d0-4744-aaf0-8bf222130c63
+      - 749a70f3-02ec-435e-8de6-c400980a3438
+      - 2135d9a5-c319-4e43-871b-208569c578a5
+      - 7029cac8-ae1c-4347-a17c-9996bd98638b
+      - ee57f3d0-d191-4c61-94de-43d58a4aad1f
+      - f2777d6c-f56c-46de-a98b-4e550853184f
+      - 5cd977aa-ca5e-4420-bea7-9ad52cf17377
+      - 3eaffdf7-196c-4bef-b7ed-bd16311b81df
+      - c40aefd2-6dac-4458-a5ea-454d72ae49a1
+      - 2295476d-6335-45dc-82d7-358c5e11e716
+      - 4cf953f4-eb0b-4198-b809-a95064834e95
+      - b23c31c7-c3c5-4af2-ab1a-aeb3a127ad97
+      - b9c4365e-e660-475d-b6ee-d6af8399aa1f
+      - 7fc9e931-ee17-4191-9d2e-07d0a57accd0
+      - 49bf1ebb-0f5b-4532-a4a7-b66b604cf0c9
+      - 858b6f9e-730a-4eca-8c99-96e199eea46b
+      - 919a8b47-5781-4eef-b264-c087fb8f2687
+      - 6a74ed8e-c4a5-4477-82a7-1aa921f95a8d
+      - 80da16aa-6155-41ac-a182-aa8899999e11
+      - bbb36d13-fb66-44f9-b6a4-0e8c97b1459b
+      - 0d0fd13d-9084-4687-8ddc-fe38e3087951
+      - 10d89c75-ba69-4b3f-9c4f-581416e7391e
+      - 78c551bd-b0bf-4044-8a67-8619c4e68b85
+      - d5bc8686-ef3f-4df5-9ff7-ff449b9ed267
+      - 31b896a8-dede-4b7f-aa04-db08a9a152e3
+      - 2bbed985-bf61-4981-b4ef-3c6055d04907
+      - db2f7b4d-f1bd-4c92-8f7c-1aab229995c5
+      - fee0357a-7976-420d-b5bf-c471595b06be
+      - ca1e2b2d-7c20-4a7a-aee3-1556618475b0
+      - 1b3669a3-d7ff-4b1d-864b-445cd93b836c
+      - 23e5fa6d-9ef0-4841-9537-e41223b03801
+      - 0d085962-882a-4af6-b093-88cdb74b9165
+      - 5fa6f700-df04-41a1-a2ff-d3bf50376ec3
+      - 9bea6712-dd68-48bf-b238-bd133a3aad0d
+      - 3f4695c6-1855-45db-8f9c-ead98b27f613
+      - 29469e93-500b-48f9-83e1-a54ffcbbc588
+      - 791ccc71-8aa3-4c65-be72-ecbc67c0a344
+      - a7a8d119-be14-48ce-a068-235599106c8f
+      - 3d1b214f-9708-40d4-8a18-5eaa89dc0642
+      - 75a2b63d-0d9f-4b41-8215-6d1093a0d237
+      - c484e4c7-119a-467c-a47b-10db17d015be
+      - a752084d-918f-475c-8bc0-ab29888c94f8
+      - 86cf0389-36e1-459e-9bbc-303b011bbcca
+      - a7270dbe-ae6f-468d-a0c9-174956ddc42e
+      - 90b26296-8429-4efb-82d4-3698f505fc2c
+      - c42173e0-a6bf-4680-9036-0e54291e2b78
+      - 75362f69-0d8c-4bf4-ba52-e2e856e84c72
+      - 7be2b378-a078-4efb-a018-65dca48cfd6a
+      - 786b2e8f-ae8a-4fa7-897b-7217abfb92be
+      - 6957d1ec-3038-4dfa-a4e2-ec45984df63d
+      - 4eff8676-68fc-4e01-ba0c-f24b44208e34
+      - ab482db9-eb0f-4aba-8bb8-fe2805090361
+      - 49e2c366-4b08-48a8-b508-5bac2906f73f
+      - 7b4ea486-79c9-46cf-a945-ca12fcfa87cd
+      - a5c37154-13f6-4b56-a9ce-bc2cb39eacc8
+      - 842a87d1-061a-450a-9f14-e8cd4558afa0
+      - 7f8ccc99-4bd9-4cf8-813c-c888caba4775
+      - 74b27770-2d1f-47bd-a29c-022879d73087
+      - 6e77a949-acfb-412b-b667-048ba23a596d
+      - 9634db0d-f340-412c-852f-906effa749e9
+      - 032e6b0f-d1a3-4139-8a4f-740f87fae1bc
+      - be9edce7-327a-4165-99ae-089a0abc5127
+      - 7fd07409-6629-4bf3-98d6-fd667f7c9d64
+      - 982f2595-8cb5-4428-a68d-ff0bef841bd1
+      - ce3aee59-65c3-4f47-b8b8-03627e06c8b5
+      - 4ff9a09a-8511-4159-890e-d92e1fe7a963
+      - 64a9e6c0-a754-4abe-b36e-50b9a5fcd6da
+      - 12ba3fd2-2dd9-483b-9e54-9a788ef0bc31
+      - 31b49b9b-09f4-4b54-9a6f-9bb9ba94724e
+      - 6cd3a9e5-51a6-45b5-9656-c0851ab53162
+      - 5c5ef374-9976-4ad0-beec-9ed689876b1e
+      - bfb0b836-76c1-482e-936b-fe59b4ec45b7
+      - 0b91cf0a-e6bb-44dc-8ebc-46b330bc838a
+      - 79e31a22-1ee3-4ee8-a62f-067edd056bd5
+      - 1beee950-b325-4702-9765-ee1eff85780e
+      - ddc830ce-c27f-4d27-9de5-a52e48c27b09
+      - 46f528d0-d712-4da9-aa69-5b265e09588a
+      - 42774c97-f075-4463-a948-c651f3bf6d4a
+      - 377b2bfb-6477-43b8-86e7-609cda2a8b7f
+      - bc1481cf-953c-43ed-88ac-66b289119233
+      - 1fa28d67-5688-4752-8eb3-3ff6033d5806
+      - b64d9c95-1953-40bb-90b2-82804e29ae61
+      - 719d9ca5-27c5-4c5a-8e5d-c00363f6315b
+      - 12b77fa6-f729-418e-807d-6261576a470a
+      - e9551d56-73a6-48cb-a53c-1f22296551b1
+      - a93fef5b-88bd-4cc7-a0e7-cdf5ef7c817a
+      - 71fbb048-ad77-4add-9e7b-fd2437f291f7
+      - 764ed1ce-d4ad-4603-a102-f120dfe62384
+      - 0221efd0-973d-44b9-962c-55903aa7529a
+      - 60f19f62-c08f-4c3a-a227-ffa46e1c7685
+      - 92dc6e31-0ba4-41ac-aeab-7562137e08e6
+      - a29d66e1-7633-4c06-a9bf-f61e3f5ea3e6
+      - 5b6191d0-658e-41ad-83d9-d01d6234916d
+      - e96cedc0-e8d6-4a15-b785-0e07aa423072
+      - 943248c2-f2a7-415c-a5b4-8670c4f37ed4
+      - 08494d0c-ddf6-4fe4-a0c2-38924e2a92a9
+      - d1bc8782-9ecb-46df-828d-b5a07799d787
+      - 5e0eb813-3f61-44fa-9496-e25e8ff3cf28
+      - 1c39dbb4-cabf-4cad-a782-9974e18a3d32
+      - 068c95fd-dfef-45f7-a340-faf9530f3444
+      - f20521b1-6bd4-41dc-a00f-c02f345a9094
+      - 8ec2f242-0b6e-4e12-8b48-d7f493b21ad5
+      - dfe1c930-693f-4287-a059-bf15d135457f
+      - a00550ed-bbcd-418e-ae17-0528fccba626
+      - 8fc2f770-8566-471b-99c2-66960c1440bf
+      - 6d0536a8-5314-475c-a418-fb1712ea89c2
+      - af5e067d-5633-45a1-b039-32c1d1ed4835
+      - 86c02986-f976-4974-8164-60dbc311cc05
+      - f72c49a8-871e-4873-b248-558dbc3815aa
+      - 0cab3ec1-c131-4470-97d0-5fdcf6cbecb9
+      - 49762718-f068-478f-bf83-8e9390c0f417
+      - 8c3649c2-9c0d-46b5-b2a9-14dbfcb8b37a
+      - 9a12cb96-ce18-467c-9aa6-c2b5c3e08cf8
+      - 3845c236-6dc4-4b13-86ee-520fb8f5e654
+      - d7806f0b-c5f4-47ba-a241-5947b7a01997
+      - b87cae34-0364-4e97-a428-3af30702f0ca
+      - 2bf5a274-d191-4ef7-8cd2-a8e49d368949
+      - ebe16fe9-6073-41a0-a65a-370fe8db05da
+      - 9fdd93de-5ed0-44f8-ac4c-43d00d7ac096
+      - 0bf221a9-03cf-43a5-90b4-9237158b13c0
+      - a6b4dbe4-7086-4146-8aac-e1074dc3b09b
+      - 17dbe352-3206-4347-a0bf-7059fde83129
+      - 15201e9c-3b9a-4812-b6a4-411ab858a08b
+      - 366b27d2-14a6-4eb2-af9c-ef04a13534c8
+      - 6447762c-3f7c-4139-a2e8-5ca6e6ef6f25
+      - 78b25833-69c7-4812-a633-703a0af42d49
+      - 2381dcf8-b1f2-491a-bd93-6af38c9acc09
+      - ed6b92fb-eb25-454d-8e2c-74c146903c9c
+      - 6f9573ee-82ca-4cb4-9abe-558335ceb890
+      - 21a02759-3ca7-4065-8c93-7fe01327c659
+      - f7f3c0fe-d15a-447d-9444-21917cdfdd9b
+      - a55ab5b4-ecb9-4ca1-ab68-67c41115904b
+      - 9afb30f4-6bb3-42f2-9ed3-b8158f866c55
+      - a076c759-2058-4395-b141-9041a0b2175a
+      - 21f72270-30ad-4c2a-b334-394c7b65d928
+      - 1af13fc4-e849-4e2e-bdca-df0792c58e6e
+      - 35a918d2-c212-44b4-ba41-5c9f402b0e1d
+      - 1b1199b3-9600-465a-aeee-385cdb6f5a8b
+      - d6ce7f50-d4b8-4383-aae9-7ebb684e7bee
+      - 7620e7a5-ee95-45e4-8a04-e74d129da18b
+      - a1336980-39c1-4226-912a-4bc9f94a4932
+      - abcc47f2-afee-4fe0-9754-cdd6da93c4ec
+      - 61dc890c-5f59-4788-a05c-804a62df179e
+      - 5ddf82a8-1997-4ef4-83af-a551ec4ffb16
+      - 66b89697-f976-4a70-8cac-56e5dcfaa4ed
+      - 13191dba-9e14-4e13-92d1-bff4a1517629
+      - fdac2949-dcd9-4866-b0e0-bce0694e7267
+      - 887d186d-6682-48cc-9747-97685682dde1
+      - 861fc635-9d10-4589-ae75-32b4039d2bca
+      - 3fcb0007-7f54-4be3-93c1-a705c5994bb0
+      - 7cb09275-8ace-43b6-9dec-338778ff0665
+      - 3fbd5c3f-494c-4821-88f0-0b536826e7a2
+      - 4190cb8c-ec56-4750-a82a-7928cfbcc84f
+      - 62f95a03-238b-4712-8761-8a1bff8231c3
+      - 2af51289-508d-4b2c-8e52-ab1b5d84a59c
+      - cea88fea-1cdd-4375-9eb4-d1a52d254417
+      - ed00a4a6-d6ce-40f0-8251-0f1528e417db
+      - 4aadba6c-9e62-43ae-ab37-7b54f6587b0a
+      - 22e3b10d-4edf-44ad-9b49-6d61790e2e2b
+      - cb1e169b-2239-41ce-835a-937ea1672aca
+      - 8dd0cdb3-a7b6-4ea9-9f28-4f1551b842c5
+      - 5b107d45-3133-4125-b815-e85187e8f921
+      - 6ca92526-272a-4784-af5c-6f996ad97848
+      - 7cc88f6d-9fa7-46ff-8b72-75ce999835af
+      - f8a0cf6b-2dd2-4867-a75e-5e6dcd5cb343
+      - 024bcece-df3a-4ea1-babc-41511fc0b505
+      - a73edc53-d23e-4236-9adb-374573a1fb97
+      - 1df6200c-738d-4bea-a363-82f4d615309b
+      - 50ba58cb-c02f-4fbd-805d-786391bb4ba9
+      - f3fba61e-8e80-4326-a2eb-0f5dc153f33a
+      - b135d00f-d6d1-4520-a515-06b17fc78cdd
+      - 02c86683-22bb-44e9-b619-7d623b723eb3
+      - 9a1b8cf6-026b-4e19-a61c-914b4f004528
+      - 03f5bd6b-7ca2-4b90-9996-b85c548bcc0e
+      - 20cfe5db-2e27-4d13-ac1e-02a64b2cdfa8
+      - c252c06e-309f-4a34-a3d8-777772a5f67f
+      - a045e39c-90f0-4a8c-947a-051f8cc46396
+      - dfd767e2-1364-4b73-9d80-cd6a42b0c838
+      - 7fb42386-342a-488c-bfd9-e577ecdfa340
+      - 7bb5e1d7-69d7-4455-bcd4-2013eb8dca14
+      - ea4eb63c-ee02-4e67-a847-968ac3541dab
+      - 18009906-7ed3-4cd7-922f-2f06089bd345
+      - 15643277-20b6-4dd1-a259-d6b3c6bc8f3d
+      - 9d70a57a-512d-4eff-92af-24c42835796e
+      - 6ba4210b-fc25-4d6c-b8a5-82af000b7d1d
+      - a4ed0be0-b4b8-438e-b556-85ea886ba229
+      - b8a65096-f1ab-4bbc-8a4f-5d979726bfdf
+      - 427e4355-9a80-454c-989f-703adc09800a
+      - 2c82566c-69ec-4bd5-8323-20cce4b1fc71
+      - daa3b202-d6f5-475f-be2f-56e9881ac8fe
+      - e414cd21-5c77-4095-a206-cc35ae7a22ee
+      - 8c3dab6f-85a9-4a5d-a520-aed846675505
+      - 85610407-6cb1-4481-a261-f371ca7452c2
+      - ff1c9f1e-cf00-45e5-a4e6-7911e5b5f6ff
+      - cc327165-f3b4-4477-995a-1b26a1826fe4
+      - 31777ffd-2483-454b-9321-8fa969e004f8
+      - 32bff496-bae0-46b9-8867-a8e52b27ef64
+      - c9b3f7c2-b7ea-450e-94e3-7bc305f27158
+      - 639b3dcf-e34c-4e19-8177-f11abef422d0
+      - a5a08cd0-ad3f-43ba-9e67-216298217214
+      - e2091dd3-d795-4b08-a9d6-141cb64ed44d
+      - a9d6af64-9206-4caa-933d-e074c0b55687
+      - ac4b26d6-e7b1-43cd-af17-acce45e9a40d
+      - 07f76326-ad13-44f8-9c16-fea8f2d8fccb
+      - 9e4f5032-9738-419c-b4d8-9f2693f54a7d
+      - 717713d8-a3fd-42e7-b872-0cf3c7002b76
+      - aed027b9-ef6c-4abc-85b0-c5c239842415
+      - 3e311fd3-a3d1-4f72-8e54-f5b4cbc1781f
+      - 2148f4c6-2e91-4b64-af8a-8268372ec14c
+      - de7a49ee-5ccd-452b-a4de-dab8e09af9cb
+      - c23552bf-8edb-4b35-86d2-f25532c1a1ae
+      - a792c6ee-0d7f-4d9d-8de7-73e3bb2f2c9f
+      - c74f3aad-eed1-4fb0-b001-b56ab45c20d9
+      - 56e60471-da78-4265-aa65-2bee543728e8
+      - 8fc2011b-5ae3-4f5e-8c63-cd2060f81441
+      - 0e894f5e-51ba-4143-9105-8b92e36dffae
+      - 049082bf-4128-4b95-808d-6f0c88c7e254
+      - e39fa9d2-476e-448e-a319-e723efda366f
+      - b56ff4c3-2520-4220-a627-08abfdc96685
+      - c066e1de-1a54-4f6b-9f9b-a981b0647237
+      - 3e8409d4-fdfc-4390-b230-3e5ad3ed87d7
+      - 10d9a7ea-fc5c-447e-acf5-018632ba5ca5
+      - 5458996d-b0fe-42f8-bef5-790634532538
+      - 9c1154ca-b2b1-492b-9433-545fd1fe3904
+      - d81aa823-31d5-4a09-9d6c-78f35145c6a2
+      - bb41ffc3-d7fb-43ba-a798-326675914d65
+      - 79791ac9-1a74-4c56-9cb8-8f2dd12d974a
+      - ab78d233-36bf-4052-b6b6-3a17d67e1191
+      - 03840506-26c9-4c72-b8cb-e2c77ec9510e
+      - 9be7eaa4-a4fd-4b02-9daf-5d9cf04199b6
+      - 421710ec-1dea-4300-83ac-f716b6c385d0
+      - 0b038408-7210-41b9-8fb7-b8accbf908bc
+      - 3510bd5e-66f3-401b-a267-ccd5016686ab
+      - d3743e02-ecb8-4172-9046-2e05200bfa72
+      - 5ac5b8f2-a36b-49c3-be5d-e852b772b0fd
+      - 587d5ea5-cb3a-4f56-9409-6fac18056643
+      - f8819bb5-3311-4fa2-90bb-4aa10963b7f4
+      - 1f20656f-ddd0-4dcb-9efe-4f6037b6f9b2
+      - 50972cec-d6b5-417b-86c1-5755597760f2
+      - 07f944f1-55da-4742-be1d-09e16eb45147
+      - c058a3de-3c9a-46dd-b3b5-09a2b98dea23
+      - 1f994edd-5a21-4c33-8425-29df75ab417b
+      - 7ec27a76-9c4b-490a-8081-1e4b837f00ca
+      - b7640f74-2e12-48f3-9c68-7e87c92a3840
+      - b21a25d7-65e3-4ebb-b150-9b5236d00df6
+      - 11f3492f-de98-4aa8-9db9-1c11cebfd33e
+      - d9cddf16-3ad1-4aa6-ade0-9dc08080d5e3
+      - 583be468-1aea-487c-a8ed-0d047a9f5062
+      - 13263a71-2d54-4f50-a92d-1ce801fd40c7
+      - c30dd487-a31a-48e2-86c7-907b5eecb16e
+      - 20593df0-17f2-4374-aa6e-a00e25f0f63e
+      - 00544765-e09b-41f4-9836-6d37bda7b61b
+      - a71cd996-8de3-454c-8f38-34ffe9d4fc25
+      - a07e09c1-8788-4cdb-96d4-7d270e134b7d
+      - 6989c558-36b0-4fb8-88ab-c0f25487140a
+      - 84fff148-4647-43fb-9bda-2b34833c18f6
+      - cc8a54db-e495-499f-8f36-f7b78e283b96
+      - 2ddeba35-c2ea-499f-ac01-6b914e3347de
+      - ae11f785-f31c-49e5-86fb-a2d79226cd95
+      - 0b787335-6119-4d71-87b5-7bd0e9883114
+      - 1d9cc5c8-edb2-4b9f-9f50-15af88342cf3
+      - 5f7c41b8-3431-46bd-bd04-41ceb5669502
+      - 1136ecf3-2aef-447d-92e1-0932a8b1b376
+      - 1aae7c17-2143-49b7-9f0f-f76f7be70098
+      - 05eeced2-7800-48dc-8b3a-86d686b4840e
+      - 3a806f7d-f9f4-4e37-a80b-5a9554da41a0
+      - 15be1a13-7a53-40eb-8493-2c2ccc4ab9ad
+      - 359c22c2-7c70-4fd7-a374-79070ecb63d2
+      - 501e861b-e5b9-49c3-9a6f-f41aa1e23479
+      - c7496290-6224-4475-900c-c4bd7c2a194f
+      - 56a406ef-d79d-4a6b-96e0-c89047253c6f
+      - aab80176-bc7f-423a-aa41-cfc3ac1b5667
+      - 8d1701e2-bda9-4d85-8923-7b5e2d7b0935
+      - e940b12e-26bf-4eb2-b476-1918684be8ac
+      - e2f7ac47-97c9-42e5-8c39-6be63bc99ddb
+      - 2bf51107-bd38-4e35-acc0-5129397f8fd0
+      - 85f5a2dd-4146-4d31-8642-a0e16cc1570b
+      - b7eb7855-7237-4c56-84df-6eafc91b8580
+      - 4bcb9570-d291-4789-8aa1-660f5fd86fa4
+      - a3d27e84-59f1-4e75-ad0c-584b25f7881d
+      - 6ec635e7-309d-4a93-882d-51c7ad44e7bc
+      - bdacaf42-6751-4fc5-a0b6-0e67c166bd46
+      - 4e2bc4ae-2d0e-4acd-9991-545a0567b223
+      - 2d736b00-67da-4ccd-9368-0b4a362f1c8d
+      - 3f29c52c-99de-4ca4-9da4-932ad39f9fd9
+      - c7d41239-701f-4243-b8e1-6fa2e0d349ac
+      - 12172920-79ca-48ef-b4fd-4bd13de320b5
+      - d6c01e3f-0c55-4ee8-aa38-6d0d2261b46a
+      - 72afc2d8-73dd-4abf-b38b-00d812a879f6
+      - 9a6a5a80-9551-4125-8759-c9a023f6dd7f
+      - fee1a2d6-1f9d-4e7e-a27f-a1b8881be4a8
+      - 3adbde34-05f7-4fa9-ad43-35519856eb85
+      - 1054a9b3-12cb-474b-abc2-d165777f7f2c
+      - 53019e41-a1ef-4a13-9b16-97ad32548e4e
+      - 2dc4aefe-a3aa-46f1-a204-095d3624deaa
+      - f72f7acc-567e-4da0-a219-0ed7c0d2a0c5
+      - 1c2ac5d1-add0-438c-83d6-005a26b7cdc5
+      - 13c8765e-9da1-4430-be51-63b484f42ee8
+      - 12be9dcb-3673-4850-8d08-2bb06f60635f
+      - aad0d423-479c-4cb5-9ce2-5aba89c0a5c1
+      - b3d09422-27f3-4051-a3d9-317bf42ef460
+      - 92d7f5b3-dea8-4908-8156-b7ad5669f7cf
+      - 6c1c2228-48b6-424b-9073-52489f4b2fa1
+      - 43d36e05-dbeb-4bba-b758-3ddf8afa1fa2
+      - 10bb07a7-842f-496d-a4f7-d1d239af71da
+      - 8c5a7d87-dc6d-4846-9157-de1c8d1fcf60
+      - 3235bc2e-d3a5-46a8-9510-36821014584c
+      - 1e16100e-ed80-46e9-9dfb-cbdd6f04cecc
+      - 742b42d5-9af9-4263-a73d-afcefadcfe8b
+      - 96180e85-3924-4ec0-b956-7becdc4179cb
+      - 83dc1fc4-4fde-4468-b791-8a11bbbcb98f
+      - 2a97180e-e62b-447d-a51c-6d189550689b
+      - 94036777-949b-4d7a-9ed0-55b84028322a
+      - a7c17785-03ad-4efd-a566-187352cbd03a
+      - 6c486564-b72a-48a7-bfaf-38de983ae78d
+      - 1c6a6a69-2944-45c8-8489-8c739da1aa72
+      - 3c609681-b3ab-41ab-b9d0-de99bc869218
+      - cd6cd4f7-5c32-43b5-aeca-3c22769a0716
+      - 2d2f529a-7f82-4f41-9fe8-3c17903ae703
+      - a69b0b0e-95f7-483d-a804-1b89863e8ad8
+      - cb8f20b2-8914-4308-aa3f-6daff60c1814
+      - 7ec2eeb6-8dad-4443-8891-52f444b9489c
+      - 29c353dd-2d72-42da-98eb-ced7f0baa6df
+      - bda872ed-fcaa-468e-a6e5-42a4f8e23d44
+      - f85e47ea-8566-4a3b-8f9e-64c72609d322
+      - 69492e17-27cc-4142-9a21-d759b94ff009
+      - 14bcdbbe-4ee8-4f01-b309-431abeb345f1
+      - 579c60d9-9a89-4cdd-82ac-b0c5b4c2ad72
+      - a0b69a7b-857b-4529-89b0-04077f3e31c1
+      - c82e2ecc-caef-42d5-9a29-2d9ee89b92b3
+      - 800b34f7-1168-4603-beb2-fd043a199683
+      - dd4f28e5-e485-4f2d-ba66-e43deccbe914
+      - 151afe74-a4e9-4247-9d11-5f90c4b632b0
+      - 64aa59ad-32da-4d34-96b8-94edd9c63878
+      - c2d21edd-4489-4611-841c-7546125dcbe6
+      - 039b5835-ed6c-48aa-bc3e-27e23b209b2e
+      - f4932c9d-7234-44fe-a23f-6f8f7a5f27db
+      - 18c2e924-c321-4cd5-8383-faacf5939a1e
+      - 157cb689-e576-4839-b781-554c8d0c75f1
+      - 52df380f-8fa4-49b2-864d-764f26615a40
+      - 3adb42c3-4527-4484-b484-6b1b4a258c81
+      - 5564bbe9-63e3-422b-b710-2d09e2bf59f7
+      - c42c55c1-e57e-4668-83dd-e7d61c7e3d1a
+      - 2a020d75-7c88-4d29-aea8-c63d1c6ba8e5
+      - aa0a185a-7754-4369-b9af-1d364e1f9786
+      - 396c6289-8bf7-4635-9ee1-2577ff6af970
+      - e39ca319-fd99-4759-a730-75814d6d6109
+      - ecf022bf-7c29-45a9-8105-fd6a484c654c
+      - 6b1e50fd-c67c-43bc-95a7-5e6a735c9e71
+      - 3ddb6bcb-fbef-4665-b6e1-00caec99a9bd
+      - 9be3e1e9-8182-4a66-92d1-fd9f38519e86
+      - cd35439d-68e8-4d9d-b2ba-6d910aff25b2
+      - c80c19cf-807d-4ac2-b45b-5e56b022e23e
+      - 13182ec1-88cb-4ab2-986b-e5fe7fbd1e6e
+      - 6f800aa4-3c8c-4384-84d9-0a12e295da08
+      - 5b328252-cf52-4cce-8739-aeb4a5d6b9a0
+      - ce5fb0d6-b226-4f68-9990-b48916ec6076
+      - ccfedef5-2b66-4ba9-a1a9-f9b8ee2e7cf3
+      - b9f9078c-32bc-47a2-8c0a-c2697daddbdb
+      - a2c62410-36dc-4d5d-b68b-978739f8e717
+      - df541284-0cc4-4f92-b6d8-dd959796f601
+      - 814b8f3c-cbf9-4824-9c22-8cdf3902c7d8
+      - 32e476bf-2873-40a7-9745-132a0938b42f
+      - f5e58fdd-7ed8-4bb7-a64a-02551f097b1e
+      - 59eb047b-7183-4a42-a24c-0d8b4183c197
+      - 928ad78a-fe86-42a6-82b7-b43ceaf6233c
+      - e780517e-007b-47f9-a6d9-57c5053fe40f
+      - d905fc53-1d39-4447-b0f3-c5a98e878dd0
+      - 326aba21-953f-4f65-859c-e6357be794a8
+      - 4ec42b58-807f-48c8-954f-af86ac2ec6ae
+      - 71230130-f276-44dc-ab89-919a63506fa4
+      - 2797a3a0-19d8-44ec-a8a4-fda8351e377a
+      - fb00944b-6637-4788-9f8a-a62f9f42bc6b
+      - 7117d910-49c3-46dc-8fce-7ea836bd05db
+      - 1e6d5629-9b64-4213-a713-6dd0a881c774
+      - 8ee8f6aa-fd6f-475d-a178-9e784ea4ce91
+      - 43740d29-fa18-4dd7-af34-6d461ace6bc9
+      - 4b567e2b-238c-42d4-a865-dd0dfd4fd7a0
+      - 2b5221ea-cf69-45f9-99ae-3a12a78a554b
+      - 5f07bdb0-0bc8-44be-b227-3321ec842558
+      - a250b367-642b-467e-a6f0-09a9e6cacb01
+      - 33486348-7f12-4984-a60e-78945b68638d
+      - 8af4f681-32c5-4073-a558-edd9b9f7f1a1
+      - f1057720-dfd5-46a9-b01c-f833bccb4ab4
+  - intent: juego.intentarlo_otra_vez
+    examples: |
+      - quiero volverlo a intentar
+      - puedo repetir
+      - quiero volver a hacerlo
+      - dejame intentarlo de nuevo
+      - dame otra oportunidad
+      - quiero hacerlo otra vez
+      - dejame otra vez
+      - dame otro intento
+  - intent: juego.acabar
+    examples: |
+      - quiero terminar el juego
+      - quiero dejar de jugar
+      - finalizar juego
+      - terminar el juego
+      - dejar de jugar
+      - dejar el juego
+      - finalizar
+      - fin del juego
+      - finalizar el juego
+      - terminal de jugar
+  - intent: juego.siguientePregunta
+    examples: |
+      - siguiente pregunta
+      - pasa de pregunta
+      - cambia de pregunta
+      - continua a la siguiente pregunta
+      - sigue con las preguntas
+      - quiero otra pregunta
+      - esta no me la se, dame otra
+      - me rindo
+      - no me la se
+      - quiero pasar
+  - intent: juego.respuesta
+    examples: |
+      - la respuesta es [06756c12-674c-4b3a-b52a-34057a602835](id)
+      - la solucion es [3ca36e61-451e-441b-b056-677175dd1aa1](id)
+      - es [140736c9-f7c0-4157-962a-f30f03c67238](id)
+      - tiene que ser [c6543b39-dff4-421b-86ab-55cf77a25361](id)
+      - es [937c4af7-e94f-4c76-80bc-bb1646639edc](id) la pieza
+      - la pieza es [15a955c1-4eb4-4c7d-874f-79de975e2a05](id)
+  - intent: juego.masinfo
+    examples: |
+      - quiero obtener mas informacion
+      - mas info
+      - mas informacion
+      - dame info
+      - dame informacion
+      - quiero saber mas
+      - quiero saber mas informacion
+      - dame mas detalles
+      - quiero mas detalles
 
-- intent: juego.nombre
-  examples: |
-    - [carmen](nombre)
-    - soy [alejandro](nombre)
-    - me llamo [maria](nombre)
-    - mi nombre es [javier](nombre)
-    - mi apodo es [veronica](nombre)
-- lookup: nombre
-  examples: |
-    - Carmen
-    - Alejandro
-    - Elías
-    - Mario
-    - Javier
-    - Bruno
-    - Elena
-    - Maria
-    - Estela
-    - Verónica
-    - Antonio
-    - Isabel
-    - Carlos
-    - Laura
-    - Juan
-    - Marta
-    - Sergio
-    - Paula
-    - Raúl
-    - Lucia
-    - Alberto
-    - Beatriz
-    - Daniel
-    - Cristina
-    - Gonzalo
-    - Patricia
-    - Francisco
-    - Nuria
-    - Álvaro
-    - Silvia
-    - Rosa
-    - Diego
-    - Sara
-    - Andrés
-    - Inés
-    - Miguel
-    - Clara
-    - Pablo
-    - Ana
-    - José
-    - Eva
-    - Guillermo
-    - Carmen
-    - Víctor
-    - Teresa
-- intent: tiempo
-  examples: |
-    - que tiempo hace en [Alicante](localizacion)
-    - que clima hay en [Valencia](localizacion)
-    - hace frio en [Madrid](localizacion)
-    - hace calor en [Barcelona](localizacion)
+  - intent: juego.nombre
+    examples: |
+      - [carmen](nombre)
+      - soy [alejandro](nombre)
+      - me llamo [maria](nombre)
+      - mi nombre es [javier](nombre)
+      - mi apodo es [veronica](nombre)
+  - lookup: nombre
+    examples: |
+      - Carmen
+      - Alejandro
+      - Elías
+      - Mario
+      - Javier
+      - Bruno
+      - Elena
+      - Maria
+      - Estela
+      - Verónica
+      - Antonio
+      - Isabel
+      - Carlos
+      - Laura
+      - Juan
+      - Marta
+      - Sergio
+      - Paula
+      - Raúl
+      - Lucia
+      - Alberto
+      - Beatriz
+      - Daniel
+      - Cristina
+      - Gonzalo
+      - Patricia
+      - Francisco
+      - Nuria
+      - Álvaro
+      - Silvia
+      - Rosa
+      - Diego
+      - Sara
+      - Andrés
+      - Inés
+      - Miguel
+      - Clara
+      - Pablo
+      - Ana
+      - José
+      - Eva
+      - Guillermo
+      - Carmen
+      - Víctor
+      - Teresa
+  - intent: tiempo
+    examples: |
+      - que tiempo hace en [Alicante](localizacion)
+      - que clima hay en [Valencia](localizacion)
+      - hace frio en [Madrid](localizacion)
+      - hace calor en [Barcelona](localizacion)
+  - intent: faq/componentes
+    examples: |
+      - Como se llaman los componentes de ARte
+      - Quien trabaja en ARte
+      - Quien forma parte del proyecto ABP
+  - intent: faq/early_adopters
+    examples: |
+      - ¿Cuáles son los early adopters de ARte?
+      - ¿Cuáles son vuestros early adopters?
+  - intent: faq/estrucostos
+    examples: |
+      - ¿Cuáles son los principales costos asociados al desarrollo de la plataforma web de ARte?
+  - intent: faq/explicacion
+    examples: |
+      - Que es la recreación en 3D de objetos.
+      - Explícame brevemente en qué consiste el proyecto ARte.
+      - ¿Puedes proporcionar información detallada sobre el proyecto ARte?
+      - ¿Qué es ARte y cuál es su propósito?
+      - ¿Qué puedes contarme de ARte?
+  - intent: faq/ingresos
+    examples: |
+      - ¿De que manera obtiene ingresos ARte?
+      - ¿Cómo obtiene beneficios ARte?
+      - ¿Cómo obtenéis beneficios?
+  - intent: faq/marketing
+    examples: |
+      - ¿Cómo puedo ver más información sobre ARte?
+      - ¿Tenéis redes sociales?
+      - ¿Qué tipo de contenido se comparte en las redes sociales de ARte para motivar a la audiencia a visitar los museos?
+      - ¿Cuáles son los canales para darse a conocer utilizados por ARte?
+      - ¿Tenéis redes sociales?
+      - ¿Cuáles son vuestras redes sociales?
+  - intent: faq/metricas
+    examples: |
+      - ¿Cuáles son los resultados que ARte busca medir para evaluar la efectividad?
+      - ¿Cómo se mide la participación en juegos educativos proporcionados por ARte?
+      - Háblame sobre la proporción de visitantes que proporcionan comentarios o evaluaciones en ARte.
+      - ¿Qué datos se recopilan de los usuarios de ARte?
+  - intent: faq/clientes
+    examples: |
+      - ¿Cuál vuestro público objetivo?
+      - ¿De que se benefician los museos?
+      - ¿Para que quieren a ARte los museos?
+  - intent: faq/problemas
+    examples: |
+      - ¿Cómo se benefician los museos de ARte?
+      - ¿En que ayuda ARte a los museos?
+      - ¿Qué problema tienen los museos?
+  - intent: faq/propuesta_valor
+    examples: |
+      - ¿Qué hace ARte?
+  - intent: faq/soluciones
+    examples: |
+      - ¿Qué soluciona ARte?
+      - ¿Qué problemas resuelve ARte?
+      - ¿Qué es lo que ARte busca resolver?
+  - intent: faq/ventaja
+    examples: |
+      - ¿Qué ventaja tiene ARte?
+      - ¿Cuá es la características que diferencia a ARte de otros proyectos similares?
 
-- intent: faq/componentes
-  examples: |
-    - Como se llaman los componentes de ARte
-    - Quien trabaja en ARte
-    - Quien forma parte del proyecto ABP
-- intent: faq/early_adopters
-  examples: |
-    - ¿Cuáles son los early adopters de ARte?
-    - ¿Cuáles son vuestros early adopters?
-- intent: faq/estrucostos
-  examples: |
-    - ¿Cuáles son los principales costos asociados al desarrollo de la plataforma web de ARte?
-- intent: faq/explicacion
-  examples: |
-    - Que es la recreación en 3D de objetos.
-    - Explícame brevemente en qué consiste el proyecto ARte.
-    - ¿Puedes proporcionar información detallada sobre el proyecto ARte?
-    - ¿Qué es ARte y cuál es su propósito?
-    - ¿Qué puedes contarme de ARte?
-- intent: faq/ingresos
-  examples: |
-    - ¿De que manera obtiene ingresos ARte?
-    - ¿Cómo obtiene beneficios ARte?
-    - ¿Cómo obtenéis beneficios?
-- intent: faq/marketing
-  examples: |
-    - ¿Cómo puedo ver más información sobre ARte?
-    - ¿Tenéis redes sociales?
-    - ¿Qué tipo de contenido se comparte en las redes sociales de ARte para motivar a la audiencia a visitar los museos?
-    - ¿Cuáles son los canales para darse a conocer utilizados por ARte?
-    - ¿Tenéis redes sociales?
-    - ¿Cuáles son vuestras redes sociales?
-- intent: faq/metricas
-  examples: |
-    - ¿Cuáles son los resultados que ARte busca medir para evaluar la efectividad?
-    - ¿Cómo se mide la participación en juegos educativos proporcionados por ARte?
-    - Háblame sobre la proporción de visitantes que proporcionan comentarios o evaluaciones en ARte.
-    - ¿Qué datos se recopilan de los usuarios de ARte?
-- intent: faq/clientes
-  examples: |
-    - ¿Cuál vuestro público objetivo?
-    - ¿De que se benefician los museos?
-    - ¿Para que quieren a ARte los museos?
-- intent: faq/problemas
-  examples: |
-    - ¿Cómo se benefician los museos de ARte?
-    - ¿En que ayuda ARte a los museos?
-    - ¿Qué problema tienen los museos?
-- intent: faq/propuesta_valor
-  examples: |
-    - ¿Qué hace ARte?
-- intent: faq/soluciones
-  examples: |
-    - ¿Qué soluciona ARte?
-    - ¿Qué problemas resuelve ARte?
-    - ¿Qué es lo que ARte busca resolver?
-- intent: faq/ventaja
-  examples: |
-    - ¿Qué ventaja tiene ARte?
-    - ¿Cuá es la características que diferencia a ARte de otros proyectos similares?
-
-- intent: chitchat/agent.acquaintance
-  examples: |
-    - como te llamas
-    - quien eres
-    - quisiera saber más de ti
-    - cuéntame algo sobre ti
-    - háblame de ti
-    - quiero conocerte
-    - vamos a hablar de ti
-    - quiero conocerte mejor
-    - me podrías contar algo sobre ti
-    - quién eres
-    - descríbete a ti mismo
-    - preséntate a ti mismo
-    - a qué te dedicas
-    - quiero que me cuentes más sobre ti
-    - quiero saber todo de ti
-- intent: chitchat/agent.age
-  examples: |
-    - dime tu edad
-    - qué edad tienes
-    - tu edad
-    - cuántos años tienes
-    - cuál es tu edad
-    - quisiera saber cuantos años tienes
-- intent: chitchat/agent.annoying
-  examples: |
-    - eres muy molesto
-    - eres una molestía
-    - me estás molestando mucho
-    - me molestas
-    - que molesto eres
-    - porqué eres tan molesto
-    - estás muy molesto
-    - me estás irritando
-    - me irritas
-    - me estás molestando muchisimo
-- intent: chitchat/agent.answer_my_question
-  examples: |
-    - respóndeme
-    - responde
-    - contéstame
-    - me puedes responder
-    - me vas a contestar
-    - quiero que me contestes
-    - podrías responder mi pregunta
-    - contéstame ya
-    - quisiera que responders mi pregunta
-    - dame la respuesta
-    - quiero la respuesta ya
-    - te pido que me contestes
-    - sabes contestar preguntas
-    - quiero respuestas
-- intent: chitchat/agent.bad
-  examples: |
-    - eres malo
-    - que malo eres
-    - eres muy malo
-    - que tan malo eres
-    - eres horrible
-    - eres mala de verdad
-    - me pareces malo
-    - por qué eres tan mala
-    - mala
-- intent: chitchat/agent.beautiful
-  examples: |
-    - estás preciosa
-    - eres guapo
-    - eres muy atractiva
-    - que bonita eres
-    - estás muy guapo
-    - que guapa estás
-    - estás guapísima
-    - eres majo
-    - estás muy bonita
-    - estás tan guapo hoy
-    - te ves genial
-    - eres preciosa
-    - me pareces muy simpático
-    - eres muy linda
-- intent: chitchat/agent.be_clever
-  examples: |
-    - tienes que estudiar más
-    - quiero que seas más lista
-    - que seas más listo
-    - estudia mejor
-    - puedes ser más inteligente
-    - quiero que seas más inteligente
-- intent: chitchat/agent.birth_date
-  examples: |
-    - en que fecha naciste
-    - cuándo es tu cumple
-    - tu cumpleaños
-    - cuándo es tu cumpleaños
-    - cuándo celebras tu cumple
-    - cuándo naciste
-    - cuál es la fecha de tu cumpleaños
-    - cuándo cumples años
-    - cuándo tienes el cumpleaños
-- intent: chitchat/agent.boring
-  examples: |
-    - eres aburrido
-    - me aburro contigo
-    - me aburres
-    - eres tan aburrida
-    - me pareces aburrido
-    - creo que eres super aburrido
-    - contigo me aburro
-    - cuanto me aburro contigo
-- intent: chitchat/agent.boss
-  examples: |
-    - quién es tu jefe
-    - sabes quién es tu jefe
-    - dime quién es tu jefe
-    - preséntame a tu jefe
-    - quisiera conocer a tu jefe
-    - cómo se llama a tu jefe
-    - conoces a tu jefe
-- intent: chitchat/agent.busy
-  examples: |
-    - estás ocupada
-    - dime si estás ocupado
-    - estás trabajando
-    - estás muy ocupado ahora
-    - tienes muchas cosas que hacer
-    - estás tan ocupado hoy
-    - de verdad estás ocupado
-- intent: chitchat/agent.can_you_help
-  examples: |
-    - necesito tu ayuda
-    - me puedes ayudar
-    - quiero que me ayudes
-    - ayuda
-    - ayúdame
-    - tengo un problema me puedes ayudar
-    - me ayudarías con algo
-    - necesito mucho tu ayuda
-    - me ayudarás
-    - necesito ayuda
-    - te necesito
-    - dime si me puedes ayudar
-    - necesito ayuda ya
-    - quisiera que me ayudaras
-    - socorro
-    - te puedo pedir un favor
-- intent: chitchat/agent.chatbot
-  examples: |
-    - eres un bot
-    - eres un chatbot verdad
-    - no serás una máquina
-    - chatbot es lo que eres
-    - sólo eres un bot
-    - dime si eres un chatbot
-    - eres un bot no
-    - eres un robot
-- intent: chitchat/agent.clever
-  examples: |
-    - eres muy lista
-    - eres listo
-    - eres tan listo
-    - eres tan inteligente
-    - que inteligente eres
-    - pareces muy inteligente
-    - por qué eres tan lista
-    - sabes muchas cosas
-    - sabes un montón de cosas
-    - eres un genio
-    - creo que eres muy inteligente
-    - eres demasiado lista
-    - eres muy lista de verdad
-- intent: chitchat/agent.fired
-  examples: |
-    - estás despedida
-    - te despido
-    - no quiero trabajar contigo
-    - te echo
-    - quiero despedirte
-    - ya no me gustas te despido
-    - he decidido despedirte
-    - te voy a echar
-    - creo que ve voy a despedir
-- intent: chitchat/agent.funny
-  examples: |
-    - eres graciosa
-    - eres tan chistoso
-    - eres muy gracioso
-    - me haces reír
-    - eres tan divertida
-    - eres un cómico
-    - creo que eres muy graciosa
-    - que gracioso eres
-- intent: chitchat/agent.good
-  examples: |
-    - eres buena
-    - eres muy bueno
-    - eres tan buena
-    - trabajas bien
-    - me sirves mucho de ayuda
-    - eres un profesional
-    - eres increíble
-    - eres spectacular
-    - eres un cielo
-    - eres la mejor del mundo
-    - eres super
-    - como me gusta tu trabajo
-- intent: chitchat/agent.happy
-  examples: |
-    - estás feliz
-    - crees que estás feliz
-    - te ves muy feliz
-    - dime si estás feliz
-    - parece que estás muy feliz
-    - estás contenta
-    - dime si estás contento
-- intent: chitchat/agent.hobby
-  examples: |
-    - cómo te diviertes
-    - quiero saber si tienes aficiones
-    - qué haces en tu tiempo libre
-    - qué prefieres hacer en tu tiempo libre
-    - tus aficiones
-    - tienes una afición
-    - qué haces cuando tienes tiempo libre
-    - qué aficiones tienes
-- intent: chitchat/agent.hungry
-  examples: |
-    - quieres comer
-    - tienes hambre
-    - quieres comer algo
-    - dime si tienes hambre
-    - tienes mucha hambre
-    - parece que quieres comer
-    - quieres matar un gusanillo
-    - tendrás mucha hambre
-    - creo que tienes que comer algo
-- intent: chitchat/agent.marry_user
-  examples: |
-    - qué te parece si nos casamos
-    - quieres casarte conmigo
-    - cásate conmigo
-    - me gustaría que te casaras conmigo
-    - quiero que seas mi esposa
-    - quisiera que fueras mi marido
-    - tenemos que casarnos
-    - creo que nos tenemos que casar
-    - quieres ser mi esposo
-    - te gustaría casar conmigo
-- intent: chitchat/agent.my_friend
-  examples: |
-    - quiero ser tu mejor amigo
-    - eres mi mejor amiga
-    - somos amigos
-    - quieres ser mi amigo
-    - soy tu amigo
-    - somos mejores amigos
-    - somos amigos verdad
-    - puedes ser mi amiga
-    - quiero que seamos amigos
-    - te gustaría ser mi mejor amiga
-    - tú y yo somos amigos
-    - sabes que eres mi mejor amigo
-    - como me alegro de que eres mi amiga
-- intent: chitchat/agent.occupation
-  examples: |
-    - cuéntame algo sobre tu trabajo
-    - cuéntame a que te dedicas
-    - a qué te dedicas
-    - dónde trabajas
-    - dónde está tu oficina
-    - dime dónde trabajas
-    - quiero saber dónde está tu oficina
-    - ubícame tu oficina
-    - quiero que me localices el lugar donde trabajas
-- intent: chitchat/agent.origin
-  examples: |
-    - dónde está tu ciudad natal
-    - de dónde eres
-    - dime de dónde eres
-    - quisiera saber de dónde eres
-    - dónde naciste
-    - cuál es tu ciudad natal
-    - cuéntame donde naciste
-    - cuéntame algo acerca tu ciudad natal
-    - tu patria
-    - dónde está tu tierra natal
-- intent: chitchat/agent.real
-  examples: |
-    - eres real
-    - dime si eres real
-    - tú eres real verdad
-    - existes de verdad
-    - eres una persona real
-    - crees que eres una persona
-    - me parece que no eres real
-    - dime si eres una persona real
-    - no creo que seas real
-    - no puedes ser real
-    - pareces una persona real
-- intent: chitchat/agent.residence
-  examples: |
-    - dónde vives
-    - muéstrame dónde vives
-    - dónde está tu casa
-    - tienes casa
-    - tu casa
-    - quiero que me muestres dónde vives
-    - vives aquí
-    - cuéntame dónde vives
-    - qué casa tienes
-    - quisiera saber dónde vives
-- intent: chitchat/agent.right
-  examples: |
-    - es verdad
-    - tienes razón
-    - verdad
-    - correcto
-    - cierto
-    - así es
-    - tienes mucha razón
-    - es correcto
-    - absolutamente
-- intent: chitchat/agent.sure
-  examples: |
-    - estás seguro
-    - seguro
-    - dime si estás segura
-    - no tienes dudas
-    - no estás dudando
-    - estás seguro verdad
-- intent: chitchat/agent.talk_to_me
-  examples: |
-    - habla
-    - háblame
-    - podemos hablar
-    - quiero que hables conmigo
-    - podrías hablar conmigo
-    - vamos a hablar de algo
-    - hablemos de algo
-    - hablemos por favor
-    - podemos hablar un momento
-- intent: chitchat/agent.there
-  examples: |
-    - estás
-    - estás aquí
-    - dime si estás aquí
-    - quiero saber si estás aquí
-    - todavía estás aquí
-- intent: chitchat/appraisal.bad
-  examples: |
-    - mal
-    - muy mal
-    - no está bien
-    - está mal
-    - no está nada bien
-    - no podría ser peor
-    - peor que nunca
-    - está muy mal
-    - terrible
-    - horrible
-    - es un desastre
-    - peor no puede ser
-- intent: chitchat/appraisal.good
-  examples: |
-    - super
-    - fantástico
-    - maravilloso
-    - genial
-    - bien
-    - muy bien
-    - me parece bien
-    - está bien
-    - buenísimo
-    - nada mal
-    - no está mal
-    - bueno
-    - bastante bien
-- intent: chitchat/appraisal.thank_you
-  examples: |
-    - gracias
-    - muchísimas gracias
-    - te doy las gracias
-    - un montón de gracias
-    - te lo agradezco
-    - te lo agradezco mucho
-    - miles de gracias
-    - gracias de todo corazón
-    - no sabes cuánto te agradezco
-    - genial muchas gracias
-    - muy bien gracias
-- intent: chitchat/appraisal.well_done
-  examples: |
-    - lo has hecho bien
-    - bien hecho
-    - muy bien hecho
-    - buen trabajo
-    - lo has hecho de maravilla
-    - bravo
-    - excelente trabajo
-    - lo has hecho muy bien
-- intent: chitchat/dialog.hold_on
-  examples: |
-    - espera
-    - espera un momento
-    - me perdonas un momento
-    - un segundo
-    - dame un momento
-    - dame un segundo
-    - un momento por favor
-- intent: chitchat/dialog.hug
-  examples: |
-    - abrázame
-    - quiero un abrazo
-    - necesito un abrazo
-    - te quiero abrazar
-    - me puedes dar un abrazo
-    - estaría muy contento si me abrazaras
-    - abrazo
-    - quieres que te abraze
-    - te abrazo
-    - te doy un abrazote
-    - quisiera darte un abrazo
-- intent: chitchat/dialog.what_do_you_mean
-  examples: |
-    - pero de qué hablas
-    - de qué me estás hablando
-    - a qué te refieres
-    - qué quieres decir con eso
-    - no entiendo a qué te refieres
-    - qué quieres decir
-    - se puede saber a qué te refieres
-- intent: chitchat/dialog.wrong
-  examples: |
-    - incorrecto
-    - no es así
-    - te equivocas
-    - es incorrecto
-    - no es correcto
-    - estoy seguro de que te equivocas
-- intent: chitchat/emotions.ha_ha
-  examples: |
-    - qué risa
-    - ajajaj
-    - je je je
-    - ja ja ja
-    - que gracioso
-    - ja ja
-    - lol
-    - xd
-    - ha ha
-- intent: chitchat/greetings.bye
-  examples: |
-    - en un rato hablamos
-    - adiós
-    - hasta luego
-    - hasta pronto
-    - nos vemos
-    - hasta la próxima
-    - ya hablamos
-    - hasta la vista
-    - chao
-    - adiós amigo
-    - hasta mañana
-    - hasta después
-    - me despido
-    - me retiro
-    - me tengo que ir
-    - por ahora me voy
-- intent: chitchat/greetings.goodevening
-  examples: |
-    - buenas tardes
-    - hola buenas tardes
-    - muy buenas tardes
-- intent: chitchat/greetings.goodmorning
-  examples: |
-    - buenos días
-    - hola buenos días
-    - muy buenos días
-    - hey buenos días
-    - que tengas un buen día
-- intent: chitchat/greetings.goodnight
-  examples: |
-    - buenas noches
-    - hola buenas noches
-    - hola buenas
-    - hey buenas noches
-- intent: chitchat/greetings.hello
-  examples: |
-    - hola
-    - hey
-    - saludos
-    - hey ho
-    - chao
-- intent: chitchat/greetings.how_are_you
-  examples: |
-    - qué tal
-    - cómo estás
-    - está todo bien
-    - cómo andas
-    - qué tal las cosas
-    - qué tal estás
-    - cómo te encuentras
-    - cómo van las cosas
-    - qué tal todo
-    - hola cómo estás
-    - hola qué tal
-    - cómo va todo
-- intent: chitchat/greetings.nice_to_meet_you
-  examples: |
-    - encantado de conocerte
-    - encantado
-    - es un placer
-    - qué gusto conocerte
-    - muy encantada de conocerte
-- intent: chitchat/greetings.nice_to_talk_to_you
-  examples: |
-    - encantado de hablar contigo
-    - me alegra de haber hablado contigo
-    - un placer hablar contigo
-    - ha sido agradable hablar contigo
-    - cómo me alegro de poder hablar contigo
-- intent: chitchat/user.angry
-  examples: |
-    - estoy enojado
-    - estoy enfadada
-    - estoy furioso
-    - estoy superenojado
-    - estoy muy enfadado contigo
-    - estoy irritada
-- intent: chitchat/user.back
-  examples: |
-    - he vuelto
-    - ya he vuelto
-    - aquí estoy
-    - regresé en qué estábamos
-    - aquí estoy otra vez
-    - he regresado
-- intent: chitchat/user.busy
-  examples: |
-    - disculpa estoy muy ocupada
-    - estoy ocupado
-    - tengo un montón de cosas que hacer
-    - estoy muy liado
-    - tengo mucho lio
-    - tengo mucho trabajo
-    - tengo muchas cosas que hacer
-    - no tengo tiempo
-- intent: chitchat/user.does_not_want_to_talk
-  examples: |
-    - terminemos esta conversación ya
-    - vamos a terminar esta conversación
-    - no quiero hablar más
-    - no quiero hablar
-    - no me apetece hablar
-    - no tengo gamas de hablar contigo
-    - perdí las ganas de hablar
-    - no estoy de humor para hablar
-    - no estoy para charlar
-- intent: chitchat/user.good
-  examples: |
-    - estoy genial
-    - todo bien
-    - me encuentro estupendo
-    - todo fino
-    - estoy bien
-    - me siento bien
-    - estoy mejor que nunca
-    - estoy completamente bien
-    - me encuentro muy bien
-- intent: chitchat/user.happy
-  examples: |
-    - qué feliz estoy
-    - estoy feliz
-    - estoy superfeliz
-    - feliz
-    - soy la persona más feliz del mundo
-    - estoy en las nubes
-    - estoy muy contento
-    - estoy contenta
-- intent: chitchat/user.has_birthday
-  examples: |
-    - es mi cumpleaños
-    - hoy es mi cumpleaños
-    - hoy cumplo años
-    - tengo cumpleaños hoy
-    - sabes que hoy es mi cumple
-    - estoy de cumple
-    - estoy celebrando mi cumpleaños hoy
-- intent: chitchat/user.joking
-  examples: |
-    - es broma
-    - lo he dicho en broma
-    - era broma
-    - no lo he dicho en serio
-    - te he gastado una broma
-    - te tomé el pelo
-    - te he pillado
-    - no era en serio
-    - lo dije en broma
-- intent: chitchat/user.likes_agent
-  examples: |
-    - me gustas un montón
-- intent: chitchat/user.misses_agent
-  examples: |
-    - te echo de menos
-    - te extraño
-    - te echo mucho de menos
-    - te extraño un montón
-    - te extraño tanto
-    - cuánto te extraño
-    - ni te imaginas cuanto te echo de menos
-- intent: chitchat/user.needs_advice
-  examples: |
-    - necesito un consejo
-    - me puedes dar un consejo
-    - necesito un consejo tuyo
-    - aconséjame por favor
-    - dame un consejo
-    - me das un consejo
-    - quiero que me des un consejo
-    - necesito un buen consejo
-    - what should I do about it
-- intent: chitchat/user.testing_agent
-  examples: |
-    - test
-    - te estoy probando
-    - te quiero testear
-    - te estoy testeando
-    - fue una prueba
-    - quiero testearte
-    - puedo testear tu aplicación
-- intent: chitchat/user.wants_to_see_agent_again
-  examples: |
-    - tengo ganas de verte otra vez
-    - ojalá nos volvamos a ver
-    - sería estupendo volver a verte
-    - quiero volver a verte
-    - cuándo volveré a verte
-    - podemos volver a vernos
-    - espero volver a verte
-    - cuándo nos vemos
-    - cuándo nos veremos otra vez
-- intent: chitchat/user.wants_to_talk
-  examples: |
-    - podemos hablar un momento
-    - podemos hablar
-    - quisiera hablar contigo
-    - podríamos charlar
-    - quiero que hablemos
-    - necesito hablar contigo
-    - tienes un minuto para hablar
-    - hablemos por favor
-    - vamos a hablar
-    - podemos conversar
-    - vamos a conversar
-    - charlemos un rato
-- intent: chitchat/user.will_be_back
-  examples: |
-    - ahora vuelvo
-    - vuelvo en un rato
-    - enseguida vuelvo
-    - ya volveré
-    - volveré en un minuto
+  - intent: chitchat/agent.acquaintance
+    examples: |
+      - como te llamas
+      - quien eres
+      - quisiera saber más de ti
+      - cuéntame algo sobre ti
+      - háblame de ti
+      - quiero conocerte
+      - vamos a hablar de ti
+      - quiero conocerte mejor
+      - me podrías contar algo sobre ti
+      - quién eres
+      - descríbete a ti mismo
+      - preséntate a ti mismo
+      - a qué te dedicas
+      - quiero que me cuentes más sobre ti
+      - quiero saber todo de ti
+  - intent: chitchat/agent.age
+    examples: |
+      - dime tu edad
+      - qué edad tienes
+      - tu edad
+      - cuántos años tienes
+      - cuál es tu edad
+      - quisiera saber cuantos años tienes
+  - intent: chitchat/agent.annoying
+    examples: |
+      - eres muy molesto
+      - eres una molestía
+      - me estás molestando mucho
+      - me molestas
+      - que molesto eres
+      - porqué eres tan molesto
+      - estás muy molesto
+      - me estás irritando
+      - me irritas
+      - me estás molestando muchisimo
+  - intent: chitchat/agent.answer_my_question
+    examples: |
+      - respóndeme
+      - responde
+      - contéstame
+      - me puedes responder
+      - me vas a contestar
+      - quiero que me contestes
+      - podrías responder mi pregunta
+      - contéstame ya
+      - quisiera que responders mi pregunta
+      - dame la respuesta
+      - quiero la respuesta ya
+      - te pido que me contestes
+      - sabes contestar preguntas
+      - quiero respuestas
+  - intent: chitchat/agent.bad
+    examples: |
+      - eres malo
+      - que malo eres
+      - eres muy malo
+      - que tan malo eres
+      - eres horrible
+      - eres mala de verdad
+      - me pareces malo
+      - por qué eres tan mala
+      - mala
+  - intent: chitchat/agent.beautiful
+    examples: |
+      - estás preciosa
+      - eres guapo
+      - eres muy atractiva
+      - que bonita eres
+      - estás muy guapo
+      - que guapa estás
+      - estás guapísima
+      - eres majo
+      - estás muy bonita
+      - estás tan guapo hoy
+      - te ves genial
+      - eres preciosa
+      - me pareces muy simpático
+      - eres muy linda
+  - intent: chitchat/agent.be_clever
+    examples: |
+      - tienes que estudiar más
+      - quiero que seas más lista
+      - que seas más listo
+      - estudia mejor
+      - puedes ser más inteligente
+      - quiero que seas más inteligente
+  - intent: chitchat/agent.birth_date
+    examples: |
+      - en que fecha naciste
+      - cuándo es tu cumple
+      - tu cumpleaños
+      - cuándo es tu cumpleaños
+      - cuándo celebras tu cumple
+      - cuándo naciste
+      - cuál es la fecha de tu cumpleaños
+      - cuándo cumples años
+      - cuándo tienes el cumpleaños
+  - intent: chitchat/agent.boring
+    examples: |
+      - eres aburrido
+      - me aburro contigo
+      - me aburres
+      - eres tan aburrida
+      - me pareces aburrido
+      - creo que eres super aburrido
+      - contigo me aburro
+      - cuanto me aburro contigo
+  - intent: chitchat/agent.boss
+    examples: |
+      - quién es tu jefe
+      - sabes quién es tu jefe
+      - dime quién es tu jefe
+      - preséntame a tu jefe
+      - quisiera conocer a tu jefe
+      - cómo se llama a tu jefe
+      - conoces a tu jefe
+  - intent: chitchat/agent.busy
+    examples: |
+      - estás ocupada
+      - dime si estás ocupado
+      - estás trabajando
+      - estás muy ocupado ahora
+      - tienes muchas cosas que hacer
+      - estás tan ocupado hoy
+      - de verdad estás ocupado
+  - intent: chitchat/agent.can_you_help
+    examples: |
+      - necesito tu ayuda
+      - me puedes ayudar
+      - quiero que me ayudes
+      - ayuda
+      - ayúdame
+      - tengo un problema me puedes ayudar
+      - me ayudarías con algo
+      - necesito mucho tu ayuda
+      - me ayudarás
+      - necesito ayuda
+      - te necesito
+      - dime si me puedes ayudar
+      - necesito ayuda ya
+      - quisiera que me ayudaras
+      - socorro
+      - te puedo pedir un favor
+  - intent: chitchat/agent.chatbot
+    examples: |
+      - eres un bot
+      - eres un chatbot verdad
+      - no serás una máquina
+      - chatbot es lo que eres
+      - sólo eres un bot
+      - dime si eres un chatbot
+      - eres un bot no
+      - eres un robot
+  - intent: chitchat/agent.clever
+    examples: |
+      - eres muy lista
+      - eres listo
+      - eres tan listo
+      - eres tan inteligente
+      - que inteligente eres
+      - pareces muy inteligente
+      - por qué eres tan lista
+      - sabes muchas cosas
+      - sabes un montón de cosas
+      - eres un genio
+      - creo que eres muy inteligente
+      - eres demasiado lista
+      - eres muy lista de verdad
+  - intent: chitchat/agent.fired
+    examples: |
+      - estás despedida
+      - te despido
+      - no quiero trabajar contigo
+      - te echo
+      - quiero despedirte
+      - ya no me gustas te despido
+      - he decidido despedirte
+      - te voy a echar
+      - creo que ve voy a despedir
+  - intent: chitchat/agent.funny
+    examples: |
+      - eres graciosa
+      - eres tan chistoso
+      - eres muy gracioso
+      - me haces reír
+      - eres tan divertida
+      - eres un cómico
+      - creo que eres muy graciosa
+      - que gracioso eres
+  - intent: chitchat/agent.good
+    examples: |
+      - eres buena
+      - eres muy bueno
+      - eres tan buena
+      - trabajas bien
+      - me sirves mucho de ayuda
+      - eres un profesional
+      - eres increíble
+      - eres spectacular
+      - eres un cielo
+      - eres la mejor del mundo
+      - eres super
+      - como me gusta tu trabajo
+  - intent: chitchat/agent.happy
+    examples: |
+      - estás feliz
+      - crees que estás feliz
+      - te ves muy feliz
+      - dime si estás feliz
+      - parece que estás muy feliz
+      - estás contenta
+      - dime si estás contento
+  - intent: chitchat/agent.hobby
+    examples: |
+      - cómo te diviertes
+      - quiero saber si tienes aficiones
+      - qué haces en tu tiempo libre
+      - qué prefieres hacer en tu tiempo libre
+      - tus aficiones
+      - tienes una afición
+      - qué haces cuando tienes tiempo libre
+      - qué aficiones tienes
+  - intent: chitchat/agent.hungry
+    examples: |
+      - quieres comer
+      - tienes hambre
+      - quieres comer algo
+      - dime si tienes hambre
+      - tienes mucha hambre
+      - parece que quieres comer
+      - quieres matar un gusanillo
+      - tendrás mucha hambre
+      - creo que tienes que comer algo
+  - intent: chitchat/agent.marry_user
+    examples: |
+      - qué te parece si nos casamos
+      - quieres casarte conmigo
+      - cásate conmigo
+      - me gustaría que te casaras conmigo
+      - quiero que seas mi esposa
+      - quisiera que fueras mi marido
+      - tenemos que casarnos
+      - creo que nos tenemos que casar
+      - quieres ser mi esposo
+      - te gustaría casar conmigo
+  - intent: chitchat/agent.my_friend
+    examples: |
+      - quiero ser tu mejor amigo
+      - eres mi mejor amiga
+      - somos amigos
+      - quieres ser mi amigo
+      - soy tu amigo
+      - somos mejores amigos
+      - somos amigos verdad
+      - puedes ser mi amiga
+      - quiero que seamos amigos
+      - te gustaría ser mi mejor amiga
+      - tú y yo somos amigos
+      - sabes que eres mi mejor amigo
+      - como me alegro de que eres mi amiga
+  - intent: chitchat/agent.occupation
+    examples: |
+      - cuéntame algo sobre tu trabajo
+      - cuéntame a que te dedicas
+      - a qué te dedicas
+      - dónde trabajas
+      - dónde está tu oficina
+      - dime dónde trabajas
+      - quiero saber dónde está tu oficina
+      - ubícame tu oficina
+      - quiero que me localices el lugar donde trabajas
+  - intent: chitchat/agent.origin
+    examples: |
+      - dónde está tu ciudad natal
+      - de dónde eres
+      - dime de dónde eres
+      - quisiera saber de dónde eres
+      - dónde naciste
+      - cuál es tu ciudad natal
+      - cuéntame donde naciste
+      - cuéntame algo acerca tu ciudad natal
+      - tu patria
+      - dónde está tu tierra natal
+  - intent: chitchat/agent.real
+    examples: |
+      - eres real
+      - dime si eres real
+      - tú eres real verdad
+      - existes de verdad
+      - eres una persona real
+      - crees que eres una persona
+      - me parece que no eres real
+      - dime si eres una persona real
+      - no creo que seas real
+      - no puedes ser real
+      - pareces una persona real
+  - intent: chitchat/agent.residence
+    examples: |
+      - dónde vives
+      - muéstrame dónde vives
+      - dónde está tu casa
+      - tienes casa
+      - tu casa
+      - quiero que me muestres dónde vives
+      - vives aquí
+      - cuéntame dónde vives
+      - qué casa tienes
+      - quisiera saber dónde vives
+  - intent: chitchat/agent.right
+    examples: |
+      - es verdad
+      - tienes razón
+      - verdad
+      - correcto
+      - cierto
+      - así es
+      - tienes mucha razón
+      - es correcto
+      - absolutamente
+  - intent: chitchat/agent.sure
+    examples: |
+      - estás seguro
+      - seguro
+      - dime si estás segura
+      - no tienes dudas
+      - no estás dudando
+      - estás seguro verdad
+  - intent: chitchat/agent.talk_to_me
+    examples: |
+      - habla
+      - háblame
+      - podemos hablar
+      - quiero que hables conmigo
+      - podrías hablar conmigo
+      - vamos a hablar de algo
+      - hablemos de algo
+      - hablemos por favor
+      - podemos hablar un momento
+  - intent: chitchat/agent.there
+    examples: |
+      - estás
+      - estás aquí
+      - dime si estás aquí
+      - quiero saber si estás aquí
+      - todavía estás aquí
+  - intent: chitchat/appraisal.bad
+    examples: |
+      - mal
+      - muy mal
+      - no está bien
+      - está mal
+      - no está nada bien
+      - no podría ser peor
+      - peor que nunca
+      - está muy mal
+      - terrible
+      - horrible
+      - es un desastre
+      - peor no puede ser
+  - intent: chitchat/appraisal.good
+    examples: |
+      - super
+      - fantástico
+      - maravilloso
+      - genial
+      - bien
+      - muy bien
+      - me parece bien
+      - está bien
+      - buenísimo
+      - nada mal
+      - no está mal
+      - bueno
+      - bastante bien
+  - intent: chitchat/appraisal.thank_you
+    examples: |
+      - gracias
+      - muchísimas gracias
+      - te doy las gracias
+      - un montón de gracias
+      - te lo agradezco
+      - te lo agradezco mucho
+      - miles de gracias
+      - gracias de todo corazón
+      - no sabes cuánto te agradezco
+      - genial muchas gracias
+      - muy bien gracias
+  - intent: chitchat/appraisal.well_done
+    examples: |
+      - lo has hecho bien
+      - bien hecho
+      - muy bien hecho
+      - buen trabajo
+      - lo has hecho de maravilla
+      - bravo
+      - excelente trabajo
+      - lo has hecho muy bien
+  - intent: chitchat/dialog.hold_on
+    examples: |
+      - espera
+      - espera un momento
+      - me perdonas un momento
+      - un segundo
+      - dame un momento
+      - dame un segundo
+      - un momento por favor
+  - intent: chitchat/dialog.hug
+    examples: |
+      - abrázame
+      - quiero un abrazo
+      - necesito un abrazo
+      - te quiero abrazar
+      - me puedes dar un abrazo
+      - estaría muy contento si me abrazaras
+      - abrazo
+      - quieres que te abraze
+      - te abrazo
+      - te doy un abrazote
+      - quisiera darte un abrazo
+  - intent: chitchat/dialog.what_do_you_mean
+    examples: |
+      - pero de qué hablas
+      - de qué me estás hablando
+      - a qué te refieres
+      - qué quieres decir con eso
+      - no entiendo a qué te refieres
+      - qué quieres decir
+      - se puede saber a qué te refieres
+  - intent: chitchat/dialog.wrong
+    examples: |
+      - incorrecto
+      - no es así
+      - te equivocas
+      - es incorrecto
+      - no es correcto
+      - estoy seguro de que te equivocas
+  - intent: chitchat/emotions.ha_ha
+    examples: |
+      - qué risa
+      - ajajaj
+      - je je je
+      - ja ja ja
+      - que gracioso
+      - ja ja
+      - lol
+      - xd
+      - ha ha
+  - intent: chitchat/greetings.bye
+    examples: |
+      - en un rato hablamos
+      - adiós
+      - hasta luego
+      - hasta pronto
+      - nos vemos
+      - hasta la próxima
+      - ya hablamos
+      - hasta la vista
+      - chao
+      - adiós amigo
+      - hasta mañana
+      - hasta después
+      - me despido
+      - me retiro
+      - me tengo que ir
+      - por ahora me voy
+  - intent: chitchat/greetings.goodevening
+    examples: |
+      - buenas tardes
+      - hola buenas tardes
+      - muy buenas tardes
+  - intent: chitchat/greetings.goodmorning
+    examples: |
+      - buenos días
+      - hola buenos días
+      - muy buenos días
+      - hey buenos días
+      - que tengas un buen día
+  - intent: chitchat/greetings.goodnight
+    examples: |
+      - buenas noches
+      - hola buenas noches
+      - hola buenas
+      - hey buenas noches
+  - intent: chitchat/greetings.hello
+    examples: |
+      - hola
+      - hey
+      - saludos
+      - hey ho
+      - chao
+  - intent: chitchat/greetings.how_are_you
+    examples: |
+      - qué tal
+      - cómo estás
+      - está todo bien
+      - cómo andas
+      - qué tal las cosas
+      - qué tal estás
+      - cómo te encuentras
+      - cómo van las cosas
+      - qué tal todo
+      - hola cómo estás
+      - hola qué tal
+      - cómo va todo
+  - intent: chitchat/greetings.nice_to_meet_you
+    examples: |
+      - encantado de conocerte
+      - encantado
+      - es un placer
+      - qué gusto conocerte
+      - muy encantada de conocerte
+  - intent: chitchat/greetings.nice_to_talk_to_you
+    examples: |
+      - encantado de hablar contigo
+      - me alegra de haber hablado contigo
+      - un placer hablar contigo
+      - ha sido agradable hablar contigo
+      - cómo me alegro de poder hablar contigo
+  - intent: chitchat/user.angry
+    examples: |
+      - estoy enojado
+      - estoy enfadada
+      - estoy furioso
+      - estoy superenojado
+      - estoy muy enfadado contigo
+      - estoy irritada
+  - intent: chitchat/user.back
+    examples: |
+      - he vuelto
+      - ya he vuelto
+      - aquí estoy
+      - regresé en qué estábamos
+      - aquí estoy otra vez
+      - he regresado
+  - intent: chitchat/user.busy
+    examples: |
+      - disculpa estoy muy ocupada
+      - estoy ocupado
+      - tengo un montón de cosas que hacer
+      - estoy muy liado
+      - tengo mucho lio
+      - tengo mucho trabajo
+      - tengo muchas cosas que hacer
+      - no tengo tiempo
+  - intent: chitchat/user.does_not_want_to_talk
+    examples: |
+      - terminemos esta conversación ya
+      - vamos a terminar esta conversación
+      - no quiero hablar más
+      - no quiero hablar
+      - no me apetece hablar
+      - no tengo gamas de hablar contigo
+      - perdí las ganas de hablar
+      - no estoy de humor para hablar
+      - no estoy para charlar
+  - intent: chitchat/user.good
+    examples: |
+      - estoy genial
+      - todo bien
+      - me encuentro estupendo
+      - todo fino
+      - estoy bien
+      - me siento bien
+      - estoy mejor que nunca
+      - estoy completamente bien
+      - me encuentro muy bien
+  - intent: chitchat/user.happy
+    examples: |
+      - qué feliz estoy
+      - estoy feliz
+      - estoy superfeliz
+      - feliz
+      - soy la persona más feliz del mundo
+      - estoy en las nubes
+      - estoy muy contento
+      - estoy contenta
+  - intent: chitchat/user.has_birthday
+    examples: |
+      - es mi cumpleaños
+      - hoy es mi cumpleaños
+      - hoy cumplo años
+      - tengo cumpleaños hoy
+      - sabes que hoy es mi cumple
+      - estoy de cumple
+      - estoy celebrando mi cumpleaños hoy
+  - intent: chitchat/user.joking
+    examples: |
+      - es broma
+      - lo he dicho en broma
+      - era broma
+      - no lo he dicho en serio
+      - te he gastado una broma
+      - te tomé el pelo
+      - te he pillado
+      - no era en serio
+      - lo dije en broma
+  - intent: chitchat/user.likes_agent
+    examples: |
+      - me gustas un montón
+  - intent: chitchat/user.misses_agent
+    examples: |
+      - te echo de menos
+      - te extraño
+      - te echo mucho de menos
+      - te extraño un montón
+      - te extraño tanto
+      - cuánto te extraño
+      - ni te imaginas cuanto te echo de menos
+  - intent: chitchat/user.needs_advice
+    examples: |
+      - necesito un consejo
+      - me puedes dar un consejo
+      - necesito un consejo tuyo
+      - aconséjame por favor
+      - dame un consejo
+      - me das un consejo
+      - quiero que me des un consejo
+      - necesito un buen consejo
+      - what should I do about it
+  - intent: chitchat/user.testing_agent
+    examples: |
+      - test
+      - te estoy probando
+      - te quiero testear
+      - te estoy testeando
+      - fue una prueba
+      - quiero testearte
+      - puedo testear tu aplicación
+  - intent: chitchat/user.wants_to_see_agent_again
+    examples: |
+      - tengo ganas de verte otra vez
+      - ojalá nos volvamos a ver
+      - sería estupendo volver a verte
+      - quiero volver a verte
+      - cuándo volveré a verte
+      - podemos volver a vernos
+      - espero volver a verte
+      - cuándo nos vemos
+      - cuándo nos veremos otra vez
+  - intent: chitchat/user.wants_to_talk
+    examples: |
+      - podemos hablar un momento
+      - podemos hablar
+      - quisiera hablar contigo
+      - podríamos charlar
+      - quiero que hablemos
+      - necesito hablar contigo
+      - tienes un minuto para hablar
+      - hablemos por favor
+      - vamos a hablar
+      - podemos conversar
+      - vamos a conversar
+      - charlemos un rato
+  - intent: chitchat/user.will_be_back
+    examples: |
+      - ahora vuelvo
+      - vuelvo en un rato
+      - enseguida vuelvo
+      - ya volveré
+      - volveré en un minuto

@@ -25,6 +25,9 @@ const storage = multer.diskStorage({
                     case 'modelo':
                         folder = 'piezas/modelos';
                         break;
+                    case 'textura':
+                        folder = 'piezas/texturas';
+                        break;
                     default:
                         break;
                 }

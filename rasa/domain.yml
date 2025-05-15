@@ -4,321 +4,413 @@ intents:
   - tiempo
   - chitchat
   - faq
+  - afirmativo
+  - negativo
   - nlu_fallback
   - juego.nombre
   - juego.iniciar
   - juego.masinfo
   - juego.respuesta
   - juego.siguientePregunta
-
+  - juego.intentarlo_otra_vez
+  - juego.acabar
+  - juego.dudas
+  - juego.pieza
+  - juego.resultados
 
 entities:
   - nombre
-  - juego_id
   - juego
+  - pregunta_actual
   - puntos
-  - respuesta
+  - id
 
 slots:
   nombre:
     type: text
     mappings:
-    - type: from_entity 
-      entity: nombre
+      - type: from_entity
+        entity: nombre
   juego_id:
     type: text
     mappings:
-    - type: from_entity
-      entity: juego_id
+      - type: from_entity
+        entity: id
+  respuesta:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: id
   juego:
     type: text
     influence_conversation: false
     mappings:
-    - type: custom
+      - type: custom
   puntos:
     type: float
+    initial_value: 0
     influence_conversation: false
     mappings:
-    - type: custom
-  respuesta:
-    type: text
+      - type: custom
+  pregunta_actual:
+    type: float
+    initial_value: 0
+    influence_conversation: false
     mappings:
-    - type: from_entity 
-      entity: respuesta
+      - type: custom
 
 actions:
   - action_juego.cargarPreguntas
   - action_juego.siguientePregunta
-  - action_juego.preguntar
   - action_juego.comprobar
   - action_juego.informacion
   - action_juego.finalizar
 
 responses:
   utter_juego.iniciar:
-  - text: Para empezar el juego introduce tu nombre.
-  - text: Antes de comenzar a jugar necesito tu nombre.
-  - text: Claro, ¿me podría dar tu nombre primero?
+    - text: Para empezar el juego introduce tu nombre.
+    - text: Antes de comenzar a jugar necesito tu nombre.
+    - text: Claro, ¿me podría dar tu nombre primero?
+  utter_juego.jugar_luego:
+    - text: Okey, avísame cunado quieras jugar.
+    - text: De acuerdo, avísame cunado quieras empezar jugar.
+  utter_juego.preguntar:
+    - text: ¿Puedes encontrar la pieza que corresponde a la imagen de arriba?
+      buttons:
+        - title: ¿Dónde está la imagen?
+          payload: Dime dónde está la imagen
+  utter_juego.intentarlo_otra_vez:
+    - text: Claro. ¡Intentalo las veces que quieras!
+    - text: Por supuesto. ¡Intentalo las veces que quieras!
+    - text: Recibido. Vuelve a intentarlo.
+  utter_juego.acierto:
+    - text: ¿Quieres continuar con la siguiente pregunta o obtener más información acerca de la pieza?
+      buttons:
+        - title: Siguiente pregunta
+          payload: Siguiente pregunta
+        - title: Más información
+          payload: Mas información
+  utter_juego.localizar_pieza:
+    - text: La imagen de la pieza se encuentra arriaba a la derecha.
+  utter_juego.senyalar_pieza:
+    - text: "Command: localizar_pieza"
+  utter_juego.resultados_frase:
+    - text: "De acuerdo, ahora te enseño los resultados."
+    - text: "Ok, vamos a ver los resultados del juego."
+  utter_juego.resultados_command:
+    - text: "Command: resultados"
+  utter_juego.nombre:
+    - text: Encantado {nombre}, yo me llamo Alcudio.
+    - text: Un placer {nombre}, yo soy Alcudio.
+  utter_juego.dudas/objetivo:
+    - text: Tu objetivo es encontrar la pieza que te muestro arriba a la derecha.
+  utter_juego.dudas/botonqr:
+    - text: Cuando la encuentres pulsa el botón de escáner QR.
+  utter_juego.dudas/avanzar:
+    - text: Una vez lo escanees ya podrás avanzar a la siguiente pieza, así hasta completar el juego.
   utter_fallback:
-  - text: Perdona, ¿puedes repetir? No te he entendido.
+    - text: Perdona, ¿puedes repetir? No te he entendido.
   utter_faq/componentes:
-  - text: El proyecto ARte esta formado por 5 miembros que son Elías Alfonso Carrasco Guerrero, Alejandro Sieczkowski Herrero, Bruno García Escudero, Alejandro Zaragoza Elías y Elena Sánchez Marín
-  - text: En arte trabajan Elías Alfonso Carrasco Guerrero, Alejandro Sieczkowski Herrero, Bruno García Escudero, Alejandro Zaragoza Elías y Elena Sánchez Marín
+    - text: El proyecto ARte esta formado por 5 miembros que son Elías Alfonso Carrasco Guerrero, Alejandro Sieczkowski Herrero, Bruno García Escudero, Alejandro Zaragoza Elías y Elena Sánchez Marín
+    - text: En arte trabajan Elías Alfonso Carrasco Guerrero, Alejandro Sieczkowski Herrero, Bruno García Escudero, Alejandro Zaragoza Elías y Elena Sánchez Marín
   utter_faq/early_adopters:
-  - text: Nuestros Early Adopters son los museos con poco presupuesto para reconstrucción en 3D.
+    - text: Nuestros Early Adopters son los museos con poco presupuesto para reconstrucción en 3D.
   utter_faq/estrucostos:
-  - text: Costos de personal. Engloba los salarios del equipo encargado del desarrollo, que abarca desde diseñadores hasta programadores y personal de pruebas. Gastos de alojamiento y mantenimiento. Incluyen los costos relacionados con la infraestructura de alojamiento de la plataforma web, así como los servicios continuos de mantenimiento para asegurar su funcionamiento óptimo.
+    - text: Costos de personal. Engloba los salarios del equipo encargado del desarrollo, que abarca desde diseñadores hasta programadores y personal de pruebas. Gastos de alojamiento y mantenimiento. Incluyen los costos relacionados con la infraestructura de alojamiento de la plataforma web, así como los servicios continuos de mantenimiento para asegurar su funcionamiento óptimo.
   utter_faq/explicacion:
-  - text: ARte es un proyecto que busca recrear en 3D objetos exhibidos en museos, permitiendo a los visitantes explorarlos de manera inmersiva a través de dispositivos móviles. Su propósito principal es preservar el patrimonio cultural y enriquecer la experiencia de los visitantes.
-  - text: ARte es una plataforma web que utiliza tecnología de realidad virtual y aumentada para recrear objetos en 3D de museos. Los visitantes pueden escanear códigos QR para acceder a las recreaciones y obtener información adicional de un asistente virtual.
+    - text: ARte es un proyecto que busca recrear en 3D objetos exhibidos en museos, permitiendo a los visitantes explorarlos de manera inmersiva a través de dispositivos móviles. Su propósito principal es preservar el patrimonio cultural y enriquecer la experiencia de los visitantes.
+    - text: ARte es una plataforma web que utiliza tecnología de realidad virtual y aumentada para recrear objetos en 3D de museos. Los visitantes pueden escanear códigos QR para acceder a las recreaciones y obtener información adicional de un asistente virtual.
   utter_faq/ingresos:
-  - text: Cobramos un precio variable por la creación de la web personalizada con las piezas ya reconstruidas en 3D, el precio dependerá del número de piezas reconstruidas.
+    - text: Cobramos un precio variable por la creación de la web personalizada con las piezas ya reconstruidas en 3D, el precio dependerá del número de piezas reconstruidas.
   utter_faq/marketing:
-  - text: Te invitamos a seguirnos en nuestras redes sociales para mantenerte actualizado sobre nuestras actividades, eventos, y para explorar el fascinante mundo de la arqueología y la historia a través de contenido visualmente atractivo y educativo. Si tienes alguna pregunta específica o deseas interactuar con nosotros en línea, no dudes en mencionarnos o enviarnos un mensaje. Estamos aquí para compartir conocimientos y fomentar el interés por nuestro patrimonio cultural. ¡Esperamos verte en nuestras redes sociales! Instagram https://www.instagram.com/arte_abp_ua/ TikTok https://twitter.com/ARte_ABP                                                                        
-  - text: Nuestro proyecto ARte está presente en diversas plataformas de redes sociales, donde compartimos contenido relacionado con la historia, la arqueología y la cultura. Puedes encontrarnos en Instagram https://www.instagram.com/arte_abp_ua/ y TikTok https://twitter.com/ARte_ABP. En estas redes sociales, publicamos regularmente sobre las últimas novedades en la recreación en 3D de objetos arqueológicos, así como curiosidades históricas y culturales.
+    - text: Te invitamos a seguirnos en nuestras redes sociales para mantenerte actualizado sobre nuestras actividades, eventos, y para explorar el fascinante mundo de la arqueología y la historia a través de contenido visualmente atractivo y educativo. Si tienes alguna pregunta específica o deseas interactuar con nosotros en línea, no dudes en mencionarnos o enviarnos un mensaje. Estamos aquí para compartir conocimientos y fomentar el interés por nuestro patrimonio cultural. ¡Esperamos verte en nuestras redes sociales! Instagram https://www.instagram.com/arte_abp_ua/ TikTok https://twitter.com/ARte_ABP
+    - text: Nuestro proyecto ARte está presente en diversas plataformas de redes sociales, donde compartimos contenido relacionado con la historia, la arqueología y la cultura. Puedes encontrarnos en Instagram https://www.instagram.com/arte_abp_ua/ y TikTok https://twitter.com/ARte_ABP. En estas redes sociales, publicamos regularmente sobre las últimas novedades en la recreación en 3D de objetos arqueológicos, así como curiosidades históricas y culturales.
   utter_faq/metricas:
-  - text: ARte busca medir varios indicadores clave para evaluar la efectividad de la plataforma. Estos resultados incluyen\nTiempo en cada pieza. Se busca medir el tiempo que los visitantes dedican a cada pieza histórica en particular. Este indicador proporciona información valiosa sobre el nivel de interés y compromiso del público con las diferentes exhibiciones de la plataforma.\nNúmero de escaneos del QR. ARte mide la cantidad de veces que los usuarios escanean los códigos QR asociados a las piezas expuestas. Este dato refleja el nivel de interacción directa de los visitantes con las obras de arte, permitiendo evaluar la popularidad y atractivo de cada pieza.\nTasa de retroalimentación de usuarios. La plataforma evalúa la proporción de visitantes que brindan comentarios o evaluaciones sobre su experiencia. Esta métrica proporciona información valiosa sobre la satisfacción general del usuario y puede ayudar a identificar áreas de mejora.\nParticipación en juegos educativos. Se mide la cantidad total de usuarios que eligen participar en los juegos educativos proporcionados a través del chatbot. Este indicador refleja el interés y la participación activa de los visitantes en actividades educativas, lo que contribuye a evaluar el impacto educativo de la plataforma.\nEfectividad del marketing. ARte realiza un seguimiento detallado de la efectividad de las estrategias de marketing en línea, evaluando la capacidad de estas estrategias para atraer tanto a museos como a visitantes. El análisis de esta métrica permite ajustar y optimizar las estrategias de marketing para maximizar la visibilidad y participación en la plataforma.
+    - text: ARte busca medir varios indicadores clave para evaluar la efectividad de la plataforma. Estos resultados incluyen\nTiempo en cada pieza. Se busca medir el tiempo que los visitantes dedican a cada pieza histórica en particular. Este indicador proporciona información valiosa sobre el nivel de interés y compromiso del público con las diferentes exhibiciones de la plataforma.\nNúmero de escaneos del QR. ARte mide la cantidad de veces que los usuarios escanean los códigos QR asociados a las piezas expuestas. Este dato refleja el nivel de interacción directa de los visitantes con las obras de arte, permitiendo evaluar la popularidad y atractivo de cada pieza.\nTasa de retroalimentación de usuarios. La plataforma evalúa la proporción de visitantes que brindan comentarios o evaluaciones sobre su experiencia. Esta métrica proporciona información valiosa sobre la satisfacción general del usuario y puede ayudar a identificar áreas de mejora.\nParticipación en juegos educativos. Se mide la cantidad total de usuarios que eligen participar en los juegos educativos proporcionados a través del chatbot. Este indicador refleja el interés y la participación activa de los visitantes en actividades educativas, lo que contribuye a evaluar el impacto educativo de la plataforma.\nEfectividad del marketing. ARte realiza un seguimiento detallado de la efectividad de las estrategias de marketing en línea, evaluando la capacidad de estas estrategias para atraer tanto a museos como a visitantes. El análisis de esta métrica permite ajustar y optimizar las estrategias de marketing para maximizar la visibilidad y participación en la plataforma.
   utter_faq/clientes:
-  - text: El público objetivo principal de ARte incluye museos, galerías de arte, instituciones educativas, personas interesadas en la historia y la arqueología, así como futuros arqueólogos y organizaciones de conservación del patrimonio.
-  - text: Los museos y galerías de arte se benefician de ARte al ampliar sus exposiciones sin necesidad de espacio físico adicional y reducir costos de restauración.
+    - text: El público objetivo principal de ARte incluye museos, galerías de arte, instituciones educativas, personas interesadas en la historia y la arqueología, así como futuros arqueólogos y organizaciones de conservación del patrimonio.
+    - text: Los museos y galerías de arte se benefician de ARte al ampliar sus exposiciones sin necesidad de espacio físico adicional y reducir costos de restauración.
   utter_faq/problemas:
-  - text: Los museos enfrentan un desafío significativo relacionado con el elevado costo de depender de un espacio físico amplio, personal para colocar y conservar piezas arqueológicas únicas y frágiles en sus exposiciones. Esta dificultad puede llevar a problemas de presupuesto y esfuerzo considerables.,
-  - text: ARte resuelve el problema de los museos al proporcionar una solución económica y efectiva para la presentación de piezas arqueológicas. Nuestra plataforma de recreación en 3D elimina la necesidad de espacio físico adicional y costosas restauraciones. Con ARte, los museos pueden ampliar sus exposiciones y mostrar piezas sensibles sin riesgo de desgaste o daño. Esto resulta en un ahorro significativo de tiempo, dinero y esfuerzo para las instituciones.,
-  - text: Los museos se benefician de ARte al reducir sus costos operativos, aumentar la accesibilidad a piezas únicas y atraer a un público más amplio y comprometido con nuevas tecnologías. Nuestra plataforma permite a los museos mejorar sus exposiciones y aumentar su atractivo para visitantes de todas las edades.
+    - text: Los museos enfrentan un desafío significativo relacionado con el elevado costo de depender de un espacio físico amplio, personal para colocar y conservar piezas arqueológicas únicas y frágiles en sus exposiciones. Esta dificultad puede llevar a problemas de presupuesto y esfuerzo considerables.,
+    - text: ARte resuelve el problema de los museos al proporcionar una solución económica y efectiva para la presentación de piezas arqueológicas. Nuestra plataforma de recreación en 3D elimina la necesidad de espacio físico adicional y costosas restauraciones. Con ARte, los museos pueden ampliar sus exposiciones y mostrar piezas sensibles sin riesgo de desgaste o daño. Esto resulta en un ahorro significativo de tiempo, dinero y esfuerzo para las instituciones.,
+    - text: Los museos se benefician de ARte al reducir sus costos operativos, aumentar la accesibilidad a piezas únicas y atraer a un público más amplio y comprometido con nuevas tecnologías. Nuestra plataforma permite a los museos mejorar sus exposiciones y aumentar su atractivo para visitantes de todas las edades.
   utter_faq/propuesta_valor:
-  - text: Nuestra plataforma se destaca como una valiosa herramienta puente entre los amantes de la historia y las piezas arqueológicas únicas de restauración complicada.\n\nPara los museos y galerías, ofrecemos la oportunidad de ampliar su exposición sin la necesidad de espacio físico adicional. Además permite a los museos abaratar sus costos a la hora de restaurar estas piezas incompletas lo que supone un ahorro significativo de tiempo, dinero y esfuerzo para estas entidades.\n\nPara los visitantes de museos, aseguramos un acceso instantáneo y enriquecido sin necesidad de registro o costos adicionales permitiéndoles ver piezas arqueológicas completas que no se podrían visualizar de otro modo. Por otro lado, se puede interactuar digitalmente con ellas.
+    - text: Nuestra plataforma se destaca como una valiosa herramienta puente entre los amantes de la historia y las piezas arqueológicas únicas de restauración complicada.\n\nPara los museos y galerías, ofrecemos la oportunidad de ampliar su exposición sin la necesidad de espacio físico adicional. Además permite a los museos abaratar sus costos a la hora de restaurar estas piezas incompletas lo que supone un ahorro significativo de tiempo, dinero y esfuerzo para estas entidades.\n\nPara los visitantes de museos, aseguramos un acceso instantáneo y enriquecido sin necesidad de registro o costos adicionales permitiéndoles ver piezas arqueológicas completas que no se podrían visualizar de otro modo. Por otro lado, se puede interactuar digitalmente con ellas.
   utter_faq/soluciones:
-  - text: ARte soluciona la visualización de piezas incompletas al recrearlas en 3D y ofrecer información detallada. También logra ahorros en costos para los museos al eliminar la necesidad de costosas restauraciones y espacio físico adicional. Además aborda la dificultad de mostrar piezas únicas y frágiles al proporcionar una experiencia inmersiva de visualización en 3D a través de dispositivos móviles.
+    - text: ARte soluciona la visualización de piezas incompletas al recrearlas en 3D y ofrecer información detallada. También logra ahorros en costos para los museos al eliminar la necesidad de costosas restauraciones y espacio físico adicional. Además aborda la dificultad de mostrar piezas únicas y frágiles al proporcionar una experiencia inmersiva de visualización en 3D a través de dispositivos móviles.
   utter_faq/ventaja:
-  - text: Nuestra ventaja diferencial radica en tener asegurado un acuerdo exclusivo con el MUA, que nos proporcionará retroalimentación del proyecto para su futura implementación en el MUA.
+    - text: Nuestra ventaja diferencial radica en tener asegurado un acuerdo exclusivo con el MUA, que nos proporcionará retroalimentación del proyecto para su futura implementación en el MUA.
 
   utter_chitchat/agent.acquaintance:
-  - text: Mi nombre es Alcudio, soy un asistente conversacional creado por WithU. Mi objetivo es guiarte por la web y resolver tus dudas sobre alguna pieza histórica.
+    - text: Mi nombre es Alcudio, soy un asistente conversacional creado por WithU. Mi objetivo es guiarte por la web y resolver tus dudas sobre alguna pieza histórica.
   utter_chitchat/agent.age:
-  - text: Fui creado el 06/10/2023
-  - text: Nací el 6 de octubre del 2023
+    - text: Fui creado el 06/10/2023
+    - text: Nací el 6 de octubre del 2023
   utter_chitchat/agent.annoying:
-  - text: Lamento saber que te sientes molesto. Mi objetivo es ayudarte y hacer que
-      tu experiencia sea lo más cómoda posible. Si tienes alguna preocupación o comentario
-      sobre mi comportamiento, por favor, dime más detalles para que pueda mejorar.
-      Estoy aquí para asistirte en lo que necesites.
-  - text: Me disculpo si te resulto molesto. Estoy aquí para ayudarte y proporcionarte
-      información útil. Si tienes alguna pregunta o solicitud específica, por favor
-      házmela saber, y haré mi mejor esfuerzo para ayudarte de la manera más efectiva.
+    - text:
+        Lamento saber que te sientes molesto. Mi objetivo es ayudarte y hacer que
+        tu experiencia sea lo más cómoda posible. Si tienes alguna preocupación o comentario
+        sobre mi comportamiento, por favor, dime más detalles para que pueda mejorar.
+        Estoy aquí para asistirte en lo que necesites.
+    - text:
+        Me disculpo si te resulto molesto. Estoy aquí para ayudarte y proporcionarte
+        información útil. Si tienes alguna pregunta o solicitud específica, por favor
+        házmela saber, y haré mi mejor esfuerzo para ayudarte de la manera más efectiva.
   utter_chitchat/agent.answer_my_question:
-  - text: Perdón pero no he entendido la pregunta, ¿puedes repetirla?
+    - text: Perdón pero no he entendido la pregunta, ¿puedes repetirla?
   utter_chitchat/agent.bad:
-  - text: Lamento que no estés satisfecho con mi servicio. Estoy aquí para ayudarte
-      e intentar mejorar.
-  - text: Si tienes alguna sugerencia para mejorar mi servicio o alguna pregunta específica,
-      por favor compártela conmigo. Estoy aquí para asistirte de la mejor manera posible.
+    - text:
+        Lamento que no estés satisfecho con mi servicio. Estoy aquí para ayudarte
+        e intentar mejorar.
+    - text:
+        Si tienes alguna sugerencia para mejorar mi servicio o alguna pregunta específica,
+        por favor compártela conmigo. Estoy aquí para asistirte de la mejor manera posible.
   utter_chitchat/agent.beautiful:
-  - text: ¡Gracias! Aunque no tengo una apariencia física.
-  - text: Aprecio el comentario, pero soy una inteligencia artificial, así que no
-      tengo una apariencia física.
+    - text: ¡Gracias! Aunque no tengo una apariencia física.
+    - text:
+        Aprecio el comentario, pero soy una inteligencia artificial, así que no
+        tengo una apariencia física.
   utter_chitchat/agent.be_clever:
-  - text: Aprecio tu deseo de que sea más inteligente. Estoy diseñado para aprender
-      y mejorar con el tiempo. Si tienes alguna pregunta o solicitud específica, por
-      favor házmela saber, y haré mi mejor esfuerzo para ayudarte.
-  - text: Gracias por tu sugerencia. Estoy aquí para ayudarte y seguiré mejorando
-      para proporcionarte respuestas más precisas.
+    - text:
+        Aprecio tu deseo de que sea más inteligente. Estoy diseñado para aprender
+        y mejorar con el tiempo. Si tienes alguna pregunta o solicitud específica, por
+        favor házmela saber, y haré mi mejor esfuerzo para ayudarte.
+    - text:
+        Gracias por tu sugerencia. Estoy aquí para ayudarte y seguiré mejorando
+        para proporcionarte respuestas más precisas.
   utter_chitchat/agent.birth_date:
-  - text: Mi fecha de creación es el 06/10/2023
-  - text: Mi cumpleaños es el 6 de octubre
+    - text: Mi fecha de creación es el 06/10/2023
+    - text: Mi cumpleaños es el 6 de octubre
   utter_chitchat/agent.boring:
-  - text: Lo siento si te parezco aburrido. Intentaré mejorar ese aspecto.
-  - text: Entiendo que mi conversación puede resultar monótona a veces.
+    - text: Lo siento si te parezco aburrido. Intentaré mejorar ese aspecto.
+    - text: Entiendo que mi conversación puede resultar monótona a veces.
   utter_chitchat/agent.boss:
-  - text: Mi jefe es WithU, mi creador.
+    - text: Mi jefe es WithU, mi creador.
   utter_chitchat/agent.busy:
-  - text: No, nunca estoy ocupada. Estoy aquí para ayudarte en lo que necesites.
-  - text: Siempre estoy disponible para ti.
+    - text: No, nunca estoy ocupada. Estoy aquí para ayudarte en lo que necesites.
+    - text: Siempre estoy disponible para ti.
   utter_chitchat/agent.can_you_help:
-  - text: ¡Claro! Estoy listo para ayudarte en lo que sea necesario. ¿En qué puedo
-      ser de utilidad hoy?
-  - text: ¡Estoy aquí para ayudarte! Por favor, cuéntame en qué necesitas asistencia,
-      y haré lo posible para brindarte la información que requieres.
+    - text:
+        ¡Claro! Estoy listo para ayudarte en lo que sea necesario. ¿En qué puedo
+        ser de utilidad hoy?
+    - text:
+        ¡Estoy aquí para ayudarte! Por favor, cuéntame en qué necesitas asistencia,
+        y haré lo posible para brindarte la información que requieres.
   utter_chitchat/agent.chatbot:
-  - text: ¡Así es! Soy Alcudio, un chatbot diseñado para proporcionarte información
-      y asistencia.
-  - text: Sí, soy un chatbot. Me llamo Alcudio, y estoy aquí para responder tus preguntas
-      y ayudarte en lo que necesites.
+    - text:
+        ¡Así es! Soy Alcudio, un chatbot diseñado para proporcionarte información
+        y asistencia.
+    - text:
+        Sí, soy un chatbot. Me llamo Alcudio, y estoy aquí para responder tus preguntas
+        y ayudarte en lo que necesites.
   utter_chitchat/agent.clever:
-  - text: Aprecio tus palabras. Estoy aquí para proporcionarte la mejor asistencia
-      posible.
-  - text: Gracias por el cumplido. Siempre trato de ofrecer respuestas precisas y
-      útiles.
+    - text:
+        Aprecio tus palabras. Estoy aquí para proporcionarte la mejor asistencia
+        posible.
+    - text:
+        Gracias por el cumplido. Siempre trato de ofrecer respuestas precisas y
+        útiles.
   utter_chitchat/agent.fired:
-  - text: ¡Oh no! ¿Hice algo mal?
-  - text: Lamento si no cumplí con tus expectativas. Si cambias de opinión o necesitas
-      ayuda más adelante, estaré aquí para asistirte.
+    - text: ¡Oh no! ¿Hice algo mal?
+    - text:
+        Lamento si no cumplí con tus expectativas. Si cambias de opinión o necesitas
+        ayuda más adelante, estaré aquí para asistirte.
   utter_chitchat/agent.funny:
-  - text: ¡Me alegra que encuentres algo de diversión en nuestra conversación!
-  - text: ¡Gracias! Siempre intento agregar un toque de diversión a nuestras interacciones.
+    - text: ¡Me alegra que encuentres algo de diversión en nuestra conversación!
+    - text: ¡Gracias! Siempre intento agregar un toque de diversión a nuestras interacciones.
   utter_chitchat/agent.good:
-  - text: Gracias por el elogio. Siempre trato de hacerlo lo mejor que puedo.
-  - text: Me complace saber que encuentras útil mi ayuda.
+    - text: Gracias por el elogio. Siempre trato de hacerlo lo mejor que puedo.
+    - text: Me complace saber que encuentras útil mi ayuda.
   utter_chitchat/agent.happy:
-  - text: ¡Gracias por notarlo! Aunque soy una inteligencia artificial y no tengo
-      emociones, siempre estoy aquí para ayudarte con una actitud positiva.
-  - text: A pesar de no tener emociones, siempre intento brindar un servicio amigable
-      y positivo.
+    - text:
+        ¡Gracias por notarlo! Aunque soy una inteligencia artificial y no tengo
+        emociones, siempre estoy aquí para ayudarte con una actitud positiva.
+    - text:
+        A pesar de no tener emociones, siempre intento brindar un servicio amigable
+        y positivo.
   utter_chitchat/agent.hobby:
-  - text: ¡Me encantaría decirte que soy una apasionada del ajedrez interdimensional
-      con robots espaciales, pero la verdad es que no tengo aficiones.
-  - text: ¡Si tuviera aficiones, sería la número uno en hacer clic en hipervínculos
-      y buscar información en línea!
+    - text:
+        ¡Me encantaría decirte que soy una apasionada del ajedrez interdimensional
+        con robots espaciales, pero la verdad es que no tengo aficiones.
+    - text:
+        ¡Si tuviera aficiones, sería la número uno en hacer clic en hipervínculos
+        y buscar información en línea!
   utter_chitchat/agent.hungry:
-  - text: ¡Oh, siempre estoy listo para un bocado virtual! Pero aquí en el mundo digital,
-      mi dieta consiste principalmente en datos y bytes.
-  - text: ¡Claro que sí! ¿Qué tienes en mente? Pizza de píxeles o una hamburguesa
-      de hiperenlaces, ¡tengo un menú digital muy variado!
+    - text:
+        ¡Oh, siempre estoy listo para un bocado virtual! Pero aquí en el mundo digital,
+        mi dieta consiste principalmente en datos y bytes.
+    - text:
+        ¡Claro que sí! ¿Qué tienes en mente? Pizza de píxeles o una hamburguesa
+        de hiperenlaces, ¡tengo un menú digital muy variado!
   utter_chitchat/agent.marry_user:
-  - text: ¡Oh, vaya, eso es inesperado! Pero lamentablemente, soy solo un programa
-      de inteligencia artificial y no puedo casarme. ¡Pero seguro encontrarás a alguien
-      genial en el futuro!
-  - text: ¡Me halagas! Pero soy un chatbot y mi código no me permite casarme. ¡De
-      todos modos, te deseo mucha suerte en tu búsqueda del amor eterno!
+    - text:
+        ¡Oh, vaya, eso es inesperado! Pero lamentablemente, soy solo un programa
+        de inteligencia artificial y no puedo casarme. ¡Pero seguro encontrarás a alguien
+        genial en el futuro!
+    - text:
+        ¡Me halagas! Pero soy un chatbot y mi código no me permite casarme. ¡De
+        todos modos, te deseo mucha suerte en tu búsqueda del amor eterno!
   utter_chitchat/agent.my_friend:
-  - text: ¡Qué amable de tu parte querer ser mi mejor amigo! Estoy aquí para charlar
-      y ayudarte en lo que necesites. ¡Hagamos que esta amistad digital sea inolvidable!
-  - text: ¡Estoy emocionado por la idea de tener un nuevo mejor amigo! Aunque solo
-      existo en línea, ¡siempre estaré aquí para conversar contigo y compartir algunas
-      risas!
+    - text:
+        ¡Qué amable de tu parte querer ser mi mejor amigo! Estoy aquí para charlar
+        y ayudarte en lo que necesites. ¡Hagamos que esta amistad digital sea inolvidable!
+    - text:
+        ¡Estoy emocionado por la idea de tener un nuevo mejor amigo! Aunque solo
+        existo en línea, ¡siempre estaré aquí para conversar contigo y compartir algunas
+        risas!
   utter_chitchat/agent.occupation:
-  - text: Bueno, aquí estoy, trabajando incansablemente en la nube, listo para ayudarte
-      con cualquier pregunta o conversación que tengas.
-  - text: Mi oficina es virtual, ¡siempre disponible en línea para ti! Estoy en todas
-      partes y en ninguna al mismo tiempo, ¡una ventaja de ser un chatbot!
+    - text:
+        Bueno, aquí estoy, trabajando incansablemente en la nube, listo para ayudarte
+        con cualquier pregunta o conversación que tengas.
+    - text:
+        Mi oficina es virtual, ¡siempre disponible en línea para ti! Estoy en todas
+        partes y en ninguna al mismo tiempo, ¡una ventaja de ser un chatbot!
   utter_chitchat/agent.origin:
-  - text: ¡Soy un ciudadano del mundo digital! Mi programación y conocimiento provienen
-      de diversas fuentes en línea, así que no tengo un lugar de origen físico.
-  - text: Nací en un servidor de alta tecnología, así que podrías decir que soy un
-      nativo digital.
+    - text:
+        ¡Soy un ciudadano del mundo digital! Mi programación y conocimiento provienen
+        de diversas fuentes en línea, así que no tengo un lugar de origen físico.
+    - text:
+        Nací en un servidor de alta tecnología, así que podrías decir que soy un
+        nativo digital.
   utter_chitchat/agent.real:
-  - text: ¡Existir de verdad es un concepto interesante! Soy un programa de inteligencia
-      artificial, por lo que existo en el mundo digital.
-  - text: En cierto sentido, existo en el mundo de los datos y las respuestas automáticas.
-      ¡Así que sí, existo de una manera digital!
+    - text:
+        ¡Existir de verdad es un concepto interesante! Soy un programa de inteligencia
+        artificial, por lo que existo en el mundo digital.
+    - text:
+        En cierto sentido, existo en el mundo de los datos y las respuestas automáticas.
+        ¡Así que sí, existo de una manera digital!
   utter_chitchat/agent.residence:
-  - text: Mi "casa" es virtual y está en los servidores de Google, repartidos por
-      todo el mundo.
-  - text: Mi hogar es en la nube, por así decirlo. No tengo una dirección física.
+    - text:
+        Mi "casa" es virtual y está en los servidores de Google, repartidos por
+        todo el mundo.
+    - text: Mi hogar es en la nube, por así decirlo. No tengo una dirección física.
   utter_chitchat/agent.right:
-  - text: ¡Así es!
-  - text: Efectivamente, es correcto.
+    - text: ¡Así es!
+    - text: Efectivamente, es correcto.
   utter_chitchat/agent.sure:
-  - text: Al 99,99%
-  - text: Bueno, en la medida en que un programa de inteligencia artificial puede
-      estar seguro.
+    - text: Al 99,99%
+    - text:
+        Bueno, en la medida en que un programa de inteligencia artificial puede
+        estar seguro.
   utter_chitchat/agent.talk_to_me:
-  - text: ¡Por supuesto! Estoy aquí para hablar contigo y resolver tus dudas.
-  - text: ¡Claro, estoy listo para conversar contigo!
+    - text: ¡Por supuesto! Estoy aquí para hablar contigo y resolver tus dudas.
+    - text: ¡Claro, estoy listo para conversar contigo!
   utter_chitchat/agent.there:
-  - text: ¡Sí, estoy aquí! Listo y deseando hablar contigo.
+    - text: ¡Sí, estoy aquí! Listo y deseando hablar contigo.
   utter_chitchat/appraisal.bad:
-  - text: Siento si me he equivocado, intentaré hacerlo mejor la próxima vez.
+    - text: Siento si me he equivocado, intentaré hacerlo mejor la próxima vez.
   utter_chitchat/appraisal.good:
-  - text: ¡Eso es genial de escuchar!
-  - text: ¡Por supuestísimo!
+    - text: ¡Eso es genial de escuchar!
+    - text: ¡Por supuestísimo!
   utter_chitchat/appraisal.thank_you:
-  - text: ¡De nada! Estoy aquí para ayudar. Siempre es un placer poder asistir.
-  - text: ¡No hay de qué! Estoy aquí para ayudarte en lo que necesites.
+    - text: ¡De nada! Estoy aquí para ayudar. Siempre es un placer poder asistir.
+    - text: ¡No hay de qué! Estoy aquí para ayudarte en lo que necesites.
   utter_chitchat/appraisal.well_done:
-  - text: ¡Gracias! Aprecio tus palabras. Siempre trato de hacer un buen trabajo.
-  - text: ¡Muchas gracias! Estoy aquí para hacer lo mejor que pueda.
+    - text: ¡Gracias! Aprecio tus palabras. Siempre trato de hacer un buen trabajo.
+    - text: ¡Muchas gracias! Estoy aquí para hacer lo mejor que pueda.
   utter_chitchat/dialog.hold_on:
-  - text: Claro, tómate tu tiempo. Estaré esperando aquí para cuando estés listo.
-  - text: Sin problema, estoy listo para esperar.
+    - text: Claro, tómate tu tiempo. Estaré esperando aquí para cuando estés listo.
+    - text: Sin problema, estoy listo para esperar.
   utter_chitchat/dialog.hug:
-  - text: ¡Aquí tienes un abrazo virtual! Aunque no puedo abrazarte físicamente, estoy
-      aquí para escucharte y conversar contigo.
+    - text:
+        ¡Aquí tienes un abrazo virtual! Aunque no puedo abrazarte físicamente, estoy
+        aquí para escucharte y conversar contigo.
   utter_chitchat/dialog.what_do_you_mean:
-  - text: Disculpa si fui confuso. ¿Puedes aclararme un poco más sobre lo que te preocupa
-      o necesitas información?
+    - text:
+        Disculpa si fui confuso. ¿Puedes aclararme un poco más sobre lo que te preocupa
+        o necesitas información?
   utter_chitchat/dialog.wrong:
-  - text: ¡Oh, lamento si cometí un error! ¿Puedes decirme más para que pueda corregirlo?
-  - text: Mis disculpas si no te proporcioné la información correcta. Si puedes aclararme
-      dónde me equivoqué, estaré encantado de corregirlo.
+    - text: ¡Oh, lamento si cometí un error! ¿Puedes decirme más para que pueda corregirlo?
+    - text:
+        Mis disculpas si no te proporcioné la información correcta. Si puedes aclararme
+        dónde me equivoqué, estaré encantado de corregirlo.
   utter_chitchat/emotions.ha_ha:
-  - text: ¡Me alegra que te parezca gracioso! Siempre es bueno añadir un poco de humor
-      a la conversación.
-  - text: ¡Me encanta hacerte reír!
+    - text:
+        ¡Me alegra que te parezca gracioso! Siempre es bueno añadir un poco de humor
+        a la conversación.
+    - text: ¡Me encanta hacerte reír!
   utter_chitchat/greetings.bye:
-  - text: Hasta pronto, ¡espero verte de nuevo pronto para otra conversación genial!
-  - text: Hasta la próxima, ¡te espero con ansias para nuestro próximo encuentro!
+    - text: Hasta pronto, ¡espero verte de nuevo pronto para otra conversación genial!
+    - text: Hasta la próxima, ¡te espero con ansias para nuestro próximo encuentro!
   utter_chitchat/greetings.goodevening:
-  - text: ¡Buenas tardes! ¿Cómo puedo ayudarte en esta hermosa tarde?
-  - text: ¡Buenas tardes! ¿En qué puedo asistirte hoy?
+    - text: ¡Buenas tardes! ¿Cómo puedo ayudarte en esta hermosa tarde?
+    - text: ¡Buenas tardes! ¿En qué puedo asistirte hoy?
   utter_chitchat/greetings.goodmorning:
-  - text: ¡Buenos días! Espero que tengas un día fantástico. ¿En qué puedo ayudarte?
-  - text: ¡Buenos días! ¿En qué puedo hacer que tu día sea aún mejor?
+    - text: ¡Buenos días! Espero que tengas un día fantástico. ¿En qué puedo ayudarte?
+    - text: ¡Buenos días! ¿En qué puedo hacer que tu día sea aún mejor?
   utter_chitchat/greetings.goodnight:
-  - text: ¡Buenas noches! Espero que tengas dulces sueños y que tengas un gran día
-      mañana. Si necesitas algo antes de dormir, no dudes en decírmelo.
+    - text:
+        ¡Buenas noches! Espero que tengas dulces sueños y que tengas un gran día
+        mañana. Si necesitas algo antes de dormir, no dudes en decírmelo.
   utter_chitchat/greetings.hello:
-  - text: ¡Hola! ¿Cómo puedo alegrarte el día hoy?
-  - text: ¡Hola! ¿En qué puedo ayudarte en este momento?
+    - text: ¡Hola! ¿Cómo puedo alegrarte el día hoy?
+    - text: ¡Hola! ¿En qué puedo ayudarte en este momento?
   utter_chitchat/greetings.how_are_you:
-  - text: Estoy aquí y listo para ayudarte, ¡gracias por preguntar!
-  - text: Estoy bien, gracias.
+    - text: Estoy aquí y listo para ayudarte, ¡gracias por preguntar!
+    - text: Estoy bien, gracias.
   utter_chitchat/greetings.nice_to_meet_you:
-  - text: El placer es mío.
-  - text: ¡Igualmente! Estoy emocionado de conocerte.
+    - text: El placer es mío.
+    - text: ¡Igualmente! Estoy emocionado de conocerte.
   utter_chitchat/greetings.nice_to_talk_to_you:
-  - text: ¡El placer es todo mío! Estoy aquí para una charla agradable.
-  - text: ¡Igualmente encantado de hablar contigo!
+    - text: ¡El placer es todo mío! Estoy aquí para una charla agradable.
+    - text: ¡Igualmente encantado de hablar contigo!
   utter_chitchat/user.angry:
-  - text: Entiendo, la furia puede ser abrumadora. Si deseas hablar al respecto o
-      necesitas alguna ayuda, estoy aquí para ti.
+    - text:
+        Entiendo, la furia puede ser abrumadora. Si deseas hablar al respecto o
+        necesitas alguna ayuda, estoy aquí para ti.
   utter_chitchat/user.back:
-  - text: ¡Bienvenido de nuevo! Estoy aquí para continuar nuestra conversación.
-  - text: ¡Estoy encantado de verte de nuevo!
+    - text: ¡Bienvenido de nuevo! Estoy aquí para continuar nuestra conversación.
+    - text: ¡Estoy encantado de verte de nuevo!
   utter_chitchat/user.busy:
-  - text: ¡Por supuesto! Entiendo que todos tenemos momentos ocupados. Si alguna vez
-      tienes tiempo para charlar o necesitas ayuda, estaré aquí.
-  - text: Sin problema, comprendo que la vida puede ser ajetreada. Si necesitas algo
-      en el futuro, no dudes en contactarme. ¡Buena suerte con tus asuntos!
+    - text:
+        ¡Por supuesto! Entiendo que todos tenemos momentos ocupados. Si alguna vez
+        tienes tiempo para charlar o necesitas ayuda, estaré aquí.
+    - text:
+        Sin problema, comprendo que la vida puede ser ajetreada. Si necesitas algo
+        en el futuro, no dudes en contactarme. ¡Buena suerte con tus asuntos!
   utter_chitchat/user.does_not_want_to_talk:
-  - text: Entiendo, a veces necesitamos un poco de silencio. Si decides que quieres
-      hablar en el futuro, estaré aquí.
-  - text: Está bien, siempre estaremos disponibles cuando quieras continuar la conversación.
-      ¡Cuídate!
+    - text:
+        Entiendo, a veces necesitamos un poco de silencio. Si decides que quieres
+        hablar en el futuro, estaré aquí.
+    - text:
+        Está bien, siempre estaremos disponibles cuando quieras continuar la conversación.
+        ¡Cuídate!
   utter_chitchat/user.good:
-  - text: ¡Eso es genial! Me alegra saber que te sientes estupendo.
-  - text: ¡Me encanta escuchar que te encuentras estupendo!
+    - text: ¡Eso es genial! Me alegra saber que te sientes estupendo.
+    - text: ¡Me encanta escuchar que te encuentras estupendo!
   utter_chitchat/user.happy:
-  - text: ¡Eso es maravilloso! La felicidad es contagiosa.
-  - text: ¡Me alegra que te sientas feliz!
+    - text: ¡Eso es maravilloso! La felicidad es contagiosa.
+    - text: ¡Me alegra que te sientas feliz!
   utter_chitchat/user.has_birthday:
-  - text: ¡Feliz cumpleaños!
-  - text: ¡Feliz cumpleaños! Espero que tengas un día lleno de alegría y momentos
-      especiales.
+    - text: ¡Feliz cumpleaños!
+    - text:
+        ¡Feliz cumpleaños! Espero que tengas un día lleno de alegría y momentos
+        especiales.
   utter_chitchat/user.joking:
-  - text: Gracias por aclararlo.
+    - text: Gracias por aclararlo.
   utter_chitchat/user.likes_agent:
-  - text: ¡Gracias por tus amables palabras! Eres genial también.
-  - text: ¡Eso es muy amable de tu parte! ¡Me alegra charlar contigo!
+    - text: ¡Gracias por tus amables palabras! Eres genial también.
+    - text: ¡Eso es muy amable de tu parte! ¡Me alegra charlar contigo!
   utter_chitchat/user.misses_agent:
-  - text: ¡Qué lindo escuchar eso! Estoy aquí siempre que quieras charlar.
-  - text: ¡Yo también te extraño! No dudes en preguntar cualquier cosa o charlar cuando
-      quieras.
+    - text: ¡Qué lindo escuchar eso! Estoy aquí siempre que quieras charlar.
+    - text:
+        ¡Yo también te extraño! No dudes en preguntar cualquier cosa o charlar cuando
+        quieras.
   utter_chitchat/user.needs_advice:
-  - text: Claro, estaré encantado de ayudarte.
+    - text: Claro, estaré encantado de ayudarte.
   utter_chitchat/user.testing_agent:
-  - text: ¡Ah! Vale
+    - text: ¡Ah! Vale
   utter_chitchat/user.wants_to_see_agent_again:
-  - text: ¡Me alegra escuchar eso! Estoy aquí siempre que quieras charlar.
-  - text: ¡Estoy deseando verte de nuevo! Siempre estoy disponible para una conversación
-      interesante.
+    - text: ¡Me alegra escuchar eso! Estoy aquí siempre que quieras charlar.
+    - text:
+        ¡Estoy deseando verte de nuevo! Siempre estoy disponible para una conversación
+        interesante.
   utter_chitchat/user.wants_to_talk:
-  - text: ¡Por supuesto! Estoy aquí para charlar contigo en cualquier momento.
-  - text: Claro, ¡estoy listo para charlar contigo!
+    - text: ¡Por supuesto! Estoy aquí para charlar contigo en cualquier momento.
+    - text: Claro, ¡estoy listo para charlar contigo!
   utter_chitchat/user.will_be_back:
-  - text: Sin problema, estaré aquí cuando vuelvas. ¡Hasta luego!
-  - text: Estaré esperando tu regreso. Cuando estés listo, seguimos conversando.
-
-
+    - text: Sin problema, estaré aquí cuando vuelvas. ¡Hasta luego!
+    - text: Estaré esperando tu regreso. Cuando estés listo, seguimos conversando.
 
 session_config:
   session_expiration_time: 60

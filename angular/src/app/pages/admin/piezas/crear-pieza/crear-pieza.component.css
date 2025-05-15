@@ -2,3 +2,16 @@
     height: 100%;
     object-fit: contain;
 }
+
+.of-h{
+    overflow: hidden;
+    height: 1.2em;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.cp:hover {
+    cursor: pointer;
+}

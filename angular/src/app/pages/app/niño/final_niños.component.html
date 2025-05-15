@@ -1,0 +1,23 @@
+<div class="fondo d-flex flex-column justify-content-center align-items-center">
+
+    <div class="card" style="width: fit-content; height: min-content;">
+        <div class="card-body">
+            <h5 class="card-title d-flex justify-content-between align-items-center">
+                <span>Resultados del juego</span>
+                <span (click)="compartir()"><i class="mdi mdi-share" style="font-size: 25px;"></i></span>
+            </h5>
+            <div class="puntuacion-div">
+                <img src="../../../../../assets/images/alcudio/final_alcudio.png" alt="alcudio" id="img">
+                <span class="puntos">{{ puntosJuego }}</span>
+            </div>              
+            <div class="row">
+                <div class="col text-center">
+                    <p class="card-text text-center">Has tardado</p>
+                    <span class="time">{{ tiempoJuego }}</span>
+                    <p class="card-text text-center">en completar el juego.</p>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secundary btn-lg btn-block btn-volver" (click)="playAgain()">Volver a jugar</button>
+        </div>
+    </div>
+</div>

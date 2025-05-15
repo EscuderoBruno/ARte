@@ -61,7 +61,7 @@ sequelize.beforeSync(async () => {
 // Sincroniza los modelos con la base de datos
 (async () => {
   try {
-    await sequelize.sync();
+    await sequelize.sync({ alter: true });
     console.log("Tablas sincronizadas");
   } catch (error) {
     console.error("Error al sincronizar tablas:", error);

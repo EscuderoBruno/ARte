@@ -1,15 +1,20 @@
-# version: "3.1"
+version: "3.1"
 
- stories:
-  - story: iniciar juego
+stories:
+  - story: flujo_juego
     steps:
-    - intent: juego.iniciar
-    - action: utter_juego.iniciar
-    - intent: juego.nombre
-    - action: action_juego.cargarPreguntas
-    - intent: juego.respuesta
-    - action: action_juego.comprobar
-    - intent: juego.masinfo
-    - action: action_juego.informacion
-    - intent: juego.siguientePregunta
-    - action: action_juego.siguientePregunta
+      - intent: juego.iniciar
+      - action: action_juego.cargarPreguntas
+      - action: utter_juego.preguntar
+      - intent: juego.nombre
+      - action: utter_juego.nombre
+      - intent: juego.respuesta
+      - action: action_juego.comprobar
+      - intent: juego.masinfo
+      - action: action_juego.informacion
+      - intent: juego.siguientePregunta
+      - action: action_juego.siguientePregunta
+      - intent: juego.intentarlo_otra_vez
+      - action: utter_juego.intentarlo_otra_vez
+      - intent: juego.acabar
+      - action: action_juego.finalizar

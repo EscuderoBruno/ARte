@@ -1,52 +1,85 @@
-<div id="loginform">
-    <div class="text-center p-t-20 p-b-20">
-        <span class="db"><img src="../../assets/images/logos/logo_arte.png" width="180px" alt="logo" /></span>
-    </div>
-    <!-- Form -->
-    <form class="form-horizontal m-t-20" id="loginform" (submit)="login($event)">
-        <div class="row p-b-30">
-            <div class="col-12">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-secondary text-white" id="basic-addon1"><i
-                                class="ti-user"></i></span>
-                    </div>
-                    <input type="text" class="form-control form-control-lg" placeholder="Usuario" aria-label="Username"
-                        aria-describedby="basic-addon1" required [formControl]="nombre">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-warning text-white" id="basic-addon2"><i
-                                class="ti-pencil"></i></span>
-                    </div>
-                    <input type="password" class="form-control form-control-lg" placeholder="Contraseña"
-                        aria-label="Password" aria-describedby="basic-addon1" required [formControl]="contrasenya">
-                </div>
-            </div>
-        </div>
-        <div class="row border-top border-secondary">
-            <div class="col-12">
-                <div class="form-group">
-                    <div class="p-t-20">
-                        <div>
-                            <div id="g_id_onload"
-                                data-client_id="228816553901-3benjbidk25uj07mc9n2oeo1acrnrko2.apps.googleusercontent.com"
-                                data-context="signin" data-ux_mode="popup" data-callback="handleOauthResponse"
-                                data-auto_prompt="false">
-                            </div>
-
-                            <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline"
-                                data-text="signin_with" data-size="large" data-logo_alignment="left">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <!-- Card que envuelve ambas secciones -->
+            <div class="card p-3">
+                <div class="row">
+                    <!-- Sección izquierda con la imagen y la descripción -->
+                    <div class="col-md-5 p-md-4" style="border-right: 1px solid #787e83;">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img src="../../assets/images/logos/logo_arte.png" width="185px" alt="logo" />
+                            </div>                        
+                            <div class="text-center p-md-4 mt-sm-4" style="font-size: 18px;">
+                                <h3 class="mb-3" style="color: #F2EFE8;">¡Bienvenido a ARte!</h3>
+                                <p class="text-muted">Ingrese sus credenciales para iniciar sesión.</p>
                             </div>
                         </div>
-                        <button class="btn btn-success" type="submit">Iniciar sesión</button>
                     </div>
-                </div>
+                    <!-- Sección derecha con el formulario de inicio de sesión -->
+                    <div class="col-md-7 col-sm-12 p-md-4 p-sm-0">
+                        <div class="card-body">
+                            <form (submit)="login($event)">
+                                <div class="text-muted pb-3" style="font-size: 25px;"><span>Login</span></div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Usuario" required [formControl]="nombre">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="password" class="form-control" placeholder="Contraseña" required [formControl]="contrasenya">
+                                </div>
+                                <div class="text-center mb-3">
+                                    <a href="#" class="text-muted">¿Olvidaste tu contraseña?</a>
+                                </div>
+                                <div class="text-center">
+                                    <button class="btn btn-block p-2 btn-custom" type="submit">INICIAR SESIÓN</button>
+                                </div>
+                                <br>
+                                <div class="text-center mb-3 text-muted">
+                                    <p>O inicia sesión con:</p>
+                                    <div class="d-flex justify-content-center">
+                                        <asl-google-signin-button type='standard' data-text="continue_with"></asl-google-signin-button>
+                                    </div>
+                                    <!-- <div id="google-signin-container">
+                                        <div id="g_id_onload"
+                                            data-client_id="228816553901-3benjbidk25uj07mc9n2oeo1acrnrko2.apps.googleusercontent.com"
+                                            data-context="signin"
+                                            data-ux_mode="popup"
+                                            data-login_uri="localhost:3000/api/auth/googlelogin"
+                                            data-auto_prompt="false">
+                                        </div>
+                                        <div class="g_id_signin"
+                                            data-type="standard"
+                                            data-shape="rectangular"
+                                            data-theme="outline"
+                                            data-text="continue_with"
+                                            data-size="large"
+                                            data-logo_alignment="left">
+                                        </div>
+                                    </div>                 -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>                
             </div>
         </div>
-    </form>
+    </div>
 </div>
-<footer></footer>
+
+<script>
+    function decodeJWTToken(token) {
+        return JSON.parse(atob(token.split(".")[1]))
+    }
+    function handleOauthResponse(response) {
+        console.log('handleOauthResponse...')
+        const responsePayload = decodeJWTToken(response.credential)
+        console.log(responsePayload)
+        sessionStorage.setItem('loggedinUser', JSON.stringify(responsePayload))
+        window.location('/your-desired-place')
+        //Changed the above URL where you want user to be redirected
+    }
+</script>
+
 
 <script>
     function decodeJWTToken(token) {

@@ -9,14 +9,14 @@ const Informacion = sequelize.define('Informacion', {
   },
   nombre: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   texto_completo: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: true,
   },
   texto_facil: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: true,
   },
   audio: {

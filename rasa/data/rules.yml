@@ -1,15 +1,60 @@
-# version: "3.1"
+version: "3.1"
 
 rules:
   - rule: fallback
     steps:
-    - intent: nlu_fallback
-    - action: utter_fallback
+      - intent: nlu_fallback
+      - action: utter_fallback
   - rule: responder chitchat
     steps:
-    - intent: chitchat
-    - action: utter_chitchat
+      - intent: chitchat
+      - action: utter_chitchat
   - rule: responder faq
     steps:
-    - intent: faq
-    - action: utter_faq
+      - intent: faq
+      - action: utter_faq
+  - rule: juego_dudas
+    steps:
+      - intent: juego.dudas
+      - action: utter_juego.dudas/objetivo
+      - action: utter_juego.dudas/botonqr
+      - action: utter_juego.dudas/avanzar
+  - rule: senyalar_pieza
+    steps:
+      - intent: juego.pieza
+      - action: utter_juego.localizar_pieza
+      - action: utter_juego.senyalar_pieza
+  - rule: resultados_juego
+    steps:
+      - intent: juego.resultados
+      - action: utter_juego.resultados_frase
+      - action: utter_juego.resultados_command
+  - rule: juego_nombre
+    steps:
+      - intent: juego.nombre
+      - action: utter_juego.nombre
+  - rule: iniciar_juego
+    steps:
+      - intent: juego.iniciar
+      - action: action_juego.cargarPreguntas
+      - action: utter_juego.preguntar
+  - rule: comprobar_pregunta
+    steps:
+      - intent: juego.respuesta
+      - action: action_juego.comprobar
+  - rule: mas_informacion
+    steps:
+      - intent: juego.masinfo
+      - action: action_juego.informacion
+  - rule: siguiente_pregunta
+    steps:
+      - intent: juego.siguientePregunta
+      - action: action_juego.siguientePregunta
+  - rule: intentarlo_otra_vez
+    steps:
+      - intent: juego.intentarlo_otra_vez
+      - action: utter_juego.intentarlo_otra_vez
+  - rule: acabar_juego
+    steps:
+      - intent: juego.acabar
+      - action: action_juego.finalizar

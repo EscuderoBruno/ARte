@@ -1,234 +1,314 @@
 
-<div class="card vision-general">
-    <div class="row estadisticas">
-        <div class="col-md-2" style="padding-left: 50px;"> 
-            <h5 class="card-title">Visión general</h5>
-        </div>
-        <!-- Primera columna (ocupa dos filas) -->
-        <div class="col-md-10">
-            <div class="row estadisticas">
-                <div class="col-md-3">
-                    <div class="row info-general">
-                        <div class="col-md-4 p-0">
-                            <div class="card p-3" style="background-color: #E97E3B;">
-                                <div class="m-t-0 text-center">
-                                    <i class="mdi mdi-image-multiple"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-8 pr-0 pl-4">
-                            <h4>1231 <span style="font-size: 12px; color: #28B779;"> +10%</span></h4>
-                            <span class="text-muted">Piezas</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Segunda columna (ocupa una fila) -->
-                <div class="col-md-3">
-                    <div class="row info-general">
-                        <div class="col-md-4 p-0">
-                            <div class="card p-3" style="background-color: #CF4F29;">
-                                <div class="m-t-0 text-center">
-                                    <i class="mdi mdi-account-multiple"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-8 pr-0 pl-4">
-                            <h4>2331 <span style="font-size: 12px; color: #28B779;"> +10%</span></h4>
-                            <span class="text-muted">Visitantes</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tercera columna (ocupa una fila) -->
-                <div class="col-md-3">
-                    <div class="row info-general">
-                        <div class="col-md-4 p-0">
-                            <div class="card p-3" style="background-color: #FDEA6F;">
-                                <div class="m-t-0 text-center">
-                                    <i class="mdi mdi-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-8 pr-0 pl-4">
-                            <h4>89% <span style="font-size: 12px; color: #28B779;"> +10%</span></h4>
-                            <span class="text-muted">Valoración</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Cuarta columna (ocupa una fila) -->
-                <div class="col-md-3">
-                    <div class="row info-general">
-                        <div class="col-md-4 p-0">
-                            <div class="card p-3" style="background-color: #F3B355;">
-                                <div class="m-t-0 text-center">
-                                    <i class="mdi mdi-image-multiple"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-8 pr-0 pl-4">
-                            <h4>2560 <span style="font-size: 12px; color: #28B779;"> +10%</span></h4>
-                            <span class="text-muted">Registros</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div><br>
-
 <div class="row">
-    <div class="col-md-4">  
-        <div class="card p-4">
-            <div>
-                <h5 class="card-title m-b-0">Gráfico de barras</h5>
+    <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card altura-minima2 p-3 mb-3">
+                    <div class="pl-2 pt-1 align-items-center">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex align-items-center">
+                                    <h4 class="card-title m-b-0 mr-2">Proporción Adultos/Niños</h4>
+                                    <!--  <div class="dropdown">
+                                        <button class="btn dropdown-toggle bg-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Gráfico de barras</a>
+                                            <a class="dropdown-item" href="#">Gráfico de líneas</a>
+                                            <a class="dropdown-item" href="#">Gráfico circular</a>
+                                        </div>
+                                    </div> -->
+                                </div>                        
+                            </div>
+                        </div> 
+                    </div>
+                    <app-pie-chart
+                        [pieChartDataValues]="pieChartDataValues" 
+                        [pieChartDataNames]="pieChartDataNames">
+                    </app-pie-chart>      
+                </div>                                    
+                <div class="card altura-minima3 p-3">
+                    <div class="pl-2 align-items-center">
+                        <div class="d-flex align-items-center">
+                            <h4 class="card-title m-b-1 mr-2">{{ opcionSeleccionada1 }}</h4>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle bg-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" (click)="updateDesplegable(1,'Uso motor gráfico')">Uso motor gráfico</a>
+                                    <a class="dropdown-item" (click)="updateDesplegable(1,'Uso reproductor de audio')">Uso reproductor de audio</a>
+                                    <a class="dropdown-item" (click)="updateDesplegable(1,'Tiempo medio por sesión')">Tiempo medio por sesión</a>
+                                    <a class="dropdown-item" (click)="updateDesplegable(1,'Juegos finalizados')">Juegos finalizados</a>
+                                    <a class="dropdown-item" (click)="updateDesplegable(1,'Usuarios totales')">Usuarios totales</a>
+                                    <a class="dropdown-item" (click)="updateDesplegable(1,'Tiempo medio jugando')">Tiempo medio jugando</a>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div style="font-size: 32px; padding-left: 10px;">
+                        {{ valorOpcionSeleccionada1 }}
+                    </div>
+                </div>
             </div>
-            <app-bar-chart></app-bar-chart>
+        </div>        
+    </div>
+    <div class="col-md-6">  
+        <div class="card p-3 altura-minima">
+            <div class="pl-2 pt-1 align-items-center">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="d-flex align-items-center">
+                            <h4 class="card-title m-b-0 mr-2">Escaneos</h4>
+                            <!-- <div class="dropdown">
+                                <button class="btn dropdown-toggle bg-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Gráfico de barras</a>
+                                    <a class="dropdown-item" href="#">Gráfico de líneas</a>
+                                    <a class="dropdown-item" href="#">Gráfico circular</a>
+                                </div>
+                            </div> -->
+                        </div>                        
+                    </div>
+                    <div class="col-md-5 d-flex justify-content-end pr-4">
+                        <div class="d-flex  align-items-center" id="opciones_accesibilidad" style="font-size: 12px; color: #454545;">
+                            <div class="toggle-container">
+                                <input type="radio" id="option1" name="toggle" value="D" class="toggle-input" (change)="onToggleChange($event)">
+                                <label for="option1" class="toggle-label">
+                                    <span>D</span>
+                                </label>
+                            </div>
+                            
+                            <div class="toggle-container">
+                                <input type="radio" id="option2" name="toggle" value="S" class="toggle-input" (change)="onToggleChange($event)">
+                                <label for="option2" class="toggle-label">
+                                    <span>S</span>
+                                </label>
+                            </div>
+                    
+                            <div class="toggle-container">
+                                <input type="radio" id="option3" name="toggle" value="M" class="toggle-input" checked (change)="onToggleChange($event)">
+                                <label for="option3" class="toggle-label">
+                                    <span>M</span>
+                                </label>
+                            </div>
+                    
+                            <div class="toggle-container">
+                                <input type="radio" id="option4" name="toggle" value="A" class="toggle-input" (change)="onToggleChange($event)">
+                                <label for="option4" class="toggle-label">
+                                    <span>A</span>
+                                </label>
+                            </div>
+                        </div>  
+                    </div>                                     
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-md-1 d-flex align-items-center justify-content-center pl-4">
+                    <!-- Botón de flecha derecha -->
+                    <button class="btn btn-link" (click)="paginacion(0)">
+                        <i class="mdi mdi-chevron-left"></i>
+                    </button>
+                </div>                
+                <div class="col-md-10">
+                    <app-bar-chart [barChartDataValues]="barChartDataValues" [barChartDataNames]="barChartDataNames" [barChartTitle]="barChartTitle"></app-bar-chart>
+                </div>
+                <div class="col-md-1 d-flex align-items-center justify-content-center pr-4">
+                    <!-- Botón de flecha derecha -->
+                    <button class="btn btn-link btn-bg-danger" (click)="paginacion(1)">
+                        <i class="mdi mdi-chevron-right"></i>
+                    </button>
+                </div>                
+            </div>
         </div>
     </div>
-    <div class="col-md-4">  
-        <div class="card p-4">
-            <div>
-                <h5 class="card-title m-b-0">Gráfico Pie</h5>
+    <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card altura-minima2 p-3 mb-3">
+                    <div class="pl-2 pt-1 align-items-center">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex align-items-center">
+                                    <h4 class="card-title m-b-0 mr-2">Proporción Uso por Idiomas </h4>
+                                    <!--  <div class="dropdown">
+                                        <button class="btn dropdown-toggle bg-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Gráfico de barras</a>
+                                            <a class="dropdown-item" href="#">Gráfico de líneas</a>
+                                            <a class="dropdown-item" href="#">Gráfico circular</a>
+                                        </div>
+                                    </div> -->
+                                </div>                        
+                            </div>
+                        </div> 
+                    </div>
+                    <app-pie-chart2
+                        [pieChartDataValues2]="pieChartDataValues2" 
+                        [pieChartDataNames2]="pieChartDataNames2">
+                    </app-pie-chart2>      
+                </div>  
+                <div class="card altura-minima3 p-3">
+                    <div class="pl-2 align-items-center">
+                        <div class="d-flex align-items-center">
+                            <h4 class="card-title m-b-1 mr-2">{{ opcionSeleccionada2 }}</h4>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle bg-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" (click)="updateDesplegable(2,'Uso motor gráfico')">Uso motor gráfico</a>
+                                    <a class="dropdown-item" (click)="updateDesplegable(2,'Uso reproductor de audio')">Uso reproductor de audio</a>
+                                    <a class="dropdown-item" (click)="updateDesplegable(2,'Tiempo medio por sesión')">Tiempo medio por sesión</a>
+                                    <a class="dropdown-item" (click)="updateDesplegable(2,'Juegos finalizados')">Juegos finalizados</a>
+                                    <a class="dropdown-item" (click)="updateDesplegable(2,'Usuarios totales')">Usuarios totales</a>
+                                    <a class="dropdown-item" (click)="updateDesplegable(2,'Tiempo medio jugando')">Tiempo medio jugando</a>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div style="font-size: 32px; padding-left: 10px;">
+                        {{ valorOpcionSeleccionada2 }}
+                    </div>
+                </div>
             </div>
-            <app-pie-chart></app-pie-chart>
-        </div>
-    </div>
-    <div class="col-md-4">  
-        <div class="card p-4">
-            <div>
-                <h5 class="card-title m-b-0">Gráfico de lineas</h5>
-            </div>
-            <app-line-chart></app-line-chart>
-        </div>
+        </div>        
     </div>
 </div><br>
 
 <!-- row -->
 <div class="row">
     <div class="col-md-3">
-        <div class="card p-3">
-            <div class="card-body">
-                <h5 class="card-title m-b-0">Piezas más escaneadas</h5>
+        <div class="card p-3 altura-minima"> 
+            <div class="d-flex align-items-center p-2 pb-3">
+                <h4 class="card-title m-b-1 mr-2">Datos de interés</h4>
+            </div>   
+            <div class="row">
+                <div class="col-md-12 pb-2">
+                    <div class="estadistica-container">
+                        <div class="info-general">
+                            <div class="estadistica-item">
+                                <h4>{{ totalPiezas }}</h4>
+                                <span class="text-muted">Piezas en la colección</span>
+                            </div>
+                        </div>
+                        <div class="info-general">
+                            <div class="estadistica-item">
+                                <h4>{{ totalEscaneos }}</h4>
+                                <span class="text-muted">Escaneos de piezas</span>
+                            </div>
+                        </div>
+                        <div class="info-general">
+                            <div class="estadistica-item">
+                                <h4>{{ totalPartidasAlcudio }}</h4>
+                                <span class="text-muted">Partidas en modo Alcudio</span>
+                            </div>
+                        </div>
+                        <div class="info-general">
+                            <div class="estadistica-item">
+                                <h4>{{ totalUsuarios }}</h4>
+                                <span class="text-muted">Usuarios únicos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>       
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-3 altura-minima">
+            <div class="pl-2 d-flex align-items-center" style="padding-bottom: 10px;">
+                <h4 class="card-title m-b-1">{{ listaSeleccionada1 }}</h4>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle bg-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" (click)="updateLista(1,'Piezas más escaneadas')">Piezas más escaneadas</a>
+                        <a class="dropdown-item" (click)="updateLista(1,'Exposiciones con más escaneos')">Exposiciones con más escaneos</a>
+                        <a class="dropdown-item" (click)="updateLista(1,'Salas con más escaneos')">Salas con más escaneos</a>
+                        <a class="dropdown-item" (click)="updateLista(1,'Juegos más jugados')">Juegos más jugados</a>
+                    </div>
+                </div>
             </div>
-            <table class="table" style="min-height: 325px;">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Nº Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let piece of pieces">
-                        <td>{{ piece.nombre }}</td>
-                        <td>8850</td>
-                    </tr>
-              </tbody>
-            </table>
-            <div class="text-right">
-                <a href="https://arte.ovh/withu">Ver lista completa<i class="mdi mdi-chevron-right"></i></a>
+            <div class="table-responsive"> <!-- Agregar clase table-responsive aquí -->
+                <table class="table p-2">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Nº Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let item of valorlistaSeleccionada1; let i = index">
+                            <tr [ngClass]="{'primera-fila': isFirstElement(i)}">
+                                <td style="max-width: 18ch; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">{{ item.nombre }}</td>
+                              <td>{{ item.totalEscaneos }}</td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card p-3">
-            <div class="card-body">
-                <h5 class="card-title m-b-0">Salas más visitadas</h5>
+        <div class="card p-3 altura-minima">
+            <div class="pl-2 d-flex align-items-center" style="padding-bottom: 10px;">
+                <h4 class="card-title m-b-1">{{ listaSeleccionada2 }}</h4>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle bg-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" (click)="updateLista(2,'Piezas más escaneadas')">Piezas más escaneadas</a>
+                        <a class="dropdown-item" (click)="updateLista(2,'Exposiciones con más escaneos')">Exposiciones con más escaneos</a>
+                        <a class="dropdown-item" (click)="updateLista(2,'Salas con más escaneos')">Salas con más escaneos</a>
+                        <a class="dropdown-item" (click)="updateLista(2,'Juegos más jugados')">Juegos más jugados</a>
+                    </div>
+                </div>
             </div>
-            <table class="table" style="min-height: 325px;">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Nº Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let sala of salas.slice(0, 5)"> <!-- Utiliza slice para tomar solo los primeros 5 elementos -->
-                        <td>{{ sala.nombre }}</td>
-                        <td>1240</td>
-                    </tr>
-              </tbody>
-            </table>
-            <div class="text-right">
-                <a href="https://arte.ovh/withu">Ver lista completa<i class="mdi mdi-chevron-right"></i></a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card p-3">
-            <div class="card-body">
-                <h5 class="card-title m-b-0">Visited Pages</h5>
-            </div>
-            <table class="table" style="min-height: 325px;">
-                <thead>
-                    <tr>
-                        <th scope="col">Page</th>
-                        <th scope="col">Visits</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><a href="#" class="link">Freebies</a></td>
-                        <td>1240</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" class="link">Blog</a></td>
-                        <td>1200</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" class="link">Work</a></td>
-                        <td>1542</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" class="link">Site Template</a></td>
-                        <td>1230</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" class="link">All categories</a></td>
-                        <td>1542</td>
-                    </tr>
-              </tbody>
-            </table>
-            <div class="text-right">
-                <a href="https://arte.ovh/withu">Ver lista completa<i class="mdi mdi-chevron-right"></i></a>
+            <div class="table-responsive"> <!-- Agregar clase table-responsive aquí -->
+                <table class="table p-2">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Nº Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let item of valorlistaSeleccionada2; let i = index">
+                            <tr [ngClass]="{'primera-fila': isFirstElement(i)}">
+                                <td style="max-width: 18ch; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">{{ item.nombre }}</td>
+                              <td>{{ item.totalEscaneos }}</td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card p-3">
-            <div class="card-body">
-                <h5 class="card-title m-b-0">Visited Pages</h5>
+        <div class="col-md-3">
+        <div class="card p-3 altura-minima">
+            <div class="pl-2 d-flex align-items-center" style="padding-bottom: 10px;">
+                <h4 class="card-title m-b-1">{{ listaSeleccionada3 }}</h4>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle bg-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" (click)="updateLista(3,'Piezas más escaneadas')">Piezas más escaneadas</a>
+                        <a class="dropdown-item" (click)="updateLista(3,'Exposiciones con más escaneos')">Exposiciones con más escaneos</a>
+                        <a class="dropdown-item" (click)="updateLista(3,'Salas con más escaneos')">Salas con más escaneos</a>
+                        <a class="dropdown-item" (click)="updateLista(3,'Juegos más jugados')">Juegos más jugados</a>
+                    </div>
+                </div>
             </div>
-            <table class="table" style="min-height: 325px;">
-                <thead>
-                    <tr>
-                        <th scope="col">Page</th>
-                        <th scope="col">Visits</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><a href="#" class="link">Freebies</a></td>
-                        <td>1240</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" class="link">Blog</a></td>
-                        <td>1200</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" class="link">Work</a></td>
-                        <td>1542</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" class="link">Site Template</a></td>
-                        <td>1230</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" class="link">All categories</a></td>
-                        <td>1542</td>
-                    </tr>
-              </tbody>
-            </table>
-            <div class="text-right">
-                <a href="https://arte.ovh/withu">Ver lista completa<i class="mdi mdi-chevron-right"></i></a>
+            <div class="table-responsive"> <!-- Agregar clase table-responsive aquí -->
+                <table class="table p-2">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Nº Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let item of valorlistaSeleccionada3; let i = index">
+                            <tr [ngClass]="{'primera-fila': isFirstElement(i)}">
+                                <td style="max-width: 18ch; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">{{ item.nombre }}</td>
+                              <td>{{ item.totalEscaneos }}</td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

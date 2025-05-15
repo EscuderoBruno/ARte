@@ -1,0 +1,131 @@
+.pieza-img{
+  aspect-ratio: 1;
+  width: 120px;
+  border: solid 2px #84705B;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(180, 100, 0, 0.8);
+}
+
+.main-container{
+  max-width: 600px;
+  height: calc(100dvh - 71px) !important;
+  background-image: url('../../../../assets/images/background/fondo_desierto.png');
+  background-size: cover; 
+  background-clip: padding-box;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.main {
+  background-color: rgb(232, 227, 217);
+  box-shadow: 0 0 6px rgba(180, 100, 0, 0.8);
+  border: 2px solid #84705B;
+  border-radius: 20px;
+}
+
+.msg-box{
+  height: 100%;
+  overflow-y: scroll;
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  padding: 0 10px;
+  flex-wrap: nowrap;
+}
+
+.bot {
+  text-align: left;
+}
+.user {
+  text-align: right;
+  justify-content: right;
+}
+
+.user-msg {
+  background-color: #c48f58 !important;
+  box-shadow: -2px 2px 2px black !important; 
+}
+
+.acierto {
+  background-color: #bbe3bb !important;
+}
+
+.fallo {
+  background-color: #f86868 !important;
+}
+
+.msg{
+  padding: 8px !important;
+  padding-right: 16px !important;
+  margin: 0 !important;
+  flex-wrap: nowrap;
+  overflow: hidden;
+
+  & .content {
+    max-width: 70%;
+    align-items: center;
+    padding: .5em 1em;
+    
+    background-color: #84705B;
+    border-radius: 1em;
+    color: white;
+    box-shadow: 2px 2px 2px black; /* Sombra */
+
+  }
+}
+
+.box{
+  border: 2px solid orange;
+  border-radius: 20px;
+}
+
+.num {
+  padding: .2em .6em;
+  background-color: white;
+  border-radius: 100%;
+  margin: 0 3px;
+}
+
+.selected {
+  font-size: medium;
+  font-weight: bold;
+  border: 2px solid #303030;
+}
+
+.btn-enviar{
+  font-size: 18px;
+  width: 45px;
+  height: 45px;
+  color: white;
+  background-color: #EB5E28;
+  border: 1px solid rgb(153, 43, 0);
+}
+
+.btn-qr {
+  font-size: 18px;
+  width: 45px;
+  height: 45px;
+  color: white;
+  background-color: #403D39;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.separator {
+  height: 1px;
+  width: 95%;
+  margin: 0 auto;
+  background-color: #403D39;
+}
+
+.input {
+  & input {
+    border-radius: 10px !important;
+    padding: .5em 1em;
+    font-size: larger;
+    border: 1px solid rgba(116, 116, 116, 0.398);
+  }
+}
+
+.p-content {
+  padding: 0 !important;
+}

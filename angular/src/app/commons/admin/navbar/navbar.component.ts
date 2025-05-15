@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
+import { Router } from '@angular/router';
 
 export interface Editor {
   nombre: string,
@@ -17,13 +18,14 @@ export interface Editor {
 
 export class NavbarComponent implements OnInit {
 
-  flagUrl: string = 'flag_1.jpg';
+  flagUrl: string = 'es.jpg';
   user: string = 'Error, sin usuario'
 
 
   constructor(
     private cookies: CookieService,
     private http: HttpClient,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class NavbarComponent implements OnInit {
   }
 
   changeLanguage(imageFlag: string){
-    this.flagUrl = imageFlag;
+    this.flagUrl = imageFlag + '.jpg';
   }
 
   signOut(){
@@ -51,6 +53,13 @@ export class NavbarComponent implements OnInit {
       console.error(error.error.error)
       location.href = '/login';
     })
+  }
+
+  goToMuseo() {
+    const url = this.router
+    .createUrlTree(['../pieza/exposiciones/es'])
+    .toString();
+    window.open(url, '_blank');
   }
 
 }

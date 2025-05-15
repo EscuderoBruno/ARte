@@ -7,74 +7,70 @@
 
         <div class="row" style="margin-left: 8px; margin-right: 10px;">
 
-            <div class="col-md-12 col-lg-6 col-xl-4">
+            <div class="col-md-12 col-lg-4 col-xl-4">
                 <div class="card">
-                  <div class="card-body" class="p-40">
+                  <div class="card-body" class="p-4">
                     <div class="d-flex justify-content-between align-items-center">
                         <h3 class="card-title">Foto</h3><br>
                         <span (click)="borrarImagen()" class="cp ml-auto mr-2"><i class="fa fa-trash"></i></span>
                     </div>
-                    <img alt="Image" class="imagen-pieza img-fluid cp mt-2" (click)="abrirSelectorDeArchivos()" [src]="newImage" />
-              
-                    <!-- Input personalizado -->
-                    <div class="custom-file mt-2">
-                      <input type="file" class="custom-file-input" accept="image/*" id="fileInput" required (change)="cambiarImagen($event)" name="imagen">
-                    </div>
+                    <div>
+                        <img alt="Image" class="imagen-pieza img-fluid cp mt-2" (click)="abrirSelectorDeArchivos()" [src]="newImage" />
+                        <input type="file" id="fileInput" accept="image/*" (change)="cambiarImagen($event)" name="imagen">
+                    </div>                                           
                   </div>
                 </div>
             </div>              
 
-            <div class="col-md-12 col-lg-6 col-xl-8">
+            <div class="col-md-12 col-lg-8 col-xl-8">
                 <div class="card">
-                    <div class="tab-content tabcontent-border" style="min-height: 428px">
-                        <div class="p-40">
-                            <h3 class="card-title">Datos</h3><br><br>
+                    <div class="tab-content tabcontent-border" style="min-height: 400px">
+                        <div class="p-4">
+                            <h3 class="card-title pb-3">Datos</h3>
                             <div class="form-group row">
-                                <label class="col-md-2" style="font-size: 15px;">Nombre: </label>
-                                <div class="col-md-9">
+                                <label class="col-md-3 col-lg-12 col-xl-2" style="font-size: 15px;">Nombre:</label>
+                                <div class="col">
                                     <input type="text" class="form-control" formControlName="nombre"
                                         placeholder="Nombre de la exposición">
                                         <div *ngIf="formularioEnviado && nombre.invalid" class="text-danger">El nombre no puede estar vacío</div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-2" style="font-size: 15px;">Autores: </label>
-                                <div class="col-md-9">
+                                <label class="col-md-3 col-lg-12 col-xl-2" style="font-size: 15px;">Autores: </label>
+                                <div class="col">
                                     <input type="text" class="form-control" formControlName="autores"
                                         placeholder="Autor o autores de la exposición">
                                 </div>
                             </div>
                             <div class="form-group row" style="font-size: 15px;">
-                                <label class="col-md-2">Descripción: </label>
-                                <div class="col-md-9">
+                                <label class="col-md-3 col-lg-12 col-xl-2">Descripción:</label>
+                                <div class="col">
                                     <textarea type="text" class="form-control" formControlName="descripcion"
                                         placeholder="Descripción de la exposición" style="height: 80px;"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-2" style="font-size: 15px;">Estado: </label>
-                                <div class="col-md-9">
-                                    <select class="form-select form-control" formControlName="estado_id" style="width: 40%">
+                                <label class="col-md-2 col-xl-2" style="font-size: 15px;">Estado: </label>
+                                <div class="col">
+                                    <select class="form-select form-control" formControlName="estado_id">
                                         <option value="0">Seleccionar estado</option>
                                         @for(estado of estadosPosibles; track estado.nombre){
                                         <option [value]="estado.nombre">{{ estado.nombre }}</option>
                                         }
                                     </select>
-                                    <div *ngIf="formularioEnviado && estado.invalid" class="text-danger">Se debe seleccionar un estado</div>
+                                    <div *ngIf="formularioEnviado && estado.invalid" class="text-danger">El nombre no puede estar vacío</div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-2" style="font-size: 15px;">Apertura: </label>
-                                <div class="col-md-9">
-                                    <input type="date" class="form-control" formControlName="fecha_inicio" style="width: 40%">
+                                <label class="col-md-2 col-xl-2" style="font-size: 15px;">Apertura:</label>
+                                <div class="col-md-4">
+                                    <input type="date" class="form-control" formControlName="fecha_inicio">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-2" style="font-size: 15px;">Cierre: </label>
-                                <div class="col-md-9">
-                                    <input type="date" class="form-control" formControlName="fecha_fin" style="width: 40%">
+                                <label class="col-md-2 col-xl-2" style="font-size: 15px;">Cierre:</label>
+                                <div class="col-md-4">
+                                    <input type="date" class="form-control" formControlName="fecha_fin">
                                 </div>
-                            </div>
+                            </div>                            
                         </div>
                     </div>
                 </div>

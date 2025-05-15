@@ -15,7 +15,6 @@ import { RouterModule } from '@angular/router';
 import { CookieService } from "ngx-cookie-service";
 import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 LOAD_WASM().subscribe();
 
@@ -33,7 +32,6 @@ LOAD_WASM().subscribe();
     RouterModule,
     FormsModule,
     NgxScannerQrcodeModule,
-    NgbModule
   ],
   providers: [CookieService, provideAnimationsAsync()],
   bootstrap: [AppComponent]

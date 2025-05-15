@@ -1,0 +1,38 @@
+<div id="padre-canvas" style="max-width: 620px; height: 100%; margin: 0 auto;">
+  <canvas #rendererCanvas id="renderCanvas"></canvas>
+  <div class="botones">
+      <span id="resetButton" class="mdi mdi-restart boton" style="padding-top: 2px;" (click)="resetPosition()"></span>
+      <span id="ayudaButton" class="mdi mdi-help boton" (click)="mostrarPanelAyuda()"></span>
+      <span id="expandir" [class]="iconoExpandir ? 'mdi mdi-arrow-expand boton' : 'mdi mdi-arrow-compress boton'" (click)="expandirContenedor()"></span>
+  </div>
+  <!-- Panel de ayuda -->
+  <div id="panelAyuda" class="panel-ayuda">
+    <div class="contenido-ayuda">
+        <span class="mdi mdi-window-close cerrar" (click)="ocultarPanelAyuda()"></span>
+        <!-- Aquí va la información de ayuda -->
+        <div class="row" style="padding-top: 20px;">
+            <div class="col-6">
+            <div class="info-ayuda">
+                <span [class]="informacionAyudaGeneral.rotar.icono"></span>
+                <h5>{{ informacionAyudaGeneral.rotar.titulo }}</h5>
+                <h6 class="text-muted">{{ informacionAyudaGeneral.rotar.descripcion }}</h6>
+            </div>
+            </div>
+            <div class="col-6">
+            <div class="info-ayuda">
+                <span [class]="informacionAyudaGeneral.zoom.icono"></span>
+                <h5>{{ informacionAyudaGeneral.zoom.titulo }}</h5>
+                <h6 class="text-muted">{{ informacionAyudaGeneral.zoom.descripcion }}</h6>
+            </div>
+            </div>
+            <!-- <div class="col-4">
+            <div class="info-ayuda">
+                <span [class]="informacionAyudaGeneral.mover.icono"></span>
+                <h5>{{ informacionAyudaGeneral.mover.titulo }}</h5>
+                <h6 class="text-muted">{{ informacionAyudaGeneral.mover.descripcion }}</h6>
+            </div> 
+            </div> -->
+        </div>          
+    </div>
+  </div>  
+</div>

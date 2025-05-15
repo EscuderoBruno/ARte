@@ -94,8 +94,13 @@ export class ListadoJuegoComponent implements OnInit {
   }
 
   irAlEnlace() {
-    console.log('alcudio/juego/' + this.idToDelete)
-    this.router.navigate(['alcudio/juego/' + this.idToDelete]);
+    const url = '/alcudio/' + this.idToDelete;
+    window.open(url, '_blank');
+  }
+
+  goToViewJuego(juegoId: string) {
+    const url = '/alcudio/' + juegoId;
+    window.open(url, '_blank');
   }
 
   convertBase64ToBlob(Base64Image: string) {
