@@ -84,7 +84,7 @@ Este proyecto, realizado en colaboración con el **Museo de la Universidad de Al
 ¡Descubre cómo funciona ARte!  
 Haz clic en la imagen para ver el video de presentación:  
 
-[![ARte - Bruno García Escudero](https://img.youtube.com/vi/-byk7npR5nE/0.jpg)](https://www.youtube.com/watch?v=-byk7npR5nE)
+[![ARte - Bruno García Escudero](https://github.com/user-attachments/assets/d2d8a059-bbc2-4a8c-807b-0d7ff8f3552a)](https://www.youtube.com/watch?v=-byk7npR5nE)
 
 ---
 
