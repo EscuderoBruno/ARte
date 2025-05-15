@@ -17,6 +17,13 @@ Este proyecto, realizado en colaboración con el **Museo de la Universidad de Al
 - **Acceso a Información Completa**: Textos y audios en varios idiomas, con opciones avanzadas como ajustes de velocidad y descargas.
 - **Compatibilidad Inclusiva**: Implementación de pictogramas para mejorar la comprensión de personas con dificultades lectoras.
 
+<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
+  <img src="https://github.com/user-attachments/assets/9e3a9323-abb3-423f-9780-dc863d07d994" alt="piezas" width="24%" />
+  <img src="https://github.com/user-attachments/assets/1caba9b6-633d-41db-bff7-bd8402541176" alt="piezas" width="24%" />
+  <img src="https://github.com/user-attachments/assets/1a50ee3c-ec45-4fa3-8224-d22b7d7cca77" alt="piezas" width="24%" />
+  <img src="https://github.com/user-attachments/assets/b0875edc-6d6b-49e1-a487-a693c6d44ee6" alt="piezas" width="24%" />
+</div>
+
 ### Administradores
 - **Gestión de Contenidos**: CRUD para exposiciones, salas y piezas del museo.
 - **Estadísticas en Tiempo Real**: Análisis de datos sobre visitas y escaneos.
