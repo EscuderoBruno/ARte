@@ -30,9 +30,9 @@ Este proyecto, realizado en colaboración con el **Museo de la Universidad de Al
   - Actividades educativas con integración en redes sociales para compartir logros.
  
 <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
-  <img src="https://github.com/user-attachments/assets/5785b109-baae-4962-aec4-ce42a1ace75b" alt="alcudio" width="33%" />
-  <img src="https://github.com/user-attachments/assets/c326d02d-3ff3-40f7-a0bc-1e3e8f3b1e3c" alt="alcudio" width="33%" />
-  <img src="https://github.com/user-attachments/assets/6750294e-5ec7-4c09-911b-4d9d60cd6928" alt="alcudio" width="33%" />
+  <img src="https://github.com/user-attachments/assets/5785b109-baae-4962-aec4-ce42a1ace75b" alt="alcudio" width="24%" />
+  <img src="https://github.com/user-attachments/assets/c326d02d-3ff3-40f7-a0bc-1e3e8f3b1e3c" alt="alcudio" width="24%" />
+  <img src="https://github.com/user-attachments/assets/6750294e-5ec7-4c09-911b-4d9d60cd6928" alt="alcudio" width="24%" />
 </div>
 
 ### Administradores
