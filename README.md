@@ -46,7 +46,7 @@ Este proyecto, realizado en colaboración con el **Museo de la Universidad de Al
 </div>
 <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
   <img src="https://github.com/user-attachments/assets/94069426-fd94-4dcb-9f20-594689647d1b" alt="admin" width="44%" />
-  <img src=https://github.com/user-attachments/assets/4aed98a3-1af1-48a3-a031-a30076d97f42" alt="admin" width="44%" />
+  <img src="https://github.com/user-attachments/assets/4aed98a3-1af1-48a3-a031-a30076d97f42" alt="admin" width="44%" />
 </div>
 
 ---
